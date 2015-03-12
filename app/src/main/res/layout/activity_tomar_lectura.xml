@@ -1,0 +1,19 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lecturas.sypelc.controlmacro.FormTomarLectura"
+    android:id="@+id/linear"
+    android:orientation="vertical">
+
+
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/InicioViewFlipper">
+
+        <include layout="@layout/base_toma_lectura"/>
+
+    </ViewFlipper>
+</LinearLayout>
