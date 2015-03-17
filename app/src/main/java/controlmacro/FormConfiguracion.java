@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import Adapter.SpinnerAdapter;
+import Adapter.CustomSpinnerAdapter;
 import clases.ClassConfiguracion;
 import clases.ClassSession;
 import sistema.Bluetooth;
@@ -19,7 +19,7 @@ import sistema.Bluetooth;
 
 public class FormConfiguracion extends ActionBarActivity implements OnClickListener {
     private ClassConfiguracion  FcnCfg;
-    private ClassSession FcnUsuario;
+    private ClassSession        FcnUsuario;
     private Bluetooth           FcnBluetooth;
 
     private ArrayAdapter<String> AdapLstImpresoras;
@@ -34,7 +34,6 @@ public class FormConfiguracion extends ActionBarActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
 
-
         this.FcnCfg         = ClassConfiguracion.getInstance(this);
         this.FcnUsuario     = ClassSession.getInstance(this);
         this.FcnBluetooth   = Bluetooth.getInstance();
@@ -46,8 +45,12 @@ public class FormConfiguracion extends ActionBarActivity implements OnClickListe
         this._cmbImpresora  = (Spinner) findViewById(R.id.ConfiguracionCmbImpresora);
         this._btnGuardar    = (Button) findViewById(R.id.ConfiguracionBtnGuardar);
 
-        this._listaImpresoras   = this.FcnBluetooth.GetDeviceBluetoothByAddress();
-        this.AdapLstImpresoras  = new SpinnerAdapter(this, R.layout.custom_spinner, this._listaImpresoras,"#FF5CBD79","#6B5656");
+        this._listaImpresoras   =   this.FcnBluetooth.GetDeviceBluetoothByAddress();
+        this.AdapLstImpresoras  =   new CustomSpinnerAdapter.BuilderSpinnerAdapter(this,R.layout.custom_spinner,this._listaImpresoras)
+                                                            .colorText("#FF5CBD79")
+                                                            .colorBack("#6B5656")
+                                                            .build();
+
         this._cmbImpresora.setAdapter(this.AdapLstImpresoras);
         this._cmbImpresora.setSelection(this.AdapLstImpresoras.getPosition(this.FcnCfg.getPrinter()));
 

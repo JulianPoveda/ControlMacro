@@ -181,6 +181,7 @@ public class SQLite {
         }
     }
 
+
     /*public boolean SQLString(String Query){
         ValorRetorno = false;
         try{
@@ -191,8 +192,6 @@ public class SQLite {
         }
         return ValorRetorno;
     }*/
-
-
 
 
 

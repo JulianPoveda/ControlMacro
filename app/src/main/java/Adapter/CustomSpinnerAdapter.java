@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,12 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String>{
 
     private final String            colorText;
     private final String            colorBack;
+    private final float             sizeText;
+
+    public final int                padLeft;
+    public final int                padRight;
+    public final int                padTop;
+    public final int                padBottom;
 
 
     private CustomSpinnerAdapter(BuilderSpinnerAdapter spinner){
@@ -31,6 +38,12 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String>{
         this.arrayInformacion   = spinner.arrayInformacion;
         this.colorText          = spinner.colorText;
         this.colorBack          = spinner.colorBack;
+        this.sizeText           = spinner.sizeText;
+
+        this.padTop             = spinner.padTop;
+        this.padLeft            = spinner.padLeft;
+        this.padRight           = spinner.padRight;
+        this.padBottom          = spinner.padBottom;
     }
 
     public Context getCtx() {
@@ -45,24 +58,32 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String>{
         return colorBack;
     }
 
+    public float getSizeText() {
+        return sizeText;
+    }
+
 
     @Override
     public View getDropDownView(int position, View cnvtView, ViewGroup prnt) {
         return getCustomView(position, cnvtView, prnt);
     }
 
+
     @Override
     public View getView(int pos, View cnvtView, ViewGroup prnt) {
         return getCustomView(pos, cnvtView, prnt);
     }
 
+
     public View getCustomView(int _position, View _convertView, ViewGroup _parent){
         LayoutInflater inflater = LayoutInflater.from(this.ctx);
         View        mySpinner = inflater.inflate(R.layout.custom_spinner, _parent, false);
         TextView txtSpinner= (TextView) mySpinner.findViewById(R.id.custom_text_spinner);
-        txtSpinner.setText(this.arrayInformacion.get(_position));
-        txtSpinner.setTextColor(Color.parseColor(this.colorText));
         txtSpinner.setBackgroundColor(Color.parseColor(this.colorBack));
+        txtSpinner.setPadding(this.padLeft, this.padTop, this.padRight, this.padBottom);
+        txtSpinner.setTextSize(TypedValue.COMPLEX_UNIT_SP,this.sizeText);
+        txtSpinner.setTextColor(Color.parseColor(this.colorText));
+        txtSpinner.setText(this.arrayInformacion.get(_position));
         return mySpinner;
     }
 
@@ -72,8 +93,13 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String>{
         public final Context            ctx;
         public int                      idResource;
         public final ArrayList<String>  arrayInformacion;
-        public String                   colorText = "#1C1717";
-        public String                   colorBack = "#FFFFFF";
+        public String                   colorText   = "#1C1717";
+        public String                   colorBack   = "#FFFFFF";
+        public float                    sizeText    = 15;
+        public int                      padLeft     = 0;
+        public int                      padRight    = 0;
+        public int                      padTop      = 0;
+        public int                      padBottom   = 0;
 
 
         public BuilderSpinnerAdapter(Context _ctx, int _idResource, ArrayList<String> _arrayInformacion){
@@ -91,6 +117,21 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String>{
 
         public BuilderSpinnerAdapter colorBack(String _colorBack){
             this.colorBack  = _colorBack;
+            return this;
+        }
+
+
+        public BuilderSpinnerAdapter paddingText(int _top, int _left, int _right, int _bottom){
+            this.padTop     = _top;
+            this.padLeft    = _left;
+            this.padRight   = _right;
+            this.padBottom  = _bottom;
+            return this;
+        }
+
+
+        public BuilderSpinnerAdapter sizeText(float _sizeText){
+            this.sizeText   = _sizeText;
             return this;
         }
 

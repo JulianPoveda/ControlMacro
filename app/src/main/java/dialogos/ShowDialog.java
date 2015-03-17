@@ -26,8 +26,7 @@ public class ShowDialog {
     private int     totalEnviadas;
 
     public void showLoginDialog(Context _ctx, String _ruta) {
-
-        SQLite  FcnSQL = new SQLite(_ctx, FormInicioSession.path_files_app);
+        SQLite  FcnSQL          = new SQLite(_ctx, FormInicioSession.path_files_app);
         this.totalRuta          = FcnSQL.CountRegistrosWhere("maestro_clientes","ruta='"+_ruta+"'");
         this.totalPendientes    = FcnSQL.CountRegistrosWhere("maestro_clientes","ruta='"+_ruta+"' AND estado = 'P'");
         this.totalCola          = FcnSQL.CountRegistrosWhere("maestro_clientes","ruta='"+_ruta+"' AND estado = 'T'");

@@ -29,22 +29,24 @@
         </activity>
         <activity
             android:name="controlmacro.FormInformacionRutas"
-            android:label="@string/title_activity_informacion_rutas" >
+            android:label="@string/title_activity_informacion_rutas"
+            android:screenOrientation="sensorPortrait" >
         </activity>
         <activity
             android:name="controlmacro.FormTomarLectura"
-            android:label="@string/title_activity_tomar_lectura">
+            android:label="@string/title_activity_tomar_lectura"
+            android:screenOrientation="sensorPortrait" >
         </activity>
         <activity
             android:name="controlmacro.FormConfiguracion"
-            android:label="@string/title_activity_configuracion" >
+            android:label="@string/title_activity_configuracion"
+            android:screenOrientation="sensorPortrait" >
         </activity>
         <activity
             android:name="controlmacro.FormBuscar"
-            android:label="@string/title_activity_form_buscar" >
+            android:label="@string/title_activity_form_buscar"
+            android:screenOrientation="sensorPortrait" >
         </activity>
-
-
     </application>
 
 </manifest>

@@ -190,9 +190,6 @@ public class FormBuscar extends ActionBarActivity implements TextWatcher, OnItem
                 this.AdaptadorUsuarios.Filtrar(this._cmbFiltro.getSelectedItemPosition(), this._txtBuscar.getText().toString());
                 break;
 
-            case R.id.LecturaSpnTipoUso:
-                break;
-
             default:
                 break;
         }
