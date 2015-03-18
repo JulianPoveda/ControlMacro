@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="LecturaLblObservacion">Observacion</string>
-    <string name="LecturaLblLectura1">Lect 1</string>
-    <string name="LecturaLblLectura2">Lect 2</string>
-    <string name="LecturaLblLectura3">Lect 3</string>
+    <string name="LecturaLblLectura">Lectura</string>
     <string name="LecturaBtnGuardar">Guardar</string>
     <string name="LecturaBtnImprimir">Imprimir</string>
     <string name="LecturaBtnAnterior">&lt;</string>
     <string name="LecturaBtnSiguiente">&gt;</string>
-    <string name="LecturaLblUbicacionGPS">Ubicacion GPS</string>
-    <string name="LecturaLblUbicacionLatitud">Lat</string>
-    <string name="LecturaLblUbicacionLongitud">Long</string>
+    <string name="LecturaLblPoste">Poste o Caja N°</string>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="13"
+    android:weightSum="12"
     android:background="#141010">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="New Text"
-        android:id="@+id/LecturaTxtRuta"
+        android:id="@+id/LecturaLblRuta"
         android:gravity="center_horizontal|center_vertical"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -57,7 +57,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="New Text"
-                    android:id="@+id/LecturaTxtCuenta"
+                    android:id="@+id/LecturaLblCuenta"
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -68,7 +68,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="New Text"
-                    android:id="@+id/LecturaTxtMedidor"
+                    android:id="@+id/LecturaLblMedidor"
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -79,7 +79,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="New Text"
-                    android:id="@+id/LecturaTxtNombre"
+                    android:id="@+id/LecturaLblNombre"
                     android:gravity="center_vertical|center_horizontal"
                     android:textSize="15dp"
                     android:textStyle="bold"
@@ -90,7 +90,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="New Text"
-                    android:id="@+id/LecturaTxtDireccion"
+                    android:id="@+id/LecturaLblDireccion"
                     android:gravity="center_vertical|center_horizontal"
                     android:textSize="15dp"
                     android:textColor="#ffff5e2c"
@@ -119,87 +119,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <TextView
-            android:id="@+id/LecturaLblUbicacionGPS"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/LecturaLblUbicacionGPS"
+            android:id="@+id/LecturaLblPoste"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="@string/LecturaLblPoste"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
             android:textColor="#ffff5e2c"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="10">
 
-            <TextView
-                android:id="@+id/LecturaLblLatitud"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:text="@string/LecturaLblUbicacionLatitud"
-                android:gravity="center_vertical|right"
-                android:textSize="20dp"
-                android:textColor="#ffff5e2c"/>
-
-            <EditText
-                android:id="@+id/LecturaTxtLatitud"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3.5"
-                android:gravity="bottom|center"
-                android:textSize="20dp"
-                android:inputType="number"
-                android:textColor="#FF5CBD79"/>
-
-            <TextView
-                android:id="@+id/LecturaLblLongitud"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:text="@string/LecturaLblUbicacionLongitud"
-                android:gravity="center_vertical|right"
-                android:textSize="20dp"
-                android:textColor="#ffff5e2c"/>
-
-            <EditText
-                android:id="@+id/LecturaTxtLongitud"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3.5"
-                android:gravity="bottom|center"
-                android:textSize="20dp"
-                android:inputType="number"
-                android:textColor="#FF5CBD79"/>
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        <EditText
+            android:id="@+id/LecturaTxtPoste"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="bottom|center"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:textColor="#FF5CBD79"/>
 
         <TextView
             android:id="@+id/LecturaLblLectura1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:text="@string/LecturaLblLectura1"
+            android:text="@string/LecturaLblLectura"
             android:gravity="center_vertical|right"
             android:textSize="20dp"
             android:textColor="#ffff5e2c"/>
@@ -213,63 +163,6 @@
             android:textSize="20dp"
             android:inputType="number"
             android:textColor="#FF5CBD79"/>
-
-        <TextView
-            android:id="@+id/LecturaLblLectura2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/LecturaLblLectura2"
-            android:gravity="center_vertical|right"
-            android:textSize="20dp"
-            android:textColor="#ffff5e2c"/>
-
-        <EditText
-            android:id="@+id/LecturaTxtLectura2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:layout_weight="3"
-            android:gravity="bottom|center"
-            android:textSize="20dp"
-            android:textColor="#FF5CBD79"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/LecturaLblLectura3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/LecturaLblLectura3"
-            android:gravity="center_vertical|right"
-            android:textSize="20dp"
-            android:textColor="#ffff5e2c"/>
-
-        <EditText
-            android:id="@+id/LecturaTxtLectura3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="bottom|center"
-            android:textSize="20dp"
-            android:textColor="#FF5CBD79"
-            android:inputType="number" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="@string/LecturaBtnGuardar"
-            android:textColor="#ffff5e2c"
-            android:id="@+id/LecturasBtnGuardar"
-            android:gravity="center_horizontal|center_vertical" />
     </LinearLayout>
 
     <LinearLayout
@@ -289,7 +182,7 @@
             android:textColor="#ffff5e2c"/>
 
         <EditText
-            android:id="@+id/LecturaEditMensaje"
+            android:id="@+id/LecturaTxtObservacion"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:inputType="textMultiLine"
@@ -297,5 +190,23 @@
             android:gravity="top"
             android:textColor="#FF5CBD79" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:weightSum="10">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4 "
+            android:text="@string/LecturaBtnGuardar"
+            android:textColor="#ffff5e2c"
+            android:id="@+id/LecturasBtnGuardar"
+            android:gravity="center_horizontal|center_vertical" />
+    </LinearLayout>a
 
 </LinearLayout>

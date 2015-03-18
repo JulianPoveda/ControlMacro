@@ -1,7 +1,6 @@
 package controlmacro;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,13 +17,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
 import Adapter.AdaptadorFourItems;
 import Adapter.DetalleFourItems;
-import clases.ClassTomarLectura;
+import clases.ClassTomaLectura;
 
 
 public class FormBuscar extends ActionBarActivity implements TextWatcher, OnItemSelectedListener {
@@ -40,20 +38,20 @@ public class FormBuscar extends ActionBarActivity implements TextWatcher, OnItem
     private ArrayList<ContentValues>    _tempTabla;
     private ContentValues               _tempRegistro;
 
-    private ClassTomarLectura           FcnLectura;
-
     private String                      clienteSeleccionado;
     private String                      _cuenta;
     private String                      _medidor;
     private String                      _nombre;
     private String                      _direccion;
 
+    private ClassTomaLectura            FcnLectura;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modal_form_buscar);
 
-        this.FcnLectura         = new ClassTomarLectura(this, FormInicioSession.path_files_app);
+        this.FcnLectura     = new ClassTomaLectura(this);
 
         this._txtBuscar     = (EditText) findViewById(R.id.BuscarTxtBuscar);
         this._cmbFiltro     = (Spinner) findViewById(R.id.BuscarCmbFiltro);
@@ -62,10 +60,10 @@ public class FormBuscar extends ActionBarActivity implements TextWatcher, OnItem
         this.ArrayFiltro    = new ArrayList<String>();
 
         this.ArrayFiltro.clear();
-        this.ArrayFiltro.add("Cuenta");
-        this.ArrayFiltro.add("Medidor");
-        this.ArrayFiltro.add("Nombre");
-        this.ArrayFiltro.add("Direccion");
+        this.ArrayFiltro.add("CUENTA");
+        this.ArrayFiltro.add("MEDIDOR");
+        this.ArrayFiltro.add("NOMBRE");
+        this.ArrayFiltro.add("DIRECCION");
 
 
 
@@ -77,14 +75,13 @@ public class FormBuscar extends ActionBarActivity implements TextWatcher, OnItem
         for(int i=0;i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
             ArrayUsuarios.add(new DetalleFourItems( this._tempRegistro.getAsString("cuenta"),
-                                                    this._tempRegistro.getAsString("serie_medidor"),
+                                                    this._tempRegistro.getAsString("serie"),
                                                     this._tempRegistro.getAsString("nombre"),
                                                     this._tempRegistro.getAsString("direccion")));
         }
         this.AdaptadorUsuarios  = new AdaptadorFourItems(this, ArrayUsuarios);
         this._lstClientes.setAdapter(this.AdaptadorUsuarios);
         registerForContextMenu(this._lstClientes);
-      //  _lstClientes.setOnItemClickListener(this);
         this.AdaptadorUsuarios.notifyDataSetChanged();
         this._txtBuscar.addTextChangedListener(this);
 

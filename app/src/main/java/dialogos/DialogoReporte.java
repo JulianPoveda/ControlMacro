@@ -14,7 +14,7 @@ import sistema.SQLite;
 /**
  * Created by JULIANEDUARDO on 11/03/2015.
  */
-public class ShowDialog {
+public class DialogoReporte {
     private EditText _txtPendientes;
     private EditText _txtEnCola;
     private EditText _txtEnviados;

@@ -82,43 +82,23 @@ public class ClassFlujoInformacion {
         /**Se inicia el registro de la ruta programada**/
         this._campos = _informacion.split(_delimitador);
         this._tempRegistro.clear();
-        if(this._campos[0].equals("MaestroRutas")){
-            this.FcnSQL.DeleteRegistro("maestro_clientes","id_ciclo="+this._campos[2]+" AND ruta='"+this._campos[3]+"'");
-            this._tempRegistro.put("id_inspector",this._campos[1]);
-            this._tempRegistro.put("id_ciclo",this._campos[2]);
-            this._tempRegistro.put("ruta",this._campos[3]);
-            this._tempRegistro.put("fecha_cargue",currentDateandTime);
-            this.FcnSQL.InsertRegistro("maestro_rutas",this._tempRegistro);
+        if(this._campos[0].equals("MaestroNodos")){
+            this.FcnSQL.DeleteRegistro("maestro_clientes","nodo='"+this._campos[2]+"' AND fecha_asignacion='"+this._campos[3]+"'");
+            this._tempRegistro.put("id_serial", this._campos[1]);
+            this._tempRegistro.put("nodo", this._campos[2]);
+            this._tempRegistro.put("id_tecnico", this._campos[3]);
+            this._tempRegistro.put("fecha_asignacion", this._campos[4]);
+            this.FcnSQL.InsertRegistro("maestro_nodos",this._tempRegistro);
         }else if(this._campos[0].equals("MaestroClientes")){
-            //this._tempRegistro.put("id_serial",secuencia);
-            this._tempRegistro.put("id_secuencia",this._campos[1]);
-            this._tempRegistro.put("id_ciclo",this._campos[2]);
-            this._tempRegistro.put("ruta",this._campos[3]);
+            this._tempRegistro.put("id",this._campos[1]);
+            this._tempRegistro.put("fecha_programacion",this._campos[2]);
+            this._tempRegistro.put("nodo",this._campos[3]);
             this._tempRegistro.put("cuenta",this._campos[4]);
-            this._tempRegistro.put("marca_medidor",this._campos[5]);
-            this._tempRegistro.put("serie_medidor",this._campos[6]);
-            this._tempRegistro.put("digitos",this._campos[7]);
-            this._tempRegistro.put("nombre",this._campos[8]);
-            this._tempRegistro.put("direccion",this._campos[9]);
-            this._tempRegistro.put("factor_multiplicacion",this._campos[10]);
-            this._tempRegistro.put("tipo_uso",this._campos[11]);
-            this._tempRegistro.put("id_serial_1",this._campos[12]);
-            this._tempRegistro.put("lectura_anterior_1",this._campos[13]);
-            this._tempRegistro.put("tipo_energia_1",this._campos[14]);
-            this._tempRegistro.put("anomalia_anterior_1",this._campos[15]);
-            this._tempRegistro.put("promedio_1",this._campos[16]);
-            this._tempRegistro.put("id_serial_2",this._campos[17]);
-            this._tempRegistro.put("lectura_anterior_2",this._campos[18]);
-            this._tempRegistro.put("tipo_energia_2",this._campos[19]);
-            this._tempRegistro.put("anomalia_anterior_2",this._campos[20]);
-            this._tempRegistro.put("promedio_2",this._campos[21]);
-            this._tempRegistro.put("id_serial_3",this._campos[22]);
-            this._tempRegistro.put("lectura_anterior_3",this._campos[23]);
-            this._tempRegistro.put("tipo_energia_3",this._campos[24]);
-            this._tempRegistro.put("anomalia_anterior_3",this._campos[25]);
-            this._tempRegistro.put("promedio_3",this._campos[26]);
-            this._tempRegistro.put("id_municipio",this._campos[27]);
-            this._tempRegistro.put("estado",this._campos[28]);
+            this._tempRegistro.put("medidor",this._campos[5]);
+            this._tempRegistro.put("serie",this._campos[6]);
+            this._tempRegistro.put("nombre",this._campos[7]);
+            this._tempRegistro.put("direccion",this._campos[8]);
+            this._tempRegistro.put("estado",this._campos[9]);
             this.FcnSQL.InsertRegistro("maestro_clientes",this._tempRegistro);
         }
     }

@@ -61,8 +61,8 @@ public class SQLite {
 
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Servidor','http://192.168.1.37',0) ");
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Puerto','80',0) ");
-            db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Modulo','DesarrolloLecturas/ServerMobile',0) ");
-            db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Web_Service','WS_Lecturas.php?wsdl',0)");
+            db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Modulo','MacroControl/ServerMobile',0) ");
+            db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Web_Service','WS_MacroControl.php?wsdl',0)");
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Impresora','Sin Asignar',1)");
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Version_Software','1.0',0)");
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Version_BD','1.0',0)");
@@ -87,41 +87,23 @@ public class SQLite {
             db.execSQL("CREATE TABLE    param_tipos_uso(id_uso                  INTEGER NOT NULL PRIMARY KEY," +
                                                         "descripcion             VARCHAR(255) NOT NULL)");
 
-            db.execSQL("CREATE TABLE    maestro_rutas   (id_inspector           INTEGER NOT NULL," +
-                                                        "id_ciclo               INTEGER NOT NULL," +
-                                                        "ruta                   VARCHAR(255) NOT NULL," +
-                                                        "fecha_cargue           TIMESTAMP NOT NULL DEFAULT current_timestamp," +
-                                                        "PRIMARY KEY(id_inspector,ruta))");
+            db.execSQL("CREATE TABLE    maestro_nodos  ( id_serial              INTEGER NOT NULL," +
+                                                        "nodo                   VARCHAR(20) NOT NULL," +
+                                                        "id_tecnico             INTEGER NOT NULL," +
+                                                        "fecha_asignacion       DATE NOT NULL," +
+                                                        "PRIMARY KEY(nodo, fecha_asignacion))");
 
-            db.execSQL("CREATE TABLE     maestro_clientes(id_serial             INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                                        "id_secuencia           NUMERIC(15,0) NOT NULL," +
-                                                        "id_ciclo               VARCHAR(255) NOT NULL,"+
-                                                        "ruta                   VARCHAR(255) NOT NULL,"+
-                                                        "cuenta                 NUMERIC(15,0) NOT NULL," +
-                                                        "marca_medidor          VARCHAR(255) NOT NULL," +
-                                                        "serie_medidor          VARCHAR(255) NOT NULL," +
-                                                        "digitos                VARCHAR(50) NOT NULL," +
-                                                        "nombre                 VARCHAR(50) NOT NULL," +
-                                                        "direccion              INTEGER NOT NULL," +
-                                                        "factor_multiplicacion  INTEGER NOT NULL,"  +
-                                                        "tipo_uso               VARCHAR(20) NOT NULL," +
-                                                        "id_municipio           INTEGER NOT NULL," +
-                                                        "id_serial_1            INTEGER NOT NULL," +
-                                                        "lectura_anterior_1     INTEGER NOT NULL," +
-                                                        "anomalia_anterior_1    VARCHAR(20),"+
-                                                        "tipo_energia_1         VARCHAR(15)," +
-                                                        "promedio_1             VARCHAR(20),"+
-                                                        "id_serial_2            VARCHAR(20)," +
-                                                        "lectura_anterior_2     VARCHAR(20)," +
-                                                        "anomalia_anterior_2    VARCHAR(20),"+
-                                                        "tipo_energia_2         VARCHAR(15)," +
-                                                        "promedio_2             VARCHAR(20),"+
-                                                        "id_serial_3            VARCHAR(20)," +
-                                                        "lectura_anterior_3     VARCHAR(20)," +
-                                                        "anomalia_anterior_3    VARCHAR(20),"+
-                                                        "tipo_energia_3         VARCHAR(15)," +
-                                                        "promedio_3             VARCHAR(20)," +
-                                                        "estado                 VARCHAR(15) NOT NULL)");
+            db.execSQL("CREATE TABLE   maestro_clientes( id                     INTEGER NOT NULL," +
+                                                        "fecha_programacion     DATE NOT NULL," +
+                                                        "nodo                   VARCHAR(20) NOT NULL," +
+                                                        "cuenta                 NUMERIC(15,0) NOT NULL,"+
+                                                        "medidor                VARCHAR(20) NOT NULL,"+
+                                                        "serie                  VARCHAR(50) NOT NULL," +
+                                                        "nombre                 VARCHAR(255) NOT NULL," +
+                                                        "direccion              VARCHAR(255) NOT NULL," +
+                                                        "estado                 VARCHAR(15) NOT NULL," +
+                                                        "vinculacion            VARCHAR(1) NOT NULL DEFAULT 'E'," +
+                                                        "PRIMARY KEY(fecha_programacion, nodo, cuenta, medidor, serie))");
 
             db.execSQL("CREATE TABLE    toma_lectura    (id                     INTEGER PRIMARY KEY AUTOINCREMENT," +
                                                         "id_serial1             INTEGER NOT NULL," +
@@ -138,7 +120,7 @@ public class SQLite {
                                                         "tipo_uso               VARCHAR(255)," +
                                                         "fecha_toma             TIMESTAMP NOT NULL DEFAULT current_timestamp)");
 
-            db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
+            /*db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
                         "	UPDATE maestro_rutas SET fecha_cargue = datetime('now','localtime') " +
                         "   WHERE id_inspector = NEW.id_inspector AND ruta = NEW.ruta;" +
                         "END;");
@@ -151,7 +133,7 @@ public class SQLite {
             db.execSQL(	"CREATE TRIGGER tg_estado_lectura AFTER DELETE ON toma_lectura FOR EACH ROW BEGIN" +
                         "   UPDATE maestro_clientes SET estado = 'E' " +
                         "   WHERE id_serial_1 = OLD.id_serial1;" +
-                        "END;");
+                        "END;");*/
 
         }
 

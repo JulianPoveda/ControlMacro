@@ -21,32 +21,32 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/TituloRutas"
-            android:id="@+id/InfoTxtTituloRutas"
+            android:text="@string/RutaLblNodo"
+            android:id="@+id/RutaLblNodo"
             android:gravity="center_vertical|center_horizontal" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/TituloPendientes"
-            android:id="@+id/InfoTxtTituloPend"
+            android:text="@string/RutaLblPendiente"
+            android:id="@+id/RutaLblPendiente"
             android:gravity="center_vertical|center_horizontal" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/TituloLeidas"
-            android:id="@+id/InfoTxtTituloLeidas"
+            android:text="@string/RutaLblLeido"
+            android:id="@+id/RutaLblLeido"
             android:gravity="center_vertical|center_horizontal" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/TituloTotal"
-            android:id="@+id/InfoTxtTituloTotal"
+            android:text="@string/RutaLblTotal"
+            android:id="@+id/RutaLblTotal"
             android:gravity="center_vertical|center_horizontal" />
 
     </LinearLayout>

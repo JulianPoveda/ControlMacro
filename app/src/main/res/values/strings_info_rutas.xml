@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="TituloRutas">Rutas</string>
-    <string name="TituloTotal">Total</string>
-    <string name="TituloLeidas">Leidas</string>
-    <string name="TituloPendientes">Pendientes</string>
+    <string name="RutaLblNodo">Nodo</string>
+    <string name="RutaLblTotal">Total Usuarios</string>
+    <string name="RutaLblLeido">Usuarios Leidos</string>
+    <string name="RutaLblPendiente">Usuarios Pendientes</string>
 </resources>

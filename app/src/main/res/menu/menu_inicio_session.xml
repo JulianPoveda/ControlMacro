@@ -8,13 +8,13 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
-    <item android:id="@+id/InicioCargarRuta"
-          android:title="@string/cargarRuta"
+    <item android:id="@+id/InicioCargarNodos"
+          android:title="@string/mnu_session_cargar_nodos"
           android:orderInCategory="100"
           app:showAsAction="never" />
 
-    <item android:id="@+id/InicioVerRutas"
-        android:title="@string/verRutas"
+    <item android:id="@+id/InicioVerNodos"
+        android:title="@string/mnu_session_ver_nodos"
         android:orderInCategory="100"
         app:showAsAction="never" />
 

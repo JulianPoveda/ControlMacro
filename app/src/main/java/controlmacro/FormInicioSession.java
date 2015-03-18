@@ -16,8 +16,7 @@ import android.widget.TextView;
 
 import java.io.File;
 
-import async_task.DownLoadParametros;
-import async_task.DownLoadTrabajo;
+import async_task.DownLoad;
 import clases.ClassConfiguracion;
 import clases.ClassSession;
 
@@ -68,9 +67,10 @@ public class FormInicioSession extends ActionBarActivity implements OnClickListe
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.InicioCargarParametros).setEnabled(this.FcnSession.isInicio_sesion());
-        menu.findItem(R.id.InicioCargarRuta).setEnabled(this.FcnSession.isInicio_sesion());
-        menu.findItem(R.id.InicioVerRutas).setEnabled(this.FcnSession.isInicio_sesion());
+        menu.findItem(R.id.InicioCargarNodos).setEnabled(this.FcnSession.isInicio_sesion());
+        menu.findItem(R.id.InicioVerNodos).setEnabled(this.FcnSession.isInicio_sesion());
         menu.findItem(R.id.InicioCrearBackup).setEnabled(this.FcnSession.isInicio_sesion());
+        menu.findItem(R.id.InicioConfiguracion).setEnabled(this.FcnSession.isInicio_sesion());
 
         this._txtCodigo.setEnabled(!this.FcnSession.isInicio_sesion());
         this._btnLoggin.setEnabled(!this.FcnSession.isInicio_sesion());
@@ -83,14 +83,15 @@ public class FormInicioSession extends ActionBarActivity implements OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.InicioCargarParametros:
-                new DownLoadParametros(this).execute(this.FcnSession.getCodigo()+"");
+                //new DownLoad(this).execute(this.FcnSession.getCodigo()+"");
+                new DownLoad(this).execute(this.FcnSession.getCodigo()+"","Parametros");
                 break;
 
-            case R.id.InicioCargarRuta:
-                new DownLoadTrabajo(this).execute(this.FcnSession.getCodigo()+"");
+            case R.id.InicioCargarNodos:
+                new DownLoad(this).execute(this.FcnSession.getCodigo()+"","Trabajo");
                 break;
 
-            case R.id.InicioVerRutas:
+            case R.id.InicioVerNodos:
                 this.new_form = new Intent(this, FormInformacionRutas.class);
                 //this.new_form.putExtra("FolderAplicacion",Environment.getExternalStorageDirectory() + File.separator + "TomaLecturas");
                 startActivity(this.new_form);

@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import Adapter.RutasAdapter;
-import Adapter.RutasData;
+import Adapter.AdaptadorFourItems;
+import Adapter.DetalleFourItems;
 import async_task.UploadLecturas;
 import clases.ClassSession;
 import sistema.SQLite;
@@ -24,15 +24,17 @@ import sistema.SQLite;
  */
 public class FormInformacionRutas extends Activity{
     private String FolderAplicacion;
-    private String ruta_seleccionada;
+    private String nodo_seleccionado;
 
     private Intent          new_form;
     private ListView        listadoRutas;
     private SQLite          sqlConsulta;
     private ClassSession    FcnSession;
 
-    private RutasAdapter listadoRutasAdapter;
-    private ArrayList<RutasData> arrayListadoRutas = new ArrayList<>();
+    private AdaptadorFourItems listadoRutasAdapter;
+    private ArrayList<DetalleFourItems> arrayListadoRutas;
+
+
 
     private ArrayList<ContentValues> _tempTabla = new ArrayList<ContentValues>();
     private ContentValues _tempRegistro 		= new ContentValues();
@@ -44,30 +46,29 @@ public class FormInformacionRutas extends Activity{
         setContentView(R.layout.activity_informacion_rutas);
 
         Bundle bundle = getIntent().getExtras();
-        //this.FolderAplicacion= bundle.getString("FolderAplicacion");
 
-        this.FcnSession = ClassSession.getInstance(this);
+        this.listadoRutas   = (ListView)findViewById(R.id.InfoListRutas);
 
-        sqlConsulta = new SQLite(this, FormInicioSession.path_files_app);
-        listadoRutasAdapter = new RutasAdapter(FormInformacionRutas.this, arrayListadoRutas);
+        this.FcnSession         = ClassSession.getInstance(this);
+        this.sqlConsulta        = new SQLite(this, FormInicioSession.path_files_app);
 
-        listadoRutas = (ListView)findViewById(R.id.InfoListRutas);
-        listadoRutas.setAdapter(listadoRutasAdapter);
+        this.arrayListadoRutas  = new ArrayList<>();
+        this.arrayListadoRutas.clear();
 
-        arrayListadoRutas.clear();
-
-        this._tempTabla = sqlConsulta.SelectData("maestro_rutas","ruta","id_inspector="+this.FcnSession.getCodigo());
+        this._tempTabla = sqlConsulta.SelectData("maestro_nodos","nodo","id_tecnico="+this.FcnSession.getCodigo());
         for(int i=0;i<this._tempTabla.size();i++){
             this._tempRegistro = this._tempTabla.get(i);
-            Integer totalR = sqlConsulta.CountRegistrosWhere("maestro_clientes","ruta='"+this._tempRegistro.getAsString("ruta")+"'");
-            Integer totalP = sqlConsulta.CountRegistrosWhere("maestro_clientes","ruta='"+this._tempRegistro.getAsString("ruta")+"' AND estado='P'");
+            Integer totalR = sqlConsulta.CountRegistrosWhere("maestro_clientes","nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+            Integer totalP = sqlConsulta.CountRegistrosWhere("maestro_clientes","nodo='"+this._tempRegistro.getAsString("nodo")+"' AND estado='P'");
             Integer totalL = totalR - totalP;
-            arrayListadoRutas.add(new RutasData(this._tempRegistro.getAsString("ruta"),
-                                                String.valueOf(totalP),
-                                                String.valueOf(totalL),
-                                                String.valueOf(totalR)));
+            arrayListadoRutas.add(new DetalleFourItems( this._tempRegistro.getAsString("nodo"),
+                                                        String.valueOf(totalP),
+                                                        String.valueOf(totalL),
+                                                        String.valueOf(totalR)));
         }
-        listadoRutasAdapter.notifyDataSetChanged();
+        this.listadoRutasAdapter = new AdaptadorFourItems(FormInformacionRutas.this, arrayListadoRutas);
+        this.listadoRutas.setAdapter(listadoRutasAdapter);
+        this.listadoRutasAdapter.notifyDataSetChanged();
         registerForContextMenu(this.listadoRutas);
     }
 
@@ -75,10 +76,10 @@ public class FormInformacionRutas extends Activity{
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-        this.ruta_seleccionada = arrayListadoRutas.get(info.position).getCodigoRuta();
+        this.nodo_seleccionado = arrayListadoRutas.get(info.position).getItem1();
         switch(v.getId()){
             case R.id.InfoListRutas:
-                menu.setHeaderTitle("Ruta " + this.ruta_seleccionada);
+                menu.setHeaderTitle("Nodo " + this.nodo_seleccionado);
                 super.onCreateContextMenu(menu, v, menuInfo);
                 MenuInflater inflater = getMenuInflater();
                 inflater.inflate(R.menu.menu_lista_rutas, menu);
@@ -91,12 +92,12 @@ public class FormInformacionRutas extends Activity{
         switch (item.getItemId()){
             case R.id.RutasMenuIniciar:
                 this.new_form = new Intent(this, FormTomarLectura.class);
-                this.new_form.putExtra("Ruta",this.ruta_seleccionada);
+                this.new_form.putExtra("Nodo",this.nodo_seleccionado);
                 startActivity(this.new_form);
                 return true;
 
             case R.id.RutasMenuSincronizar:
-                new UploadLecturas(this).execute(this.ruta_seleccionada);
+                new UploadLecturas(this).execute(this.nodo_seleccionado);
                 return true;
 
             default:

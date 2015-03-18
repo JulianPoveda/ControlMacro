@@ -4,4 +4,6 @@
     <string name="mnu_lectura_imprimir">Imprimir</string>
     <string name="mnu_lectura_buscar">Buscar</string>
     <string name="mnu_lectura_foto">Foto</string>
+    <string name="mnu_session_cargar_nodos">Cargar Nodos</string>
+    <string name="mnu_session_ver_nodos">Ver Nodos</string>
 </resources>
