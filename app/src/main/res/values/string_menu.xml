@@ -6,4 +6,5 @@
     <string name="mnu_lectura_foto">Foto</string>
     <string name="mnu_session_cargar_nodos">Cargar Nodos</string>
     <string name="mnu_session_ver_nodos">Ver Nodos</string>
+    <string name="mnu_redes_agregar">Agregar Nodo</string>
 </resources>
