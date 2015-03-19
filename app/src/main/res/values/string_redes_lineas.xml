@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TxtTituloRedesLineas">Formato Redes Lineas</string>
+    <string name="TxtFasesRedesLineas">Fases</string>
+    <string name="TxtConductorRedesLineas">Conductor</string>
+    <string name="TxtFARedesLineas">A</string>
+    <string name="TxtFBRedesLineas">B</string>
+    <string name="TxtFCRedesLineas">C</string>
+    <string name="TxtFAPRedesLineas">AP</string>
+    <string name="TxtFNRedesLineas">N</string>
+</resources>

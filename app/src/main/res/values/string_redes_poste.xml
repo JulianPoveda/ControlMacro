@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TxtTituloRedesPoste">Formato Redes</string>
+    <string name="TxtItemRedesPoste">Item</string>
+    <string name="TxtTipoPoste">Tipo</string>
+    <string name="TxtGPSPoste">Pocision GPS</string>
+    <string name="TxtCompartidoPoste">Compartido</string>
+    <string name="TxtEstadoPoste">Estado</string>
+    <string name="TxtMaterialPoste">Material</string>
+    <string name="TxtAlturaPoste">Altura</string>
+    <string name="TxtEstructuraPoste">Estructura</string>
+    <string name="TxtObservacionesPoste">Observaciones</string>
+</resources>
