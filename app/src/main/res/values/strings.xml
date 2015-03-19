@@ -17,4 +17,7 @@
     <string name="di_Lbl_Mensaje">Mensaje</string>
     <string name="di_Btn_Aceptar">Aceptar</string>
     <string name="title_activity_dialogo_informacion">DialogoInformacion</string>
+    <string name="title_activity_form_redes_poste">FormRedesPOste</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
