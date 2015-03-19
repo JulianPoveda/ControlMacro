@@ -17,7 +17,10 @@
     <string name="di_Lbl_Mensaje">Mensaje</string>
     <string name="di_Btn_Aceptar">Aceptar</string>
     <string name="title_activity_dialogo_informacion">DialogoInformacion</string>
-    <string name="title_activity_form_redes_poste">FormRedesPOste</string>
+    <string name="title_activity_dialog_single_input">DialogSingleInput</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_dialog_confirm">Confirmacion</string>
+    <string name="title_activity_dialog_new_usuario">DialogNewUsuario</string>
+    <string name="title_activity_dialog_delete_usuario">DialogDeleteUsuario</string>
 </resources>

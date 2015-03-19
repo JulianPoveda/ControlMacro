@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="160dp"
+    android:weightSum="4"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+        <TextView
+            android:id="@+id/DialogConfirmTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="left|center_vertical"
+            android:textSize="20dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/DialogConfirmLbl1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <Button
+            android:id="@+id/DialogConfirmBtnAceptar"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:text="@string/btn_aceptar_dialog_single_input"/>
+
+        <Button
+            android:id="@+id/DialogConfirmBtnCancelar"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:text="@string/btn_cancelar_dialog_single_input"/>
+    </LinearLayout>
+</LinearLayout>

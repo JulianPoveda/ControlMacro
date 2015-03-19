@@ -48,8 +48,24 @@
             android:screenOrientation="sensorPortrait" >
         </activity>
         <activity
-            android:name=".FormRedesPoste"
-            android:label="@string/title_activity_form_redes_poste" >
+            android:name="dialogos.DialogSingleInput"
+            android:label="@string/title_activity_dialog_single_input"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogConfirm"
+            android:label="@string/title_activity_dialog_confirm"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogNewUsuario"
+            android:label="@string/title_activity_dialog_new_usuario"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogDeleteUsuario"
+            android:label="@string/title_activity_dialog_delete_usuario"
+            android:theme="@android:style/Theme.Dialog">
         </activity>
     </application>
 

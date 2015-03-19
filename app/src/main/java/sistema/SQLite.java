@@ -67,25 +67,7 @@ public class SQLite {
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Version_Software','1.0',0)");
             db.execSQL("INSERT INTO     param_configuracion (item,valor,nivel) VALUES ('Version_BD','1.0',0)");
 
-            //Tabla con los datos de configuracion
-            db.execSQL("CREATE TABLE    param_anomalias (id_anomalia            INTEGER NOT NULL PRIMARY KEY, " +
-                                                        "descripcion            VARCHAR(500) NOT NULL, " +
-                                                        "aplica_residencial     VARCHAR(10) NOT NULL," +
-                                                        "aplica_no_residencial  VARCHAR(10) NOT NULL," +
-                                                        "lectura                VARCHAR(10) NOT NULL," +
-                                                        "mensaje                VARCHAR(1) NOT NULL," +
-                                                        "foto                   VARCHAR(10) NOT NULL)");
 
-            //Tabla con los datos de configuracion
-            db.execSQL("CREATE TABLE    param_critica   (minimo                 NUMERIC(15,7) NOT NULL," +
-                                                        "maximo                 NUMERIC(15,7) NOT NULL," +
-                                                        "descripcion            VARCHAR(255) PRIMARY KEY)");
-
-            db.execSQL("CREATE TABLE    param_municipios(id_municipio           INTEGER NOT NULL PRIMARY KEY," +
-                                                        "municipio              VARCHAR(255) NOT NULL)");
-
-            db.execSQL("CREATE TABLE    param_tipos_uso(id_uso                  INTEGER NOT NULL PRIMARY KEY," +
-                                                        "descripcion             VARCHAR(255) NOT NULL)");
 
             db.execSQL("CREATE TABLE    maestro_nodos  ( id_serial              INTEGER NOT NULL," +
                                                         "nodo                   VARCHAR(20) NOT NULL," +
@@ -106,19 +88,16 @@ public class SQLite {
                                                         "PRIMARY KEY(fecha_programacion, nodo, cuenta, medidor, serie))");
 
             db.execSQL("CREATE TABLE    toma_lectura    (id                     INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                                        "id_serial1             INTEGER NOT NULL," +
-                                                        "id_serial2             INTEGER NOT NULL," +
-                                                        "id_serial3             INTEGER NOT NULL," +
-                                                        "anomalia               INTEGER NOT NULL," +
-                                                        "mensaje                VARCHAR(255)," +
-                                                        "lectura1               INTEGER NOT NULL," +
-                                                        "lectura2               INTEGER NOT NULL," +
-                                                        "lectura3               INTEGER NOT NULL," +
-                                                        "critica1               NUMERIC(15,7) NOT NULL," +
-                                                        "critica2               NUMERIC(15,7) NOT NULL," +
-                                                        "critica3               NUMERIC(15,7) NOT NULL," +
-                                                        "tipo_uso               VARCHAR(255)," +
-                                                        "fecha_toma             TIMESTAMP NOT NULL DEFAULT current_timestamp)");
+                                                        "fecha_programacion     DATE NOT NULL," +
+                                                        "nodo                   VARCHAR(20) NOT NULL," +
+                                                        "new_nodo               VARCHAR(20) NOT NULL," +
+                                                        "cuenta                 NUMERIC(15,0) NOT NULL," +
+                                                        "medidor                VARCHAR(20) NOT NULL," +
+                                                        "serie                  VARCHAR(50)," +
+                                                        "poste                  INTEGER NOT NULL," +
+                                                        "lectura                INTEGER NOT NULL," +
+                                                        "observacion            VARCHAR(255)," +
+                                                        "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp)");
 
             /*db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
                         "	UPDATE maestro_rutas SET fecha_cargue = datetime('now','localtime') " +

@@ -1,0 +1,134 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="380dp"
+    android:weightSum="9"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/DialogDeleteUserTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="left|center_vertical"
+        android:textSize="22dp"
+        android:text="@string/lbl_dialog_delete_user_titulo"
+        android:textColor="#2E64FE"
+        android:layout_weight="1"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:id="@+id/DialogDeleteUserLblNewNodo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lbl_dialog_delete_user_new_nodo"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|right"/>
+
+        <EditText
+            android:id="@+id/DialogDeleteUserTxtNewNodo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:id="@+id/DialogDeleteUserLblPoste"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lbl_dialog_delete_user_poste"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|right"/>
+
+        <EditText
+            android:id="@+id/DialogDeleteUserTxtPoste"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:id="@+id/DialogDeleteUserLblLectura"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lbl_dialog_delete_user_lectura"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|right"/>
+
+        <EditText
+            android:id="@+id/DialogDeleteUserTxtLectura"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="numberPassword"
+            android:layout_weight="6"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/DialogDeleteUserLblObservacion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/lbl_dialog_delete_user_observacion"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical|left"/>
+
+    <EditText
+        android:id="@+id/DialogDeleteUserTxtObservacion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <Button
+            android:id="@+id/DialogDeleteUserBtnAceptar"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:text="@string/btn_aceptar_dialog_single_input"/>
+
+        <Button
+            android:id="@+id/DialogDeleteUserBtnCancelar"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:text="@string/btn_cancelar_dialog_single_input"/>
+    </LinearLayout>
+</LinearLayout>
+
