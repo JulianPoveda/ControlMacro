@@ -7,7 +7,7 @@ public class UsuarioEMSA {
 
     //Datos de referencia en la base de datos
     private int         id;
-    private int         fecha_programacion;
+    private String      fecha_programacion;
     private String      nodo;
     private int         cuenta;
     private String      marca_medidor;
@@ -29,11 +29,11 @@ public class UsuarioEMSA {
         this.id = id;
     }
 
-    public int getFecha_programacion() {
+    public String getFecha_programacion() {
         return fecha_programacion;
     }
 
-    public void setFecha_programacion(int fecha_programacion) {
+    public void setFecha_programacion(String fecha_programacion) {
         this.fecha_programacion = fecha_programacion;
     }
 

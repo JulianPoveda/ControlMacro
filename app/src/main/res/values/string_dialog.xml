@@ -4,4 +4,17 @@
     <string name="lbl_dialog_rendimiento_cola">En Cola</string>
     <string name="lbl_dialog_rendimiento_enviadas">Enviadas</string>
     <string name="lbl_dialog_rendimiento_total">Total</string>
+    <string name="btn_aceptar_dialog_single_input">Aceptar</string>
+    <string name="btn_cancelar_dialog_single_input">Cancelar</string>
+    <string name="lbl_dialog_new_user_titulo">CREAR USUARIO</string>
+    <string name="lbl_dialog_new_user_marca_medidor">Marca Medidor *</string>
+    <string name="lbl_dialog_new_user_serie_medidor">Serie Medidor *</string>
+    <string name="lbl_dialog_new_user_cuenta">Cuenta</string>
+    <string name="lbl_dialog_new_user_nombre">Nombre</string>
+    <string name="lbl_dialog_new_user_direccion">Direccion</string>
+    <string name="lbl_dialog_delete_user_titulo">ELIMINAR USUARIO</string>
+    <string name="lbl_dialog_delete_user_new_nodo">Nuevo Nodo</string>
+    <string name="lbl_dialog_delete_user_poste">Poste o Caja N°</string>
+    <string name="lbl_dialog_delete_user_lectura">Lectura</string>
+    <string name="lbl_dialog_delete_user_observacion">Observacion</string>
 </resources>

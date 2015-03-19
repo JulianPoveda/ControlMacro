@@ -3,21 +3,22 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="lecturas.sypelc.controlmacro.FormTomarLectura">
 
-    <item   android:id="@+id/LecturaMenuRendimiento"
-        android:title="@string/mnu_lectura_rendimiento"
+    <item   android:id="@+id/LecturaMenuNuevo"
+        android:title="@string/mnu_lectura_nuevo"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_rendimiento"
+        android:icon="@drawable/ic_action_nuevo"
         app:showAsAction="always|withText" />
+
+    <item   android:id="@+id/LecturaMenuEliminar"
+        android:title="@string/mnu_lectura_eliminar"
+        android:icon="@drawable/ic_action_eliminar"
+        android:orderInCategory="100"
+        app:showAsAction="always|withText" />
+
 
     <item   android:id="@+id/LecturaMenuFoto"
         android:title="@string/mnu_lectura_foto"
         android:icon="@drawable/ic_action_camera"
-        android:orderInCategory="100"
-        app:showAsAction="always|withText" />
-
-    <item   android:id="@+id/LecturaMenuReImprimir"
-        android:title="@string/mnu_lectura_imprimir"
-        android:icon="@drawable/ic_action_print"
         android:orderInCategory="100"
         app:showAsAction="always|withText" />
 
