@@ -76,7 +76,8 @@ public class FormRedesPoste extends ActionBarActivity {
         /*arrayListadoRutas.add(new DetalleFourItems( this._tempRegistro.getAsString("nodo"),
                 String.valueOf(totalP),
                 String.valueOf(totalL),
-                String.valueOf(totalR)));*/
+                String.valueOf(totalR)));
+                */
 
 
 
