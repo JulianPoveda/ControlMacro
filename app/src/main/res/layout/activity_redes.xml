@@ -3,155 +3,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="12">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtItemRedesPoste"
-                android:id="@+id/TxtItemRedesPoste"
-                android:layout_gravity="center_vertical" />
-         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/TxtGPSPoste"
-                android:id="@+id/TxtLatRedesPoste"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtTipoPoste"
-                android:id="@+id/TxtTipoRedesPoste"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtCompartidoPoste"
-                android:id="@+id/TxtCompartidoPosteRedes"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtEstadoPoste"
-                android:id="@+id/TxtEstadoRedesPoste"
-                android:layout_gravity="center_vertical" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtMaterialPoste"
-                android:id="@+id/TxtMaterialRedesPoste"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtAlturaPoste"
-                android:id="@+id/TxtAlturaRedesPoste"
-                android:layout_gravity="center_vertical" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtEstructuraPoste"
-                android:id="@+id/TxtEstructuraRedesPoste"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TxtObservacionesPoste"
-                android:id="@+id/TxtObsRedesPoste"
-                android:layout_gravity="center_vertical" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    android:weightSum="10">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="8">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/RedesLstPostes"
-            android:layout_weight="1" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtItemRedesPoste"
+            android:id="@+id/TxtItemRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtGPSPoste"
+            android:id="@+id/TxtLatRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtTipoPoste"
+            android:id="@+id/TxtTipoRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtCompartidoPoste"
+            android:id="@+id/TxtCompartidoPosteRedes"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtEstadoPoste"
+            android:id="@+id/TxtEstadoRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TxtMaterialPoste"
+            android:id="@+id/TxtMaterialRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtAlturaPoste"
+            android:id="@+id/TxtAlturaRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/TxtEstructuraPoste"
+            android:id="@+id/TxtEstructuraRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/TxtObservacionesPoste"
+            android:id="@+id/TxtObsRedesPoste"
+            android:layout_gravity="center_vertical" />
+
     </LinearLayout>
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/RedesLstPostes"
+        android:layout_weight="1" />
 </LinearLayout>
