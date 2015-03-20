@@ -72,10 +72,6 @@
             android:label="@string/title_activity_dialog_delete_usuario"
             android:theme="@android:style/Theme.Dialog">
         </activity>
-        <activity
-            android:name=".FormRedesPoste"
-            android:label="@string/title_activity_form_redes_poste">
-        </activity>
 
     </application>
 
