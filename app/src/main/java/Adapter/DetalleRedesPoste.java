@@ -6,7 +6,8 @@ package Adapter;
 public class DetalleRedesPoste {
 
     protected String itemPoste;
-    protected String pocisionGPS;
+    protected String pocisionLatGPS;
+    protected String pocisionLongGPS;
     protected String tipoPoste;
     protected String compartido;
     protected String estadoPoste;
@@ -15,10 +16,11 @@ public class DetalleRedesPoste {
     protected String estructuraPoste;
     protected String observacionesPoste;
 
-    public DetalleRedesPoste(String _itemposte, String _pocisiongps, String _tipoposte, String _compartido, String _estadoposte, String _materialposte, String _alturaposte, String _estructuraposte, String _observaciones){
+    public DetalleRedesPoste(String _itemposte, String _pocisionlatGps,String _pocisionlongGps, String _tipoposte, String _compartido, String _estadoposte, String _materialposte, String _alturaposte, String _estructuraposte, String _observaciones){
         super();
         this.itemPoste          =   _itemposte;
-        this.pocisionGPS        =   _pocisiongps;
+        this.pocisionLatGPS     =   _pocisionlatGps;
+        this.pocisionLongGPS    =   _pocisionlongGps;
         this.tipoPoste          =   _tipoposte;
         this.compartido         =   _compartido;
         this.estadoPoste        =   _estadoposte;
@@ -30,10 +32,6 @@ public class DetalleRedesPoste {
 
     public String getItemPoste() {
         return itemPoste;
-    }
-
-    public String getPocisionGPS() {
-        return pocisionGPS;
     }
 
     public String getTipoPoste() {
@@ -64,12 +62,16 @@ public class DetalleRedesPoste {
         return observacionesPoste;
     }
 
-    public void setItemPoste(String itemPoste) {
-        this.itemPoste = itemPoste;
+    public String getPocisionLatGPS() {
+        return pocisionLatGPS;
     }
 
-    public void setPocisionGPS(String pocisionGPS) {
-        this.pocisionGPS = pocisionGPS;
+    public String getPocisionLongGPS() {
+        return pocisionLongGPS;
+    }
+
+    public void setItemPoste(String itemPoste) {
+        this.itemPoste = itemPoste;
     }
 
     public void setTipoPoste(String tipoPoste) {
@@ -90,6 +92,14 @@ public class DetalleRedesPoste {
 
     public void setAlturaPoste(String alturaPoste) {
         this.alturaPoste = alturaPoste;
+    }
+
+    public void setPocisionLatGPS(String pocisionLatGPS) {
+        this.pocisionLatGPS = pocisionLatGPS;
+    }
+
+    public void setPocisionLongGPS(String pocisionLongGPS) {
+        this.pocisionLongGPS = pocisionLongGPS;
     }
 
     public void setEstructuraPoste(String estructuraPoste) {
