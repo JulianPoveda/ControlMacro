@@ -2,207 +2,219 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="12">
+    android:orientation="horizontal"
+    android:weightSum="8">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/TxtTituloRedesPoste"
-        android:id="@+id/TxtTituloPoste"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtTipoRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="@string/TxtTipoPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/SpinnerTipoRedesPoste"
-            android:layout_weight="3" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/TxtGPSRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtGPSPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TxtItemRedesPoste"
+            android:id="@+id/TxtItemRedesPoste"
+            android:layout_gravity="center_vertical" />
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/EditGPSRedesPoste"
+            android:id="@+id/EditItemRedesPoste"
             android:layout_weight="4" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="2">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TxtGPSPoste"
+                android:id="@+id/TxtLatRedesPoste"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/EditLatRedesPoste"
+                android:layout_weight="6" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TxtGPSPoste"
+                android:id="@+id/TxtLongRedesPoste"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/EditLongRedesPoste"
+                android:layout_weight="6" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtCompartidoPosteRedes"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TxtTipoPoste"
+            android:id="@+id/TxtTipoRedesPoste"
+            android:layout_gravity="center_vertical" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SpinnerTipoRedesPoste"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtCompartidoPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtCompartidoPosteRedes"
+            android:layout_gravity="center_vertical" />
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/EditCompartidoRedesPoste"
-            android:layout_weight="4" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtEstadoRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtEstadoPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtEstadoRedesPoste"
+            android:layout_gravity="center_vertical" />
 
         <Spinner
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/SpinnerEstadoRedesPoste"
             android:layout_weight="3" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtMaterialRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtMaterialPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtMaterialRedesPoste"
+            android:layout_gravity="center_vertical" />
 
         <Spinner
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/SpinnerMaterialRedesPoste"
             android:layout_weight="3" />
     </LinearLayout>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtAlturaRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtAlturaPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtAlturaRedesPoste"
+            android:layout_gravity="center_vertical" />
 
-        <EditText
-            android:layout_width="0dp"
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/EditAlturaRedesPoste"
-            android:layout_weight="4" />
+            android:id="@+id/SpinnerAlturaRedesPoste"
+            android:layout_weight="3" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtEstructuraRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtEstructuraPoste"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtEstructuraRedesPoste"
+            android:layout_gravity="center_vertical" />
 
-        <EditText
-            android:layout_width="0dp"
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/EditEstructuraRedesPoste"
-            android:layout_weight="4" />
+            android:id="@+id/SpinnerEstructuraRedesPoste"
+            android:layout_weight="3" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
-            android:id="@+id/TxtObsRedesPoste"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/TxtObservacionesPoste"
-            android:gravity="top|center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:id="@+id/TxtObsRedesPoste"
+            android:layout_gravity="center_vertical" />
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/EditObsRedesPoste"
             android:layout_weight="4" />

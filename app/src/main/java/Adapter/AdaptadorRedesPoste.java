@@ -20,19 +20,20 @@ import controlmacro.R;
  */
 public class AdaptadorRedesPoste extends BaseAdapter {
     protected Context context;
-    protected ArrayList<DetalleRedesPoste> detallePoste;
+    protected ArrayList<DetalleRedesPoste> infPostes;
+    //protected ArrayList<DetalleRedesPoste> detallePoste;
     LayoutInflater inflater;
 
-    private final String item;
-    private final String gpsLat;
-    private final String gpsLong;
+    //private final String item;
+    //private final String gpsLat;
+    //private final String gpsLong;
     private final ArrayList<String> tipo;
-    private final String compartido;
+   // private final String compartido;
     private final ArrayList<String> estado;
     private final ArrayList<String> material;
     private final ArrayList<String> altura;
     private final ArrayList<String> estructura;
-    private final String observaciones;
+    //private final String observaciones;
 
     private ArrayAdapter<String> adaptadorTipo;
     private ArrayAdapter<String> adaptadorEstado;
@@ -42,15 +43,17 @@ public class AdaptadorRedesPoste extends BaseAdapter {
 
     private  AdaptadorRedesPoste(BuilderAdaptadorRedesPoste fila){
         this.context        =   fila.ctx;
-        this.item           =   fila.item;
-        this.gpsLat         =   fila.gpsLat;
-        this.gpsLong        =   fila.gpsLong;
+        this.infPostes      =   fila.infPostes;
+
+        //this.item           =   fila.item;
+        //this.gpsLat         =   fila.gpsLat;
+        //this.gpsLong        =   fila.gpsLong;
         this.tipo           =   fila.tipo;
-        this.compartido     =   fila.compartido;
+        //this.compartido     =   fila.compartido;
         this.estado         =   fila.estado;
         this.material       =   fila.material;
         this.estructura     =   fila.estructura;
-        this.observaciones  =   fila.observaciones;
+        //this.observaciones  =   fila.observaciones;
         this.altura         =   fila.altura;
 
         this.adaptadorTipo          = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_1,this.tipo);
@@ -58,29 +61,28 @@ public class AdaptadorRedesPoste extends BaseAdapter {
         this.adaptadorMaterial      = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_1,this.material);
         this.adaptadorAltura        = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_1,this.altura);
         this.adaptadorEstructura    = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_1,this.estructura);
-
-        //inflater            = LayoutInflater.from(this.context);
+        inflater            = LayoutInflater.from(this.context);
     }
 
-    public String getItem() {
+    /*public String getItem() {
         return item;
-    }
+    }*/
 
-    public String getGpsLat() {
+    /*public String getGpsLat() {
         return gpsLat;
-    }
+    }*/
 
-    public String getGpsLong() {
+    /*public String getGpsLong() {
         return gpsLong;
-    }
+    }*/
 
     public ArrayList<String> getTipo() {
         return tipo;
     }
 
-    public String getCompartido() {
+    /*public String getCompartido() {
         return compartido;
-    }
+    }*/
 
     public ArrayList<String> getEstado() {
         return estado;
@@ -98,12 +100,13 @@ public class AdaptadorRedesPoste extends BaseAdapter {
         return estructura;
     }
 
-    public String getObservaciones() {
+    /*public String getObservaciones() {
         return observaciones;
-    }
+    }*/
 
     public static class BuilderAdaptadorRedesPoste{
         public Context ctx;
+        public ArrayList<DetalleRedesPoste> infPostes;
         public String item="";
         public String gpsLat="";
         public String gpsLong="";
@@ -116,38 +119,40 @@ public class AdaptadorRedesPoste extends BaseAdapter {
         public String observaciones = "";
 
 
-        public BuilderAdaptadorRedesPoste(Context  _ctx){
-            this.ctx = _ctx;
+
+        public BuilderAdaptadorRedesPoste(Context  _ctx, ArrayList<DetalleRedesPoste> _infPostes){
+            this.ctx        = _ctx;
+            this.infPostes  = _infPostes;
         }
 
         public AdaptadorRedesPoste build(){
             return new AdaptadorRedesPoste(this);
         }
 
-        public BuilderAdaptadorRedesPoste setItem(String item) {
+        /*public BuilderAdaptadorRedesPoste setItem(String item) {
             this.item = item;
             return this;
-        }
+        }*/
 
-        public BuilderAdaptadorRedesPoste setGpsLat(String gpsLat) {
+        /*public BuilderAdaptadorRedesPoste setGpsLat(String gpsLat) {
             this.gpsLat = gpsLat;
             return this;
-        }
+        }*/
 
-        public BuilderAdaptadorRedesPoste setGpsLong(String gpsLong) {
+        /*public BuilderAdaptadorRedesPoste setGpsLong(String gpsLong) {
             this.gpsLong = gpsLong;
             return this;
-        }
+        }*/
 
         public BuilderAdaptadorRedesPoste setTipo(ArrayList<String> tipo) {
             this.tipo = tipo;
             return this;
         }
 
-        public BuilderAdaptadorRedesPoste setCompartido(String compartido) {
+        /*public BuilderAdaptadorRedesPoste setCompartido(String compartido) {
             this.compartido = compartido;
             return this;
-        }
+        }*/
 
         public BuilderAdaptadorRedesPoste setEstado(ArrayList<String> estado) {
             this.estado = estado;
@@ -169,22 +174,22 @@ public class AdaptadorRedesPoste extends BaseAdapter {
             return this;
         }
 
-        public BuilderAdaptadorRedesPoste setObservaciones(String observaciones) {
+        /*public BuilderAdaptadorRedesPoste setObservaciones(String observaciones) {
             this.observaciones = observaciones;
             return this;
-        }
+        }*/
     }
 
     @Override
     public int getCount()
     {
-        return detallePoste.size();
+        return infPostes.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return detallePoste.get(position);
+        return infPostes.get(position);
     }
 
     @Override
@@ -228,29 +233,33 @@ public class AdaptadorRedesPoste extends BaseAdapter {
             holder.tipoPoste        = (Spinner) convertView.findViewById(R.id.SpinnerTipoRedesPoste);
             holder.estadoPoste      = (Spinner)convertView.findViewById(R.id.SpinnerEstadoRedesPoste);
             holder.materialPoste    = (Spinner)convertView.findViewById(R.id.SpinnerMaterialRedesPoste);
-
-            holder.itemPoste.setText(this.item);
-            holder.gpsLatPoste.setText(this.gpsLat);
-            holder.gpsLongPoste.setText(this.gpsLong);
-            holder.compartido.setText(this.compartido);
-            holder.obsPoste.setText(this.observaciones);
-
-            holder.altPoste.setAdapter(this.adaptadorAltura);
-            holder.estPoste.setAdapter(this.adaptadorEstructura);
-            holder.tipoPoste.setAdapter(this.adaptadorTipo);
-            holder.estadoPoste.setAdapter(this.adaptadorEstado);
-            holder.materialPoste.setAdapter(this.adaptadorMaterial);
-
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
 
+
+        holder.itemPoste.setText(this.infPostes.get(position).getItemPoste());
+        holder.gpsLatPoste.setText(this.infPostes.get(position).getGpsLat());
+        holder.gpsLongPoste.setText(this.infPostes.get(position).getGpsLong());
+        holder.compartido.setText(this.infPostes.get(position).getCompartido());
+        holder.obsPoste.setText(this.infPostes.get(position).getObservacionesPoste());
+
+        holder.altPoste.setAdapter(this.adaptadorAltura);
+        holder.estPoste.setAdapter(this.adaptadorEstructura);
+        holder.tipoPoste.setAdapter(this.adaptadorTipo);
+        holder.estadoPoste.setAdapter(this.adaptadorEstado);
+        holder.materialPoste.setAdapter(this.adaptadorMaterial);
+
+        holder.altPoste.setSelection(this.adaptadorAltura.getPosition(this.infPostes.get(position).getAlturaPoste()));
+        holder.estPoste.setSelection(this.adaptadorEstructura.getPosition(this.infPostes.get(position).getEstructuraPoste()));
+        holder.tipoPoste.setSelection(this.adaptadorTipo.getPosition(this.infPostes.get(position).getTipoPoste()));
+        holder.estadoPoste.setSelection(this.adaptadorEstado.getPosition(this.infPostes.get(position).getEstadoPoste()));
+        holder.materialPoste.setSelection(this.adaptadorMaterial.getPosition(this.infPostes.get(position).getMaterialPoste()));
         return convertView;
     }
 
     public class ViewHolder{
-
         EditText itemPoste;
         EditText gpsLongPoste;
         EditText gpsLatPoste;
