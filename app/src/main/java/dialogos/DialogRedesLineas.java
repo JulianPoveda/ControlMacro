@@ -28,7 +28,9 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
     private Spinner conductor;
 
     private ArrayList<String> arrayFases;
+    private ArrayList<String> arrayConductor;
     private ArrayAdapter<String> adapterFases;
+    private ArrayAdapter<String> adapterConductor;
 
 
     @Override
@@ -45,7 +47,8 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.faseN        = (Spinner)findViewById(R.id.SpinnerFNRedesLineas);
         this.conductor    = (Spinner)findViewById(R.id.SpinnerCondRedesLineas);
 
-        this.arrayFases =   new ArrayList<String>();
+        this.arrayFases     =   new ArrayList<String>();
+        this.arrayConductor =   new ArrayList<String>();
 
         this.arrayFases.clear();
         this.arrayFases.add("8");
@@ -61,12 +64,20 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.arrayFases.add("450MCM");
         this.arrayFases.add("550KCMIL");
 
+        this.arrayConductor.clear();
+        this.arrayConductor.add("A");
+        this.arrayConductor.add("D");
+        this.arrayConductor.add("T");
+
         this.adapterFases   = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayFases);
         this.faseA.setAdapter(this.adapterFases);
         this.faseB.setAdapter(this.adapterFases);
         this.faseC.setAdapter(this.adapterFases);
         this.faseAP.setAdapter(this.adapterFases);
         this.faseN.setAdapter(this.adapterFases);
+
+        this.adapterConductor = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, this.arrayConductor);
+        this.conductor.setAdapter(this.adapterConductor);
 
         this.btonCancelar.setOnClickListener(this);
         this.btonCancelar.setOnClickListener(this);

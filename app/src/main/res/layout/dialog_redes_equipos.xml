@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="420dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="12">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/TxtTituloRedesEquipos"
-        android:id="@+id/TxtTituloEquipos"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+    android:weightSum="9">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="16">
 
         <TextView
             android:id="@+id/TxtFaseARedesLineas"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/TxtRedesEquipos"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
@@ -36,21 +26,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/SpinnerRedesEquipos"
-            android:layout_weight="3" />
+            android:layout_weight="9" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="16">
 
         <TextView
             android:id="@+id/TxtSwRedesEquipos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/TxtNombreRedesEquipos"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
@@ -60,21 +50,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/EditNombreRedesEquipos"
-            android:layout_weight="4" />
+            android:layout_weight="9" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="16">
 
         <TextView
             android:id="@+id/TxtCondRedesEquipos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/TxtCapRedesEquipos"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
@@ -84,13 +74,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/EditCondRedesEquipos"
-            android:layout_weight="4" />
+            android:layout_weight="9" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal"
         android:weightSum="6">
 
@@ -102,14 +98,14 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/BtoARedesEquipos"
             android:id="@+id/BtoAcepRedesEquipos"
             android:layout_weight="2" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/BtoCRedesEquipos"
             android:id="@+id/BtoCancelarRedesEquipos"
             android:layout_weight="2" />
