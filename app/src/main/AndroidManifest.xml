@@ -70,9 +70,23 @@
         <activity
             android:name="dialogos.DialogDeleteUsuario"
             android:label="@string/title_activity_dialog_delete_usuario"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
-
+        <activity
+            android:name="dialogos.DialogRedesEquipos"
+            android:label="@string/title_activity_dialog_redes_equipos"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogRedesLineas"
+            android:label="@string/title_activity_dialog_redes_lineas"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogRedesLuminarias"
+            android:label="@string/title_activity_dialog_redes_luminarias"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>

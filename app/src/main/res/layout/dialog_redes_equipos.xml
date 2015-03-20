@@ -103,15 +103,15 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/BtoCRedesEquipos"
-            android:id="@+id/BtoCancelarRedesEquipos"
+            android:text="@string/BtoARedesEquipos"
+            android:id="@+id/BtoAcepRedesEquipos"
             android:layout_weight="2" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/BtoARedesEquipos"
-            android:id="@+id/BtoAcepRedesEquipos"
+            android:text="@string/BtoCRedesEquipos"
+            android:id="@+id/BtoCancelarRedesEquipos"
             android:layout_weight="2" />
 
         <LinearLayout

@@ -24,4 +24,7 @@
     <string name="title_activity_dialog_confirm">Confirmacion</string>
     <string name="title_activity_dialog_new_usuario">DialogNewUsuario</string>
     <string name="title_activity_dialog_delete_usuario">DialogDeleteUsuario</string>
+    <string name="title_activity_dialog_redes_equipos">dialog_redes_equipos</string>
+    <string name="title_activity_dialog_redes_lineas">dialog_redes_lineas</string>
+    <string name="title_activity_dialog_redes_luminarias">dialog_redes_luminarias</string>
 </resources>

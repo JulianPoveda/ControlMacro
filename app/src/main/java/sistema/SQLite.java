@@ -99,6 +99,11 @@ public class SQLite {
                                                         "observacion            VARCHAR(255)," +
                                                         "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp)");
 
+            db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER PRIMARY KEY AUTOINCREMENT" +
+                                                        "activity               VARCHAR (250) NOT NULL," +
+                                                        "nombre_sppiner         VARCHAR (250) NOT NULL," +
+                                                        "valor_spinner          VARCHAR (250) NOT NULL)");
+
             /*db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
                         "	UPDATE maestro_rutas SET fecha_cargue = datetime('now','localtime') " +
                         "   WHERE id_inspector = NEW.id_inspector AND ruta = NEW.ruta;" +
