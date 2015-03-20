@@ -49,8 +49,8 @@ public class FormInformacionRutas extends Activity{
 
         this.listadoRutas   = (ListView)findViewById(R.id.InfoListRutas);
 
-        this.FcnSession         = ClassSession.getInstance(this);
-        this.sqlConsulta        = new SQLite(this, FormInicioSession.path_files_app);
+        this.FcnSession     = ClassSession.getInstance(this);
+        this.sqlConsulta    = new SQLite(this, FormInicioSession.path_files_app);
 
         this.arrayListadoRutas  = new ArrayList<>();
         this.arrayListadoRutas.clear();
