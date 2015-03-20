@@ -45,7 +45,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         setContentView(R.layout.dialog_redes_luminarias);
 
         this.btnAceptar      = (Button)findViewById(R.id.BtoAcepRedesLuminarias);
-        this.btnCancelar     = (Button)findViewById(R.id.BtoCancelarRedesLineas);
+        this.btnCancelar     = (Button)findViewById(R.id.BtoCancelarRedesLuminarias);
         this.codigoLuminaria = (EditText)findViewById(R.id.EditCodigoLuminaria);
         this.potenciaUno     = (EditText)findViewById(R.id.Edit70Luminaria);
         this.potenciaDos     = (EditText)findViewById(R.id.Edit125Luminaria);

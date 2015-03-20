@@ -16,10 +16,14 @@ import java.util.ArrayList;
 import Adapter.AdaptadorRedesPoste;
 import Adapter.DetalleFourItems;
 import Adapter.DetalleRedesPoste;
+import dialogos.DialogRedesEquipos;
+import dialogos.DialogRedesLineas;
+import dialogos.DialogRedesLuminarias;
 
 
 public class FormRedesPoste extends ActionBarActivity {
     private ListView        _lstListadoPostes;
+    private Intent          new_form;
 
     private AdaptadorRedesPoste listadoPostesAdapter;
     private ArrayList<DetalleRedesPoste>    arrayListadoPoste;
@@ -31,6 +35,7 @@ public class FormRedesPoste extends ActionBarActivity {
     private ArrayList<String> estructuraPoste;
 
     private String  itemPoste;
+    private String  tipoPoste;
     private int     itemSeleccionado;
 
 
@@ -99,12 +104,13 @@ public class FormRedesPoste extends ActionBarActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-        this.itemPoste = arrayListadoPoste.get(info.position).getTipoPoste()+" "+arrayListadoPoste.get(info.position).getItemPoste();
+        this.itemPoste  = arrayListadoPoste.get(info.position).getItemPoste();
+        this.tipoPoste  = arrayListadoPoste.get(info.position).getTipoPoste();
         this.itemSeleccionado = info.position;
 
         switch(v.getId()){
             case R.id.RedesLstPostes:
-                menu.setHeaderTitle(this.itemPoste);
+                menu.setHeaderTitle(this.tipoPoste+" "+this.itemPoste);
                 super.onCreateContextMenu(menu, v, menuInfo);
                 MenuInflater inflater = getMenuInflater();
                 inflater.inflate(R.menu.menu_context_redes, menu);
@@ -116,12 +122,24 @@ public class FormRedesPoste extends ActionBarActivity {
     public boolean onContextItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.RedesMenuContextEquipos:
+                this.new_form = new Intent(this, DialogRedesEquipos.class);
+                this.new_form.putExtra("Item",this.itemPoste);
+                this.new_form.putExtra("Tipo",this.tipoPoste);
+                startActivity(this.new_form);
                 return true;
 
             case R.id.RedesMenuContextLineas:
+                this.new_form = new Intent(this, DialogRedesLineas.class);
+                this.new_form.putExtra("Item",this.itemPoste);
+                this.new_form.putExtra("Tipo",this.tipoPoste);
+                startActivity(this.new_form);
                 return true;
 
             case R.id.RedesMenuContextLuminarias:
+                this.new_form = new Intent(this, DialogRedesLuminarias.class);
+                this.new_form.putExtra("Item",this.itemPoste);
+                this.new_form.putExtra("Tipo",this.tipoPoste);
+                startActivity(this.new_form);
                 return true;
 
             case R.id.RedesMenuContextEliminar:
@@ -130,10 +148,6 @@ public class FormRedesPoste extends ActionBarActivity {
                         .setTipo(this.tiposPoste).setEstado(this.estadoPoste).setMaterial(this.materialPoste).setEstructura(this.estructuraPoste).build();
                 this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
                 this.listadoPostesAdapter.notifyDataSetChanged();
-
-                //this.new_form = new Intent(this, FormTomarLectura.class);
-                //this.new_form.putExtra("Nodo",this.nodo_seleccionado);
-                //startActivity(this.new_form);
                 return true;
 
             default:
