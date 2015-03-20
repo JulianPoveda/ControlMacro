@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item   android:id="@+id/RedesMenuContextEquipos"
+        android:title="@string/mnu_context_redes_equipos"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item   android:id="@+id/RedesMenuContextLineas"
+        android:title="@string/mnu_context_redes_lineas"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item   android:id="@+id/RedesMenuContextLuminarias"
+        android:title="@string/mnu_context_redes_luminarias"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item   android:id="@+id/RedesMenuContextEliminar"
+        android:title="@string/mnu_context_redes_eliminar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

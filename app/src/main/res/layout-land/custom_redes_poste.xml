@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="9">
+    android:weightSum="10">
 
 
     <EditText
         android:id="@+id/EditItemRedesPoste"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -72,5 +72,5 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/EditObsRedesPoste"
-        android:layout_weight="1" />
+        android:layout_weight="2" />
 </LinearLayout>

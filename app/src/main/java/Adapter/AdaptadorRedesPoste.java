@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -218,11 +217,10 @@ public class AdaptadorRedesPoste extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //View v = convertView;
         final ViewHolder holder;
         if(convertView == null){
             holder  = new ViewHolder();
-            convertView = inflater.inflate(R.layout.activity_redes_poste,null);
+            convertView = inflater.inflate(R.layout.custom_redes_poste,null);
             holder.itemPoste        = (EditText) convertView.findViewById(R.id.EditItemRedesPoste);
             holder.gpsLatPoste      = (EditText) convertView.findViewById(R.id.EditLatRedesPoste);
             holder.gpsLongPoste     = (EditText) convertView.findViewById(R.id.EditLongRedesPoste);
@@ -260,16 +258,16 @@ public class AdaptadorRedesPoste extends BaseAdapter {
     }
 
     public class ViewHolder{
-        EditText itemPoste;
-        EditText gpsLongPoste;
-        EditText gpsLatPoste;
-        Spinner tipoPoste;
-        EditText compartido;
-        Spinner estadoPoste;
-        Spinner materialPoste;
-        Spinner altPoste;
-        Spinner estPoste;
-        EditText obsPoste;
+        EditText    itemPoste;
+        EditText    gpsLongPoste;
+        EditText    gpsLatPoste;
+        Spinner     tipoPoste;
+        EditText    compartido;
+        Spinner     estadoPoste;
+        Spinner     materialPoste;
+        Spinner     altPoste;
+        Spinner     estPoste;
+        EditText    obsPoste;
     }
 
 }

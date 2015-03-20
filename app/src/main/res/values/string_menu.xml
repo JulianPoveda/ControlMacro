@@ -6,7 +6,15 @@
     <string name="mnu_lectura_imprimir">Imprimir</string>
     <string name="mnu_lectura_buscar">Buscar</string>
     <string name="mnu_lectura_foto">Foto</string>
+
     <string name="mnu_session_cargar_nodos">Cargar Nodos</string>
     <string name="mnu_session_ver_nodos">Ver Nodos</string>
-    <string name="mnu_redes_agregar">Agregar Nodo</string>
+
+    <string name="mnu_redes_agregar">Agregar</string>
+    <string name="mnu_redes_guardar">Guardar</string>
+
+    <string name="mnu_context_redes_equipos">Equipos</string>
+    <string name="mnu_context_redes_lineas">Lineas</string>
+    <string name="mnu_context_redes_luminarias">Luminarias</string>
+    <string name="mnu_context_redes_eliminar">Eliminar</string>
 </resources>

@@ -3,9 +3,16 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools">
 
-    <item   android:id="@+id/LecturaMenuRendimiento"
+    <item   android:id="@+id/RedesMenuAgregar"
         android:title="@string/mnu_redes_agregar"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_action_nuevo"
+        app:showAsAction="always|withText" />
+
+    <item   android:id="@+id/RedesMenuGuardar"
+        android:title="@string/mnu_redes_guardar"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_guardar"
         app:showAsAction="always|withText" />
 
 </menu>
