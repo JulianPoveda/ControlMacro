@@ -1,6 +1,7 @@
 package dialogos;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,6 +40,8 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     private ArrayAdapter<String> adapterApLuminarias;
     private ArrayAdapter<String> adapterPtLuminarias;
 
+    private ArrayList<ContentValues> registroLuminarias = new ArrayList<ContentValues>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,9 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.arrayestadoLuminarias = new ArrayList<String>();
         this.arrayapLuminarias     = new ArrayList<String>();
         this.arrayptLuminarias     = new ArrayList<String>();
+
+        this.registroLuminarias.clear();
+        Bundle extras = this.getIntent().getExtras();
 
         //Se deben ingresar de la base de datos.
         this.arraytipoLuminarias.clear();
@@ -97,6 +103,10 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
     public void finish(boolean _caso) {
         Intent data = new Intent();
+        if(_caso){
+            data.putExtra("response", _caso);
+            data.putParcelableArrayListExtra("datosLuminarias", registroLuminarias);
+        }
         setResult(RESULT_OK, data);
         super.finish();
     }
@@ -128,6 +138,18 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BtoAcepRedesLuminarias:
+                ContentValues tempRegistroLuminarias = new ContentValues();
+                tempRegistroLuminarias.clear();
+                tempRegistroLuminarias.put("codigoLuminaria",this.codigoLuminaria.getText().toString());
+                tempRegistroLuminarias.put("potenciaUno",this.potenciaUno.getText().toString());
+                tempRegistroLuminarias.put("potenciaDos",this.potenciaDos.getText().toString());
+                tempRegistroLuminarias.put("potenciaTres",this.potenciaTres.getText().toString());
+                tempRegistroLuminarias.put("potenciaCuatro",this.potenciaCuatro.getText().toString());
+                tempRegistroLuminarias.put("tipoLuminaria",this.tipoLuminaria.getSelectedItem().toString());
+                tempRegistroLuminarias.put("estadoLuminaria",this.estadoLuminaria.getSelectedItem().toString());
+                tempRegistroLuminarias.put("apLuminaria",this.apLuminaria.getSelectedItem().toString());
+                tempRegistroLuminarias.put("tpLuminaria",this.ptLuminaria.getSelectedItem().toString());
+                registroLuminarias.add(tempRegistroLuminarias);
                 finish(true);
                 break;
 

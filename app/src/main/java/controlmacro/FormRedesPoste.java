@@ -1,5 +1,6 @@
 package controlmacro;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -38,7 +39,11 @@ public class FormRedesPoste extends ActionBarActivity {
     private String  tipoPoste;
     private int     itemSeleccionado;
 
+    private static int ACT_REGISTRO_EQUIPOS = 1;
+    private static int ACT_REGISTRO_LINEAS = 2;
+    private static int ACT_REGISTRO_LUMINARIAS = 3;
 
+    private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,21 +130,21 @@ public class FormRedesPoste extends ActionBarActivity {
                 this.new_form = new Intent(this, DialogRedesEquipos.class);
                 this.new_form.putExtra("Item",this.itemPoste);
                 this.new_form.putExtra("Tipo",this.tipoPoste);
-                startActivity(this.new_form);
+                startActivityForResult(this.new_form, ACT_REGISTRO_EQUIPOS);
                 return true;
 
             case R.id.RedesMenuContextLineas:
                 this.new_form = new Intent(this, DialogRedesLineas.class);
                 this.new_form.putExtra("Item",this.itemPoste);
                 this.new_form.putExtra("Tipo",this.tipoPoste);
-                startActivity(this.new_form);
+                startActivityForResult(this.new_form, ACT_REGISTRO_LINEAS);
                 return true;
 
             case R.id.RedesMenuContextLuminarias:
                 this.new_form = new Intent(this, DialogRedesLuminarias.class);
                 this.new_form.putExtra("Item",this.itemPoste);
                 this.new_form.putExtra("Tipo",this.tipoPoste);
-                startActivity(this.new_form);
+                startActivityForResult(this.new_form, ACT_REGISTRO_LUMINARIAS);
                 return true;
 
             case R.id.RedesMenuContextEliminar:
@@ -152,6 +157,31 @@ public class FormRedesPoste extends ActionBarActivity {
 
             default:
                 return super.onContextItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try{
+            if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_EQUIPOS){
+                if(data.getExtras().getBoolean("response")){
+                    this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosEquipos");
+                }
+            }else{
+                if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LINEAS){
+                    if(data.getExtras().getBoolean("response")){
+                        this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosLineas");
+                    }
+                }else{
+                    if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LUMINARIAS){
+                        if(data.getExtras().getBoolean("response")){
+                            this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosLuminarias");
+                        }
+                    }
+                }
+            }
+        }catch(Exception e){
+
         }
     }
 

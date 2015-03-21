@@ -1,12 +1,14 @@
 package dialogos;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import controlmacro.R;
 
 
-public class DialogRedesEquipos extends Activity implements View.OnClickListener {
+public class DialogRedesEquipos extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private Button   btoAceptar;
     private Button   btoCancelar;
@@ -27,6 +29,8 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
 
     private ArrayList<String>    arrayEquipos;
     private ArrayAdapter<String> adapterEquipos;
+
+    private ArrayList<ContentValues> registrosEquipos = new ArrayList<ContentValues>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,9 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.arrayEquipos.add("Switches");
         this.arrayEquipos.add("Otro");
 
+        this.registrosEquipos.clear();
+        Bundle extras = this.getIntent().getExtras();
+
         this.adapterEquipos =   new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEquipos);
         this.tiposEquipos.setAdapter(this.adapterEquipos);
 
@@ -56,6 +63,10 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
 
     public void finish(boolean _caso) {
         Intent data = new Intent();
+        if(_caso){
+            data.putExtra("response", _caso);
+            data.putParcelableArrayListExtra("datosEquipos", registrosEquipos);
+        }
         setResult(RESULT_OK, data);
         super.finish();
     }
@@ -83,9 +94,29 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
     }
 
     @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(parent.getId()){
+            case R.id.SpinnerRedesEquipos:
+                if(tiposEquipos.getSelectedItem().toString().equals("Otro")){
+                    nombreEquipo.setEnabled(true);
+                }else{
+                    nombreEquipo.setEnabled(false);
+                }
+                break;
+        }
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BtoAcepRedesEquipos:
+                ContentValues tempRegistroEquipos = new ContentValues();
+                tempRegistroEquipos.clear();
+                tempRegistroEquipos.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
+                tempRegistroEquipos.put("capacidaEquipo", this.capacidadEquipo.getText().toString());
+                tempRegistroEquipos.put("nombreEquipo", this.nombreEquipo.getText().toString());
+                registrosEquipos.add(tempRegistroEquipos);
                 finish(true);
                 break;
 
@@ -94,4 +125,10 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
                 break;
         }
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
+    }
 }
+

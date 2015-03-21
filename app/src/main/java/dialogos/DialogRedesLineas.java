@@ -1,6 +1,7 @@
 package dialogos;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -32,6 +33,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
     private ArrayAdapter<String> adapterFases;
     private ArrayAdapter<String> adapterConductor;
 
+    private ArrayList<ContentValues> registrosLineas = new ArrayList<ContentValues>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,9 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.arrayConductor.add("D");
         this.arrayConductor.add("T");
 
+        this.registrosLineas.clear();
+        Bundle extras = this.getIntent().getExtras();
+
         this.adapterFases   = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayFases);
         this.faseA.setAdapter(this.adapterFases);
         this.faseB.setAdapter(this.adapterFases);
@@ -85,6 +90,10 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
 
     public void finish(boolean _caso) {
         Intent data = new Intent();
+        if(_caso){
+            data.putExtra("response", _caso);
+            data.putParcelableArrayListExtra("datosLineas", registrosLineas);
+        }
         setResult(RESULT_OK, data);
         super.finish();
     }
@@ -115,6 +124,15 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BtoAcepRedesLineas:
+                ContentValues tempRegistroLineas = new ContentValues();
+                tempRegistroLineas.clear();
+                tempRegistroLineas.put("faseA",this.faseA.getSelectedItem().toString());
+                tempRegistroLineas.put("faseB",this.faseB.getSelectedItem().toString());
+                tempRegistroLineas.put("faseC",this.faseC.getSelectedItem().toString());
+                tempRegistroLineas.put("faseAP",this.faseAP.getSelectedItem().toString());
+                tempRegistroLineas.put("faseN",this.faseN.getSelectedItem().toString());
+                tempRegistroLineas.put("conductor",this.conductor.getSelectedItem().toString());
+                registrosLineas.add(tempRegistroLineas);
                 finish(true);
                 break;
 
