@@ -99,7 +99,7 @@ public class SQLite {
                                                         "observacion            VARCHAR(255)," +
                                                         "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp)");
 
-            db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER PRIMARY KEY AUTOINCREMENT" +
+            db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER PRIMARY KEY AUTOINCREMENT," +
                                                         "activity               VARCHAR (250) NOT NULL," +
                                                         "nombre_sppiner         VARCHAR (250) NOT NULL," +
                                                         "valor_spinner          VARCHAR (250) NOT NULL)");
