@@ -74,7 +74,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
         this.arrayapLuminarias.clear();
         this.arrayapLuminarias.add("Privado");
-        this.arrayapLuminarias.add("Privado");
+        this.arrayapLuminarias.add("Publico");
 
         this.arrayptLuminarias.clear();
         this.arrayptLuminarias.add("S");
