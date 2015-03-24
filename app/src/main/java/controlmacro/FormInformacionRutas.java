@@ -97,9 +97,8 @@ public class FormInformacionRutas extends Activity{
                 return true;
 
             case R.id.RutasMenuSincronizar:
-                /*new UploadLecturas(this).execute(this.nodo_seleccionado);*/
                 this.new_form = new Intent(this, FormRedesPoste.class);
-                //this.new_form.putExtra("Nodo",this.nodo_seleccionado);
+                this.new_form.putExtra("Nodo",this.nodo_seleccionado);
                 startActivity(this.new_form);
                 return true;
 

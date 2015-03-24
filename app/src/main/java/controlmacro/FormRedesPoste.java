@@ -16,11 +16,14 @@ import java.util.ArrayList;
 
 import Adapter.AdaptadorRedesPoste;
 import Adapter.DetalleRedesPoste;
+import clases.ClassRedesPoste;
 import dialogos.DialogConfirm;
 import dialogos.DialogRedesEquipos;
 import dialogos.DialogRedesLineas;
 import dialogos.DialogRedesLuminarias;
 import dialogos.DialogRedesPoste;
+
+import Object.Poste;
 
 
 public class FormRedesPoste extends ActionBarActivity {
@@ -41,14 +44,29 @@ public class FormRedesPoste extends ActionBarActivity {
     private static int ACT_ELIMINAR_REDES_POSTE = 5;
     private static int ACT_NEW_REDES_POSTE      = 6;
 
-    private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
+    private ClassRedesPoste FcnRedesPoste;
 
+    private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
     private ArrayList<ContentValues> datosPoste = new ArrayList<ContentValues>();
+
+    private ArrayList<Poste>   infPoste;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redes_poste);
+
+        //this.FcnRedesPoste  = new ClassRedesPoste();
+
+
+        Bundle bundle = getIntent().getExtras();
+
+
+        this.infPoste   = new ArrayList<Poste>();
+
+
 
         this._lstListadoPostes  = (ListView) findViewById(R.id.RedesLstPostes);
 
