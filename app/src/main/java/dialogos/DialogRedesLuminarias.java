@@ -114,6 +114,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.apLuminaria.setAdapter(this.adapterApLuminarias);
         this.ptLuminaria.setAdapter(this.adapterPtLuminarias);
         this.listaLuminarias.setAdapter(adapterLuminarias);
+        this.adapterLuminarias.notifyDataSetChanged();
 
         this.btnCancelar.setOnClickListener(this);
         this.btnAceptar.setOnClickListener(this);
@@ -176,6 +177,9 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 this.arrayLuminarias.add(this.estadoLuminaria.getSelectedItem().toString());
                 this.arrayLuminarias.add(this.apLuminaria.getSelectedItem().toString());
                 this.arrayLuminarias.add(this.ptLuminaria.getSelectedItem().toString());
+
+                this.listaLuminarias.setAdapter(adapterLuminarias);
+                this.adapterLuminarias.notifyDataSetChanged();
 
             case R.id.BtoCancelarRedesLuminarias:
                 finish(false);

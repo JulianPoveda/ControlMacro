@@ -66,7 +66,7 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
         this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
-
+        this.adapterCapacidadEquipos.notifyDataSetChanged();
 
         btoAceptar.setOnClickListener(this);
         btoCancelar.setOnClickListener(this);
@@ -120,10 +120,12 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
                 if(unidadesCapacidad.getSelectedItem().toString().equals("Condensadores")){
                     arrayEquipos.clear();
                     arrayEquipos.add("VAR");
+                    this.adapterCapacidadEquipos.notifyDataSetChanged();
                 }else{
                     arrayEquipos.clear();
                     arrayEquipos.add("KW");
                     arrayEquipos.add("W");
+                    this.adapterCapacidadEquipos.notifyDataSetChanged();
                 }
         }
 
