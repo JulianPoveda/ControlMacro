@@ -25,9 +25,12 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
     private Button   btoCancelar;
     private EditText nombreEquipo;
     private EditText capacidadEquipo;
+    private Spinner  unidadesCapacidad;
     private Spinner  tiposEquipos;
 
     private ArrayList<String>    arrayEquipos;
+    private ArrayList<String>    arrayUnidad;
+    private ArrayAdapter<String> adapterCapacidadEquipos;
     private ArrayAdapter<String> adapterEquipos;
 
     private ArrayList<ContentValues> registrosEquipos = new ArrayList<ContentValues>();
@@ -37,13 +40,15 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_redes_equipos);
 
-        this.btoAceptar      = (Button)findViewById(R.id.BtoAcepRedesEquipos);
-        this.btoCancelar     = (Button)findViewById(R.id.BtoCancelarRedesEquipos);
-        this.nombreEquipo    = (EditText)findViewById(R.id.EditNombreRedesEquipos);
-        this.capacidadEquipo = (EditText)findViewById(R.id.EditCondRedesEquipos);
-        this.tiposEquipos    = (Spinner)findViewById(R.id.SpinnerRedesEquipos);
+        this.btoAceptar        = (Button)findViewById(R.id.BtoAcepRedesEquipos);
+        this.btoCancelar       = (Button)findViewById(R.id.BtoCancelarRedesEquipos);
+        this.nombreEquipo      = (EditText)findViewById(R.id.EditNombreRedesEquipos);
+        this.capacidadEquipo   = (EditText)findViewById(R.id.EditCondRedesEquipos);
+        this.tiposEquipos      = (Spinner)findViewById(R.id.SpinnerRedesEquipos);
+        this.unidadesCapacidad = (Spinner)findViewById(R.id.SpCapacidadEquipos);
 
-        this.arrayEquipos    = new ArrayList<String>();
+        this.arrayEquipos     = new ArrayList<String>();
+        this.arrayUnidad = new ArrayList<String>();
 
         this.arrayEquipos.clear();
         this.arrayEquipos.add("Amplificadores");//Se debe actualizar con los parametros de la BD
@@ -58,9 +63,15 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.adapterEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.tiposEquipos.setAdapter(this.adapterEquipos);
 
+        this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
+        this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
+
+
         btoAceptar.setOnClickListener(this);
         btoCancelar.setOnClickListener(this);
         tiposEquipos.setOnItemSelectedListener(this);
+        unidadesCapacidad.setOnItemSelectedListener(this);
     }
 
     public void finish(boolean _caso) {
@@ -105,6 +116,15 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
                     nombreEquipo.setEnabled(false);
                 }
                 break;
+            case R.id.SpCapacidadEquipos:
+                if(unidadesCapacidad.getSelectedItem().toString().equals("Condensadores")){
+                    arrayEquipos.clear();
+                    arrayEquipos.add("VAR");
+                }else{
+                    arrayEquipos.clear();
+                    arrayEquipos.add("KW");
+                    arrayEquipos.add("W");
+                }
         }
 
     }

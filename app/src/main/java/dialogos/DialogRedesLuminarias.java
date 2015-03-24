@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -22,23 +23,25 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     private Button btnAceptar;
     private Button btnCancelar;
     private EditText codigoLuminaria;
-    private EditText potenciaUno;
-    private EditText potenciaDos;
-    private EditText potenciaTres;
-    private EditText potenciaCuatro;
+    private Spinner potenciaLuminaria;
     private Spinner  tipoLuminaria;
     private Spinner  estadoLuminaria;
     private Spinner  apLuminaria;
     private Spinner  ptLuminaria;
+    private ListView listaLuminarias;
 
     private ArrayList<String> arraytipoLuminarias;
     private ArrayList<String> arrayestadoLuminarias;
     private ArrayList<String> arrayapLuminarias;
     private ArrayList<String> arrayptLuminarias;
+    private ArrayList<String> arrayPotencias;
+    private ArrayList<String> arrayLuminarias;
     private ArrayAdapter<String> adapterEsLuminarias;
     private ArrayAdapter<String> adapterTpLuminarias;
     private ArrayAdapter<String> adapterApLuminarias;
     private ArrayAdapter<String> adapterPtLuminarias;
+    private ArrayAdapter<String> adapterPotenciaLuminarias;
+    private ArrayAdapter<String> adapterLuminarias;
 
     private ArrayList<ContentValues> registroLuminarias = new ArrayList<ContentValues>();
 
@@ -47,22 +50,22 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_redes_luminarias);
 
-        this.btnAceptar      = (Button)findViewById(R.id.BtoAcepRedesLuminarias);
-        this.btnCancelar     = (Button)findViewById(R.id.BtoCancelarRedesLuminarias);
-        this.codigoLuminaria = (EditText)findViewById(R.id.EditCodigoLuminaria);
-        this.potenciaUno     = (EditText)findViewById(R.id.Edit70Luminaria);
-        this.potenciaDos     = (EditText)findViewById(R.id.Edit125Luminaria);
-        this.potenciaTres    = (EditText)findViewById(R.id.Edit150Luminaria);
-        this.potenciaCuatro  = (EditText)findViewById(R.id.Edit250Luminaria);
-        this.tipoLuminaria   = (Spinner)findViewById(R.id.SpinnerTipoLuminaria);
-        this.estadoLuminaria = (Spinner)findViewById(R.id.SpinnerEstadoLuminaria);
-        this.apLuminaria     = (Spinner)findViewById(R.id.SpinnerApLuminaria);
-        this.ptLuminaria     = (Spinner)findViewById(R.id.SpinnerPTLuminaria);
+        this.btnAceptar        = (Button)findViewById(R.id.BtoAcepRedesLuminarias);
+        this.btnCancelar       = (Button)findViewById(R.id.BtoCancelarRedesLuminarias);
+        this.codigoLuminaria   = (EditText)findViewById(R.id.EditCodigoLuminaria);
+        this.potenciaLuminaria = (Spinner)findViewById(R.id.SpinnerPotenciaLuminaria);
+        this.tipoLuminaria     = (Spinner)findViewById(R.id.SpinnerTipoLuminaria);
+        this.estadoLuminaria   = (Spinner)findViewById(R.id.SpinnerEstadoLuminaria);
+        this.apLuminaria       = (Spinner)findViewById(R.id.SpinnerApLuminaria);
+        this.ptLuminaria       = (Spinner)findViewById(R.id.SpinnerPTLuminaria);
+        this.listaLuminarias   = (ListView)findViewById(R.id.LuminariaListView);
 
         this.arraytipoLuminarias   = new ArrayList<String>();
         this.arrayestadoLuminarias = new ArrayList<String>();
         this.arrayapLuminarias     = new ArrayList<String>();
         this.arrayptLuminarias     = new ArrayList<String>();
+        this.arrayPotencias        = new ArrayList<String>();
+        this.arrayLuminarias       = new ArrayList<String>();
 
         this.registroLuminarias.clear();
         Bundle extras = this.getIntent().getExtras();
@@ -86,6 +89,13 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.arrayptLuminarias.add("S");
         this.arrayptLuminarias.add("N");
 
+        this.arrayPotencias.clear();
+        this.arrayPotencias.add("70W");
+        this.arrayPotencias.add("125W");
+        this.arrayPotencias.add("150W");
+        this.arrayPotencias.add("250W");
+
+
         this.adapterEsLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayestadoLuminarias);
         this.adapterEsLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.adapterTpLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,this.arraytipoLuminarias);
@@ -94,11 +104,16 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.adapterApLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.adapterPtLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,this.arrayptLuminarias);
         this.adapterPtLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.adapterPotenciaLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayPotencias);
+        this.adapterPotenciaLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.adapterLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayLuminarias);
 
+        this.potenciaLuminaria.setAdapter(this.adapterPotenciaLuminarias);
         this.tipoLuminaria.setAdapter(this.adapterTpLuminarias);
         this.estadoLuminaria.setAdapter(this.adapterEsLuminarias);
         this.apLuminaria.setAdapter(this.adapterApLuminarias);
         this.ptLuminaria.setAdapter(this.adapterPtLuminarias);
+        this.listaLuminarias.setAdapter(adapterLuminarias);
 
         this.btnCancelar.setOnClickListener(this);
         this.btnAceptar.setOnClickListener(this);
@@ -145,10 +160,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 ContentValues tempRegistroLuminarias = new ContentValues();
                 tempRegistroLuminarias.clear();
                 tempRegistroLuminarias.put("codigoLuminaria",this.codigoLuminaria.getText().toString());
-                tempRegistroLuminarias.put("potenciaUno",this.potenciaUno.getText().toString());
-                tempRegistroLuminarias.put("potenciaDos",this.potenciaDos.getText().toString());
-                tempRegistroLuminarias.put("potenciaTres",this.potenciaTres.getText().toString());
-                tempRegistroLuminarias.put("potenciaCuatro",this.potenciaCuatro.getText().toString());
+                tempRegistroLuminarias.put("potenciaLuminaria", this.potenciaLuminaria.getSelectedItem().toString());
                 tempRegistroLuminarias.put("tipoLuminaria",this.tipoLuminaria.getSelectedItem().toString());
                 tempRegistroLuminarias.put("estadoLuminaria",this.estadoLuminaria.getSelectedItem().toString());
                 tempRegistroLuminarias.put("apLuminaria",this.apLuminaria.getSelectedItem().toString());
@@ -156,6 +168,14 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 registroLuminarias.add(tempRegistroLuminarias);
                 finish(true);
                 break;
+
+            case R.id.BtoAgregarLuminarias:
+                this.arrayLuminarias.add(this.codigoLuminaria.getText().toString());
+                this.arrayLuminarias.add(this.potenciaLuminaria.getSelectedItem().toString());
+                this.arrayLuminarias.add(this.tipoLuminaria.getSelectedItem().toString());
+                this.arrayLuminarias.add(this.estadoLuminaria.getSelectedItem().toString());
+                this.arrayLuminarias.add(this.apLuminaria.getSelectedItem().toString());
+                this.arrayLuminarias.add(this.ptLuminaria.getSelectedItem().toString());
 
             case R.id.BtoCancelarRedesLuminarias:
                 finish(false);

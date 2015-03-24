@@ -35,99 +35,30 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="12">
 
         <TextView
             android:id="@+id/Txt70Luminaria"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtPt1Luminarias"
+            android:layout_weight="3"
+            android:text="@string/TxtCapaciadLuminarias"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
             android:textStyle="bold"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/SpinnerPotenciaLuminaria"
+            android:layout_weight="4" />
 
         <EditText
             android:id="@+id/Edit70Luminaria"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:numeric="integer"
-            android:layout_weight="5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/Txt125Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtPt2Luminarias"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/Edit125Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:numeric="integer"
-            android:layout_weight="5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/Txt150Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtPt3Luminarias"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/Edit150Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:numeric="integer"
-            android:layout_weight="5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/Txt250Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtPt4Luminarias"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/Edit250Luminaria"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:numeric="integer"
-            android:layout_weight="5" />
+            android:layout_weight="4" />
     </LinearLayout>
 
     <LinearLayout
@@ -238,11 +169,12 @@
         android:orientation="horizontal"
         android:weightSum="6">
 
-        <LinearLayout
+        <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-        </LinearLayout>
+            android:text="Agregar"
+            android:id="@+id/BtoAgregarLuminarias"
+            android:layout_weight="2" />
 
         <Button
             android:layout_width="0dp"
@@ -258,12 +190,20 @@
             android:id="@+id/BtoCancelarRedesLuminarias"
             android:layout_weight="2" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="horizontal">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LuminariaListView" />
     </LinearLayout>
 
 </LinearLayout>

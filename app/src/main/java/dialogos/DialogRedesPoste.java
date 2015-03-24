@@ -76,6 +76,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         arrayTiposPoste = new ArrayList<String>();
         arrayTiposPoste.add("Caja");
         arrayTiposPoste.add("Poste");
+        arrayTiposPoste.add("Cruce Aereo");
 
         arrayEstadoPoste = new ArrayList<String>();
         arrayEstadoPoste.add("Bueno");
@@ -87,6 +88,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         arrayMaterialPoste.add("Metal");
 
         arrayEstructuraPoste = new ArrayList<String>();
+        arrayEstructuraPoste.add("N/A");// las demas opciones la envia daniel
         arrayEstructuraPoste.add("Concreto");
         arrayEstructuraPoste.add("Madera");
         arrayEstructuraPoste.add("Metal");
@@ -160,9 +162,17 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 if(tipoPoste.getSelectedItem().toString().equals("Caja")){
                    alturaPoste.setEnabled(false);
                     //asignarle cero
-                }else{
-                    this.alturaPoste.setEnabled(true);
-                }
+                }else if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")){
+                        this.alturaPoste.setEnabled(false);
+                        this.estadoPoste.setEnabled(false);
+                        this.materialPoste.setEnabled(false);
+                        this.estructuraPoste.setEnabled(false);
+                      }else{
+                            this.alturaPoste.setEnabled(true);
+                            this.estadoPoste.setEnabled(true);
+                            this.materialPoste.setEnabled(true);
+                            this.estructuraPoste.setEnabled(true);
+                        }
                 break;
         }
 

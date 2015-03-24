@@ -2,6 +2,7 @@
 <resources>
     <string name="TxtTituloRedesLuminarias">Formato Redes Luminarias</string>
     <string name="TxtCodigoLuminaria">Codigo</string>
+    <string name="TxtCapaciadLuminarias">Capacidad</string>
     <string name="TxtPt1Luminarias">70 W</string>
     <string name="TxtPt2Luminarias">125 W</string>
     <string name="TxtPt3Luminarias">150 W</string>
