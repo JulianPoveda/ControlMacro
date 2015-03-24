@@ -87,6 +87,11 @@
             android:label="@string/title_activity_dialog_redes_luminarias"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity
+            android:name="dialogos.DialogRedesPoste"
+            android:label="@string/title_activity_dialog_redes_post"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
     </application>
 
 </manifest>
