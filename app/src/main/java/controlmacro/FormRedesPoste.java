@@ -27,7 +27,7 @@ public class FormRedesPoste extends ActionBarActivity {
     private ListView        _lstListadoPostes;
     private Intent          new_form;
 
-    private AdaptadorRedesPoste listadoPostesAdapter;
+    private AdaptadorRedesPoste             listadoPostesAdapter;
     private ArrayList<DetalleRedesPoste>    arrayListadoPoste;
 
     private String  itemPoste;
@@ -42,6 +42,8 @@ public class FormRedesPoste extends ActionBarActivity {
     private static int ACT_NEW_REDES_POSTE      = 6;
 
     private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
+
+    private ArrayList<ContentValues> datosPoste = new ArrayList<ContentValues>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +117,8 @@ public class FormRedesPoste extends ActionBarActivity {
 
             case R.id.RedesMenuContextEliminar:
                 this.new_form = new Intent(this, DialogConfirm.class);
-                this.new_form.putExtra("titulo","CONFIRMACION DE ELIMINACION");
-                this.new_form.putExtra("lbl1","Se eliminara el item "+this.itemSeleccionado+", desea continuar?");
+                this.new_form.putExtra("titulo","CONFIRMACION");
+                this.new_form.putExtra("lbl1","Se eliminara el item "+this.itemPoste+", desea continuar?");
                 startActivityForResult(this.new_form, ACT_ELIMINAR_REDES_POSTE);
                 return true;
 
@@ -147,6 +149,23 @@ public class FormRedesPoste extends ActionBarActivity {
             }else if(resultCode == RESULT_OK && requestCode == ACT_ELIMINAR_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
                     this.arrayListadoPoste.remove(this.itemSeleccionado);
+                    this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
+                    this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
+                    this.listadoPostesAdapter.notifyDataSetChanged();
+                }
+            }else if(resultCode == RESULT_OK && requestCode == ACT_NEW_REDES_POSTE){
+                if(data.getExtras().getBoolean("response")){
+                    this.datosPoste = data.getParcelableArrayListExtra("datosPoste");
+                    this.arrayListadoPoste.add(new DetalleRedesPoste((this.arrayListadoPoste.size()+1)+"",
+                            this.datosPoste.get(0).getAsString("gpsLat"),
+                            this.datosPoste.get(0).getAsString("gpsLong"),
+                            this.datosPoste.get(0).getAsString("tipoPoste"),
+                            this.datosPoste.get(0).getAsString("compartidoPoste"),
+                            this.datosPoste.get(0).getAsString("estadoPoste"),
+                            this.datosPoste.get(0).getAsString("materialPoste"),
+                            this.datosPoste.get(0).getAsString("alturaPoste"),
+                            this.datosPoste.get(0).getAsString("estructuraPoste"),
+                            this.datosPoste.get(0).getAsString("observacionPoste")));
                     this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
                     this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
                     this.listadoPostesAdapter.notifyDataSetChanged();
