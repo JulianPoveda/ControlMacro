@@ -197,8 +197,6 @@ public class FormRedesPoste extends ActionBarActivity {
                 this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
                 this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
                 this.listadoPostesAdapter.notifyDataSetChanged();*/
-
-
                 break;
 
             case R.id.RedesMenuGuardar:
