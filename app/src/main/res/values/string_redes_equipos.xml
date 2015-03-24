@@ -2,7 +2,7 @@
 <resources>
     <string name="TxtTituloRedesEquipos">Formato Redes Equipos</string>
     <string name="TxtRedesEquipos">Equipos</string>
-    <string name="TxtCapRedesEquipos">Capacidad Nominal (W)</string>
+    <string name="TxtCapRedesEquipos">Capacidad</string>
     <string name="TxtNombreRedesEquipos">Nombre</string>
     <string name="BtoCRedesEquipos">Cancelar</string>
     <string name="BtoARedesEquipos">Aceptar</string>

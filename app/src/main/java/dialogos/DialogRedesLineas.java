@@ -53,6 +53,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.arrayConductor =   new ArrayList<String>();
 
         this.arrayFases.clear();
+        this.arrayFases.add("...");
         this.arrayFases.add("8");
         this.arrayFases.add("6");
         this.arrayFases.add("4");

@@ -40,7 +40,7 @@
             android:id="@+id/TxtSwRedesEquipos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_weight="4"
             android:text="@string/TxtNombreRedesEquipos"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
@@ -64,7 +64,7 @@
             android:id="@+id/TxtCondRedesEquipos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_weight="4"
             android:text="@string/TxtCapRedesEquipos"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20dp"
@@ -74,7 +74,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/EditCondRedesEquipos"
-            android:layout_weight="9" />
+            android:layout_weight="6" />
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/SpCapacidadEquipos"
+            android:layout_weight="5" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
