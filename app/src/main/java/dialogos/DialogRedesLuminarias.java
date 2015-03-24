@@ -68,6 +68,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.arrayLuminarias       = new ArrayList<String>();
 
         this.registroLuminarias.clear();
+        this.arrayLuminarias.clear();
         Bundle extras = this.getIntent().getExtras();
 
         //Se deben ingresar de la base de datos.
@@ -98,21 +99,26 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
         this.adapterEsLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayestadoLuminarias);
         this.adapterEsLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.estadoLuminaria.setAdapter(this.adapterEsLuminarias);
+
         this.adapterTpLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,this.arraytipoLuminarias);
         this.adapterTpLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.tipoLuminaria.setAdapter(this.adapterTpLuminarias);
+
         this.adapterApLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,this.arrayapLuminarias);
         this.adapterApLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.apLuminaria.setAdapter(this.adapterApLuminarias);
+
         this.adapterPtLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,this.arrayptLuminarias);
         this.adapterPtLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.ptLuminaria.setAdapter(this.adapterPtLuminarias);
+
         this.adapterPotenciaLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayPotencias);
         this.adapterPotenciaLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.adapterLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayLuminarias);
-
         this.potenciaLuminaria.setAdapter(this.adapterPotenciaLuminarias);
-        this.tipoLuminaria.setAdapter(this.adapterTpLuminarias);
-        this.estadoLuminaria.setAdapter(this.adapterEsLuminarias);
-        this.apLuminaria.setAdapter(this.adapterApLuminarias);
-        this.ptLuminaria.setAdapter(this.adapterPtLuminarias);
+
+        this.adapterLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayLuminarias);
+        this.adapterLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.listaLuminarias.setAdapter(adapterLuminarias);
         this.adapterLuminarias.notifyDataSetChanged();
 
@@ -178,6 +184,8 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 this.arrayLuminarias.add(this.apLuminaria.getSelectedItem().toString());
                 this.arrayLuminarias.add(this.ptLuminaria.getSelectedItem().toString());
 
+                this.adapterLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayLuminarias);
+                this.adapterLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 this.listaLuminarias.setAdapter(adapterLuminarias);
                 this.adapterLuminarias.notifyDataSetChanged();
 
