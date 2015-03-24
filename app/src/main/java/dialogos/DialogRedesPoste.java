@@ -92,23 +92,33 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         arrayEstructuraPoste.add("Metal");
 
         this.adapterAltura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayAlturaPoste);
+        this.adapterAltura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.alturaPoste.setAdapter(adapterAltura);
+        this.adapterAltura.notifyDataSetChanged();
 
         this.adapterTipo  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayTiposPoste);
+        this.adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.tipoPoste.setAdapter(adapterTipo);
+        this.adapterTipo.notifyDataSetChanged();
 
         this.adapterEstado  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstadoPoste);
+        this.adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.estadoPoste.setAdapter(adapterEstado);
+        this.adapterEstado.notifyDataSetChanged();
 
         this.adapterMaterial  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayMaterialPoste);
+        this.adapterMaterial.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.materialPoste.setAdapter(adapterMaterial);
+        this.adapterMaterial.notifyDataSetChanged();
 
         this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
+        this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.estructuraPoste.setAdapter(adapterEstructura);
+        this.adapterEstructura.notifyDataSetChanged();
 
         _btonAceptar.setOnClickListener(this);
         _btonCancelar.setOnClickListener(this);
-
+        tipoPoste.setOnItemSelectedListener(this);
     }
 
     public void finish(boolean _caso) {
@@ -146,12 +156,12 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
-            case R.id.SpinnerRedesEquipos:
+            case R.id.SpinnerTipoRedesPoste:
                 if(tipoPoste.getSelectedItem().toString().equals("Caja")){
-                    alturaPoste.setEnabled(false);
-                    //adignarle cero
+                   alturaPoste.setEnabled(false);
+                    //asignarle cero
                 }else{
-                    alturaPoste.setEnabled(true);
+                    this.alturaPoste.setEnabled(true);
                 }
                 break;
         }

@@ -20,6 +20,7 @@ import dialogos.DialogConfirm;
 import dialogos.DialogRedesEquipos;
 import dialogos.DialogRedesLineas;
 import dialogos.DialogRedesLuminarias;
+import dialogos.DialogRedesPoste;
 
 
 public class FormRedesPoste extends ActionBarActivity {
@@ -28,12 +29,6 @@ public class FormRedesPoste extends ActionBarActivity {
 
     private AdaptadorRedesPoste listadoPostesAdapter;
     private ArrayList<DetalleRedesPoste>    arrayListadoPoste;
-
-    private ArrayList<String> alturasPoste;
-    private ArrayList<String> tiposPoste;
-    private ArrayList<String> estadoPoste;
-    private ArrayList<String> materialPoste;
-    private ArrayList<String> estructuraPoste;
 
     private String  itemPoste;
     private String  tipoPoste;
@@ -44,6 +39,7 @@ public class FormRedesPoste extends ActionBarActivity {
     private static int ACT_REGISTRO_LUMINARIAS  = 3;
     private static int ACT_EDITAR_REDES_POSTE   = 4;
     private static int ACT_ELIMINAR_REDES_POSTE = 5;
+    private static int ACT_NEW_REDES_POSTE      = 6;
 
     private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
 
@@ -53,32 +49,6 @@ public class FormRedesPoste extends ActionBarActivity {
         setContentView(R.layout.activity_redes_poste);
 
         this._lstListadoPostes  = (ListView) findViewById(R.id.RedesLstPostes);
-
-        alturasPoste = new ArrayList<String>();
-        alturasPoste.add("0");
-        alturasPoste.add("6");
-        alturasPoste.add("8");
-        alturasPoste.add("10");
-        alturasPoste.add("12");
-
-        tiposPoste = new ArrayList<String>();
-        tiposPoste.add("Caja");
-        tiposPoste.add("Poste");
-
-        estadoPoste = new ArrayList<String>();
-        estadoPoste.add("Bueno");
-        estadoPoste.add("Malo");
-
-        materialPoste = new ArrayList<String>();
-        materialPoste.add("Concreto");
-        materialPoste.add("Madera");
-        materialPoste.add("Metal");
-
-        estructuraPoste = new ArrayList<String>();
-        estructuraPoste.add("Concreto");
-        estructuraPoste.add("Madera");
-        estructuraPoste.add("Metal");
-
 
         this.arrayListadoPoste = new ArrayList<DetalleRedesPoste>();
         this.arrayListadoPoste.clear();
@@ -148,7 +118,6 @@ public class FormRedesPoste extends ActionBarActivity {
                 this.new_form.putExtra("titulo","CONFIRMACION DE ELIMINACION");
                 this.new_form.putExtra("lbl1","Se eliminara el item "+this.itemSeleccionado+", desea continuar?");
                 startActivityForResult(this.new_form, ACT_ELIMINAR_REDES_POSTE);
-
                 return true;
 
             default:
@@ -201,10 +170,16 @@ public class FormRedesPoste extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.RedesMenuAgregar:
-                this.arrayListadoPoste.add(new DetalleRedesPoste((this.arrayListadoPoste.size()+1)+"","","","","","","","","",""));
+                this.new_form = new Intent(this, DialogRedesPoste.class);
+                startActivityForResult(this.new_form, ACT_NEW_REDES_POSTE);
+
+
+                /*this.arrayListadoPoste.add(new DetalleRedesPoste((this.arrayListadoPoste.size()+1)+"","","","","","","","","",""));
                 this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
                 this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-                this.listadoPostesAdapter.notifyDataSetChanged();
+                this.listadoPostesAdapter.notifyDataSetChanged();*/
+
+
                 break;
 
             case R.id.RedesMenuGuardar:

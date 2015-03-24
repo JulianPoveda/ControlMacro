@@ -55,10 +55,12 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         Bundle extras = this.getIntent().getExtras();
 
         this.adapterEquipos =   new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEquipos);
+        this.adapterEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.tiposEquipos.setAdapter(this.adapterEquipos);
 
         btoAceptar.setOnClickListener(this);
         btoCancelar.setOnClickListener(this);
+        tiposEquipos.setOnItemSelectedListener(this);
     }
 
     public void finish(boolean _caso) {

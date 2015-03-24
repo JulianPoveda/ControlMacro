@@ -75,6 +75,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         Bundle extras = this.getIntent().getExtras();
 
         this.adapterFases   = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayFases);
+        this.adapterFases.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.faseA.setAdapter(this.adapterFases);
         this.faseB.setAdapter(this.adapterFases);
         this.faseC.setAdapter(this.adapterFases);
@@ -82,6 +83,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.faseN.setAdapter(this.adapterFases);
 
         this.adapterConductor = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, this.arrayConductor);
+        this.adapterConductor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.conductor.setAdapter(this.adapterConductor);
 
         this.btonCancelar.setOnClickListener(this);
