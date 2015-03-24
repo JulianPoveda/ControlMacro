@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/TxtItemRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:text="@string/TxtItemRedesPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+        <TextView
+            android:id="@+id/TxtLatRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtGPSPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+        <TextView
+            android:id="@+id/TxtTipoRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtTipoPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtCompartidoPosteRedes"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtCompartidoPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtEstadoRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtEstadoPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtMaterialRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtMaterialPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtAlturaRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtAlturaPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtEstructuraRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/TxtEstructuraPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+
+        <TextView
+            android:id="@+id/TxtObsRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            android:text="@string/TxtObservacionesPoste"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/RedesLstPostes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -16,5 +16,6 @@
     <string name="mnu_context_redes_equipos">Equipos</string>
     <string name="mnu_context_redes_lineas">Lineas</string>
     <string name="mnu_context_redes_luminarias">Luminarias</string>
+    <string name="mnu_context_redes_editar">Editar</string>
     <string name="mnu_context_redes_eliminar">Eliminar</string>
 </resources>

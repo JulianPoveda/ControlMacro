@@ -6,8 +6,8 @@
     android:weightSum="10">
 
 
-    <EditText
-        android:id="@+id/EditItemRedesPoste"
+    <TextView
+        android:id="@+id/RedesPosteLblItem"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
@@ -19,58 +19,58 @@
         android:layout_weight="1"
         android:weightSum="2">
 
-        <EditText
+        <TextView
+            android:id="@+id/RedesPosteLblLat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/EditLatRedesPoste"
             android:layout_weight="1" />
 
-        <EditText
+        <TextView
+            android:id="@+id/RedesPosteLblLong"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/EditLongRedesPoste"
             android:layout_weight="1" />
     </LinearLayout>
 
-    <Spinner
+    <TextView
+        android:id="@+id/RedesPosteLblTipo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/SpinnerTipoRedesPoste"
         android:layout_weight="1"/>
 
-    <EditText
+    <TextView
+        android:id="@+id/RedesPosteLblCompartido"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/EditCompartidoRedesPoste"
         android:layout_weight="1" />
 
-    <Spinner
+    <TextView
+        android:id="@+id/RedesPosteLblEstado"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/SpinnerEstadoRedesPoste"
         android:layout_weight="1" />
 
-    <Spinner
+    <TextView
+        android:id="@+id/RedesPosteLblMaterial"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/SpinnerMaterialRedesPoste"
         android:layout_weight="1" />
 
-    <Spinner
+    <TextView
+        android:id="@+id/RedesPosteLblAltura"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/SpinnerAlturaRedesPoste"
         android:layout_weight="1" />
 
-    <Spinner
+    <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/SpinnerEstructuraRedesPoste"
+        android:id="@+id/RedesPosteLblEstructura"
         android:layout_weight="1" />
 
-    <EditText
+    <TextView
+        android:id="@+id/RedesPosteLblObservacion"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/EditObsRedesPoste"
         android:layout_weight="2" />
 </LinearLayout>

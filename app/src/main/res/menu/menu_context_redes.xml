@@ -18,6 +18,11 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
+    <item   android:id="@+id/RedesMenuContextEditar"
+        android:title="@string/mnu_context_redes_editar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
     <item   android:id="@+id/RedesMenuContextEliminar"
         android:title="@string/mnu_context_redes_eliminar"
         android:orderInCategory="100"
