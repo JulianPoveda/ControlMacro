@@ -3,25 +3,7 @@
     android:layout_width="400dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="9">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:id="@+id/TxtFasesRedesLineas"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="@string/TxtFasesRedesLineas"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-    </LinearLayout>
+    android:weightSum="7">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -170,22 +152,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="6">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        </LinearLayout>
+        android:weightSum="6"
+        android:padding="10dp"
+        android:gravity="center_horizontal|center_vertical">
 
         <Button
             android:layout_width="0dp"
@@ -200,12 +171,5 @@
             android:text="@string/BtoCRedesEquipos"
             android:id="@+id/BtoCancelarRedesLineas"
             android:layout_weight="2" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

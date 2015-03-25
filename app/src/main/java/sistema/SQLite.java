@@ -104,6 +104,46 @@ public class SQLite {
                                                         "nombre_sppiner         VARCHAR (250) NOT NULL," +
                                                         "valor_spinner          VARCHAR (250) NOT NULL)");
 
+            db.execSQL("CREATE TABLE nodo_postes(nodo           VARCHAR(20) NOT NULL," +
+                                                "item           INTEGER NOT NULL," +
+                                                "longitud       NUMERIC(30,20) NOT NULL," +
+                                                "latitud        NUMERIC(30,20) NOT NULL," +
+                                                "tipo           VARCHAR(20) NOT NULL," +
+                                                "compartido     VARCHAR(255)," +
+                                                "estado         VARCHAR(20) NOT NULL," +
+                                                "material       VARCHAR(20)," +
+                                                "altura         INTEGER NOT NULL," +
+                                                "estructura     VARCHAR(50) NOT NULL," +
+                                                "observacion    VARCHAR(255)," +
+                                                "PRIMARY KEY(nodo, item));");
+
+            db.execSQL("CREATE TABLE postes_equipos( nodo       VARCHAR(20) NOT NULL," +
+                                                    "item       INTEGER NOT NULL," +
+                                                    "nombre     VARCHAR(50) NOT NULL," +
+                                                    "capacidad  INTEGER NOT NULL," +
+                                                    "unidades   VARCHAR(20) NOT NULL," +
+                                                    "PRIMARY KEY(nodo, item));");
+
+            db.execSQL("CREATE TABLE postes_lineas(  nodo       VARCHAR(20) NOT NULL," +
+                                                    "item       INTEGER NOT NULL," +
+                                                    "faseA      VARCHAR(10) NOT NULL," +
+                                                    "faseB      VARCHAR(10) NOT NULL," +
+                                                    "faseC      VARCHAR(10) NOT NULL," +
+                                                    "faseAP     VARCHAR(10) NOT NULL," +
+                                                    "faseN      VARCHAR(10) NOT NULL," +
+                                                    "conductor  VARCHAR(10) NOT NULL," +
+                                                    "PRIMARY KEY(nodo, item));");
+
+            db.execSQL("CREATE TABLE postes_luminarias(  id             INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                                        "nodo           VARCHAR(20) NOT NULL," +
+                                                        "item           INTEGER NOT NULL," +
+                                                        "codigo         VARCHAR(20) NOT NULL," +
+                                                        "capacidad      VARCHAR(20) NOT NULL," +
+                                                        "tipo           VARCHAR(20) NOT NULL," +
+                                                        "estado         VARCHAR(20) NOT NULL," +
+                                                        "propietario    VARCHAR(20) NOT NULL," +
+                                                        "tierra         VARCHAR(20) NOT NULL);");
+
             /*db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
                         "	UPDATE maestro_rutas SET fecha_cargue = datetime('now','localtime') " +
                         "   WHERE id_inspector = NEW.id_inspector AND ruta = NEW.ruta;" +
@@ -237,7 +277,7 @@ public class SQLite {
      * @param _condicion	->Condicion que debe cumplirse para realizar el update y/o insert
      * @return				->String con el mensaje de retorno, ya puede ser insert/update realizado o no realizado.
      */
-    public String InsertOrUpdateRegistro(String _tabla, ContentValues _informacion, String _condicion){
+    /*public String InsertOrUpdateRegistro(String _tabla, ContentValues _informacion, String _condicion){
         String _retorno = "Sin acciones";
         if(!this.ExistRegistros(_tabla, _condicion)){
             if(this.InsertRegistro(_tabla, _informacion)){
@@ -250,6 +290,25 @@ public class SQLite {
                 _retorno = "Registro actualizado en "+_tabla;
             }else{
                 _retorno = "Error al actualizar el registro en "+_tabla;
+            }
+        }
+        return _retorno;
+    }*/
+
+
+    public boolean InsertOrUpdateRegistro(String _tabla, ContentValues _informacion, String _condicion){
+        boolean _retorno = false;
+        if(!this.ExistRegistros(_tabla, _condicion)){
+            if(this.InsertRegistro(_tabla, _informacion)){
+                _retorno = true;
+            }else{
+                _retorno = false;
+            }
+        }else{
+            if(this.UpdateRegistro(_tabla, _informacion, _condicion)){
+                _retorno = true;
+            }else{
+                _retorno = false;
             }
         }
         return _retorno;

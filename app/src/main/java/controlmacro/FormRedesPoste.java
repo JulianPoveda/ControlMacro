@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,30 +28,30 @@ import Object.Poste;
 
 
 public class FormRedesPoste extends ActionBarActivity {
+    private static int ACT_REGISTRO_EQUIPOS         = 1;
+    private static int ACT_REGISTRO_LINEAS          = 2;
+    private static int ACT_REGISTRO_LUMINARIAS      = 3;
+    private static int ACT_EDITAR_REDES_POSTE       = 4;
+    private static int ACT_ELIMINAR_REDES_POSTE     = 5;
+    private static int ACT_NEW_REDES_POSTE          = 6;
+    private static int ACT_ACTUALIZAR_REDES_POSTE   = 7;
+
     private ListView        _lstListadoPostes;
     private Intent          new_form;
 
-    private AdaptadorRedesPoste             listadoPostesAdapter;
-    private ArrayList<DetalleRedesPoste>    arrayListadoPoste;
-
+    private ClassRedesPoste FcnRedesPoste;
+    private String  nodo;
     private String  itemPoste;
     private String  tipoPoste;
     private int     itemSeleccionado;
 
-    private static int ACT_REGISTRO_EQUIPOS     = 1;
-    private static int ACT_REGISTRO_LINEAS      = 2;
-    private static int ACT_REGISTRO_LUMINARIAS  = 3;
-    private static int ACT_EDITAR_REDES_POSTE   = 4;
-    private static int ACT_ELIMINAR_REDES_POSTE = 5;
-    private static int ACT_NEW_REDES_POSTE      = 6;
+    //private ArrayList<ContentValues>datosRegistroEquipos = new ArrayList<ContentValues>();
+    private ArrayList<ContentValues>_tempTabla      = new ArrayList<ContentValues>();
+    private ContentValues           _tempRegistro   = new ContentValues();
 
-    private ClassRedesPoste FcnRedesPoste;
 
-    private ArrayList<ContentValues> datosRegistroEquipos = new ArrayList<ContentValues>();
-    private ArrayList<ContentValues> datosPoste = new ArrayList<ContentValues>();
-
-    private ArrayList<Poste>   infPoste;
-
+    private AdaptadorRedesPoste             listadoPostesAdapter;
+    private ArrayList<DetalleRedesPoste>    arrayListadoPoste;
 
 
     @Override
@@ -58,29 +59,15 @@ public class FormRedesPoste extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redes_poste);
 
-        //this.FcnRedesPoste  = new ClassRedesPoste();
-
-
         Bundle bundle = getIntent().getExtras();
+        this.nodo = bundle.getString("Nodo");
 
-
-        this.infPoste   = new ArrayList<Poste>();
-
-
+        this.FcnRedesPoste  = new ClassRedesPoste(this,this.nodo);
 
         this._lstListadoPostes  = (ListView) findViewById(R.id.RedesLstPostes);
 
         this.arrayListadoPoste = new ArrayList<DetalleRedesPoste>();
-        this.arrayListadoPoste.clear();
-
-        this.arrayListadoPoste.add(new DetalleRedesPoste("1","0.1","0.2","Poste","","Bueno","Madera","12","","Sin Observaciones"));
-        this.arrayListadoPoste.add(new DetalleRedesPoste("2","1.1","2.4","Caja","","Bueno","Metal","0","","Con Observaciones"));
-
-        this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
-
-        this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-        this.listadoPostesAdapter.notifyDataSetChanged();
-
+        this.mostrarInformacionPostes();
         registerForContextMenu(this._lstListadoPostes);
     }
 
@@ -122,15 +109,15 @@ public class FormRedesPoste extends ActionBarActivity {
             case R.id.RedesMenuContextLuminarias:
                 this.new_form = new Intent(this, DialogRedesLuminarias.class);
                 this.new_form.putExtra("Item",this.itemPoste);
-                this.new_form.putExtra("Tipo",this.tipoPoste);
+                this.new_form.putExtra("Nodo",this.nodo);
                 startActivityForResult(this.new_form, ACT_REGISTRO_LUMINARIAS);
                 return true;
 
             case R.id.RedesMenuContextEditar:
-                this.arrayListadoPoste.remove(this.itemSeleccionado);
-                this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
-                this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-                this.listadoPostesAdapter.notifyDataSetChanged();
+                this.new_form = new Intent(this, DialogConfirm.class);
+                this.new_form.putExtra("titulo","CONFIRMACION");
+                this.new_form.putExtra("lbl1", "Desea editar el item " + this.itemPoste + "?");
+                startActivityForResult(this.new_form, ACT_EDITAR_REDES_POSTE);
                 return true;
 
             case R.id.RedesMenuContextEliminar:
@@ -150,50 +137,110 @@ public class FormRedesPoste extends ActionBarActivity {
         try{
             if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_EQUIPOS){
                 if(data.getExtras().getBoolean("response")){
-                    this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosEquipos");
+                    this._tempTabla = data.getParcelableArrayListExtra("datosEquipos");
+                    if(this.FcnRedesPoste.crearEquipo(this.itemPoste,
+                            this._tempTabla.get(0).getAsString("tipoEquipo"),
+                            this._tempTabla.get(0).getAsInteger("capacidadEquipo"),
+                            this._tempTabla.get(0).getAsString("unidadesEquipo"))){
+                        Toast.makeText(this, "Equipo registrado correctamente", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LINEAS){
                 if(data.getExtras().getBoolean("response")){
-                    this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosLineas");
+                    this._tempTabla = data.getParcelableArrayListExtra("datosLineas");
+                    if(this.FcnRedesPoste.crearLineas(this.itemPoste,
+                            this._tempTabla.get(0).getAsString("faseA"),
+                            this._tempTabla.get(0).getAsString("faseB"),
+                            this._tempTabla.get(0).getAsString("faseC"),
+                            this._tempTabla.get(0).getAsString("faseAP"),
+                            this._tempTabla.get(0).getAsString("faseN"),
+                            this._tempTabla.get(0).getAsString("conductor"))){
+                        Toast.makeText(this, "Lineas registradas correctamente", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LUMINARIAS){
                 if(data.getExtras().getBoolean("response")){
-                    this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosLuminarias");
+                    this._tempTabla = data.getParcelableArrayListExtra("datosLuminarias");
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_EDITAR_REDES_POSTE){
-                /*if(data.getExtras().getBoolean("response")){
-                    this.datosRegistroEquipos = data.getParcelableArrayListExtra("datosLuminarias");
-                }*/
+                if(data.getExtras().getBoolean("response")){
+                    this.new_form = new Intent(this, DialogRedesPoste.class);
+                    this._tempRegistro = this.FcnRedesPoste.getDataPoste(Integer.parseInt(this.itemPoste));
+                    this.new_form.putExtra("longitud", this._tempRegistro.getAsString("longitud"));
+                    this.new_form.putExtra("latitud", this._tempRegistro.getAsString("latitud"));
+                    this.new_form.putExtra("tipo", this._tempRegistro.getAsString("tipo"));
+                    this.new_form.putExtra("compartido", this._tempRegistro.getAsString("compartido"));
+                    this.new_form.putExtra("estado", this._tempRegistro.getAsString("estado"));
+                    this.new_form.putExtra("material", this._tempRegistro.getAsString("material"));
+                    this.new_form.putExtra("altura", this._tempRegistro.getAsString("altura"));
+                    this.new_form.putExtra("estructura", this._tempRegistro.getAsString("estructura"));
+                    this.new_form.putExtra("observacion", this._tempRegistro.getAsString("observacion"));
+                    startActivityForResult(this.new_form, ACT_ACTUALIZAR_REDES_POSTE);
+                }
             }else if(resultCode == RESULT_OK && requestCode == ACT_ELIMINAR_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
-                    this.arrayListadoPoste.remove(this.itemSeleccionado);
-                    this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
-                    this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-                    this.listadoPostesAdapter.notifyDataSetChanged();
+                    if(this.FcnRedesPoste.eliminarPoste(this.itemSeleccionado)){
+                        this.mostrarInformacionPostes();
+                    }
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_NEW_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
-                    this.datosPoste = data.getParcelableArrayListExtra("datosPoste");
-                    this.arrayListadoPoste.add(new DetalleRedesPoste((this.arrayListadoPoste.size()+1)+"",
-                            this.datosPoste.get(0).getAsString("gpsLat"),
-                            this.datosPoste.get(0).getAsString("gpsLong"),
-                            this.datosPoste.get(0).getAsString("tipoPoste"),
-                            this.datosPoste.get(0).getAsString("compartidoPoste"),
-                            this.datosPoste.get(0).getAsString("estadoPoste"),
-                            this.datosPoste.get(0).getAsString("materialPoste"),
-                            this.datosPoste.get(0).getAsString("alturaPoste"),
-                            this.datosPoste.get(0).getAsString("estructuraPoste"),
-                            this.datosPoste.get(0).getAsString("observacionPoste")));
-                    this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
-                    this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-                    this.listadoPostesAdapter.notifyDataSetChanged();
+                    this._tempTabla = data.getParcelableArrayListExtra("datosPoste");
+                    if(this.FcnRedesPoste.crearPoste(this._tempTabla.get(0).getAsDouble("gpsLat"),
+                            this._tempTabla.get(0).getAsDouble("gpsLong"),
+                            this._tempTabla.get(0).getAsString("tipoPoste"),
+                            this._tempTabla.get(0).getAsString("compartidoPoste"),
+                            this._tempTabla.get(0).getAsString("estadoPoste"),
+                            this._tempTabla.get(0).getAsString("materialPoste"),
+                            this._tempTabla.get(0).getAsInteger("alturaPoste"),
+                            this._tempTabla.get(0).getAsString("estructuraPoste"),
+                            this._tempTabla.get(0).getAsString("observacionPoste"))){
+                        this.mostrarInformacionPostes();
+                    }
+                }
+            }else if(resultCode == RESULT_OK && requestCode == ACT_ACTUALIZAR_REDES_POSTE){
+                if(data.getExtras().getBoolean("response")){
+                    this._tempTabla = data.getParcelableArrayListExtra("datosPoste");
+                    if(this.FcnRedesPoste.editarPoste(this.itemPoste,
+                            this._tempTabla.get(0).getAsDouble("gpsLat"),
+                            this._tempTabla.get(0).getAsDouble("gpsLong"),
+                            this._tempTabla.get(0).getAsString("tipoPoste"),
+                            this._tempTabla.get(0).getAsString("compartidoPoste"),
+                            this._tempTabla.get(0).getAsString("estadoPoste"),
+                            this._tempTabla.get(0).getAsString("materialPoste"),
+                            this._tempTabla.get(0).getAsInteger("alturaPoste"),
+                            this._tempTabla.get(0).getAsString("estructuraPoste"),
+                            this._tempTabla.get(0).getAsString("observacionPoste"))){
+                        this.mostrarInformacionPostes();
+                    }
                 }
             }
         }catch(Exception e){
-
+            e.toString();
         }
     }
 
+
+    private void mostrarInformacionPostes(){
+        this.arrayListadoPoste.clear();
+        this._tempTabla = this.FcnRedesPoste.listaPostes();
+        for(int i=0; i<this._tempTabla.size(); i++){
+            this._tempRegistro  = this._tempTabla.get(i);
+            this.arrayListadoPoste.add(new DetalleRedesPoste(this._tempRegistro.get("item")+"",
+                    this._tempRegistro.getAsString("longitud"),
+                    this._tempRegistro.getAsString("latitud"),
+                    this._tempRegistro.getAsString("tipo"),
+                    this._tempRegistro.getAsString("compartido"),
+                    this._tempRegistro.getAsString("estado"),
+                    this._tempRegistro.getAsString("material"),
+                    this._tempRegistro.getAsString("altura"),
+                    this._tempRegistro.getAsString("estructura"),
+                    this._tempRegistro.getAsString("observacion")));
+        }
+        this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
+        this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
+        this.listadoPostesAdapter.notifyDataSetChanged();
+    }
 
 
     @Override
@@ -209,12 +256,6 @@ public class FormRedesPoste extends ActionBarActivity {
             case R.id.RedesMenuAgregar:
                 this.new_form = new Intent(this, DialogRedesPoste.class);
                 startActivityForResult(this.new_form, ACT_NEW_REDES_POSTE);
-
-
-                /*this.arrayListadoPoste.add(new DetalleRedesPoste((this.arrayListadoPoste.size()+1)+"","","","","","","","","",""));
-                this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
-                this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);
-                this.listadoPostesAdapter.notifyDataSetChanged();*/
                 break;
 
             case R.id.RedesMenuGuardar:

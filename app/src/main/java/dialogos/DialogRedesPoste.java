@@ -22,16 +22,19 @@ import controlmacro.R;
 
 public class DialogRedesPoste extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    Button _btonAceptar;
-    Button _btonCancelar;
-    EditText gpsLat;
-    EditText gpsLong;
-    EditText observacionPoste;
-    Spinner tipoPoste;
-    Spinner estadoPoste;
-    Spinner materialPoste;
-    Spinner alturaPoste;
-    Spinner estructuraPoste;
+    Button      _btonAceptar;
+    Button      _btonCancelar;
+    EditText    gpsLat;
+    EditText    gpsLong;
+    EditText    compartidoPoste;
+    EditText    observacionPoste;
+    Spinner     tipoPoste;
+    Spinner     estadoPoste;
+    Spinner     materialPoste;
+    Spinner     alturaPoste;
+    Spinner     estructuraPoste;
+
+
 
     private ArrayList<String> arrayAlturaPoste;
     private ArrayList<String> arrayTiposPoste;
@@ -56,6 +59,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this._btonCancelar    = (Button)findViewById(R.id.PosteBtonCancelar);
         this.gpsLat           = (EditText)findViewById(R.id.EditLatRedesPoste);
         this.gpsLong          = (EditText)findViewById(R.id.EditLongRedesPoste);
+        this.compartidoPoste  = (EditText) findViewById(R.id.EditCompartidoRedesPoste);
         this.observacionPoste = (EditText)findViewById(R.id.EditObsRedesPoste);
         this.tipoPoste        = (Spinner)findViewById(R.id.SpinnerTipoRedesPoste);
         this.estadoPoste      = (Spinner)findViewById(R.id.SpinnerEstadoRedesPoste);
@@ -117,6 +121,20 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.estructuraPoste.setAdapter(adapterEstructura);
         this.adapterEstructura.notifyDataSetChanged();
+
+        if(getIntent().getExtras() != null){
+            Bundle bundle = getIntent().getExtras();
+            this.gpsLat.setText(bundle.getString("latitud"));
+            this.gpsLong.setText(bundle.getString("longitud"));
+            this.compartidoPoste.setText(bundle.getString("compartido"));
+            this.observacionPoste.setText(bundle.getString("observacion"));
+
+            this.tipoPoste.setSelection(this.adapterTipo.getPosition(bundle.getString("tipo")));
+            this.estadoPoste.setSelection(this.adapterEstado.getPosition(bundle.getString("estado")));
+            this.materialPoste.setSelection(this.adapterMaterial.getPosition(bundle.getString("material")));
+            this.alturaPoste.setSelection(this.adapterAltura.getPosition(bundle.getString("altura")));
+            this.estructuraPoste.setSelection(this.adapterEstructura.getPosition(bundle.getString("estructura")));
+        }
 
         _btonAceptar.setOnClickListener(this);
         _btonCancelar.setOnClickListener(this);
@@ -191,7 +209,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 tempRegistroPoste.put("estructuraPoste", this.estructuraPoste.getSelectedItem().toString());
                 tempRegistroPoste.put("gpsLat", this.gpsLat.getText().toString());
                 tempRegistroPoste.put("gpsLong", this.gpsLong.getText().toString());
-                tempRegistroPoste.put("obervacionPoste", this.observacionPoste.getText().toString());
+                tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
+                tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
                 registroPoste.add(tempRegistroPoste);
                 finish(true);
                 break;

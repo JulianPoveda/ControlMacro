@@ -9,7 +9,7 @@ public class Poste {
     private String  nodoPoste;
     private int     itemPoste;
     private double  longitudPoste;
-    private double  latitudGPoste;
+    private double  latitudPoste;
     private String  tipoPoste;
     private String  compartidoPoste;
     private String  estadoPoste;
@@ -22,17 +22,19 @@ public class Poste {
     private String  equipoUnidades;
     private int     equipoCapacidad;
 
-    private String lineaCalibreA;
-    private String lineaCalibreB;
-    private String lineaCalibreC;
-    private String lineaCalibreAP;
-    private String lineaCalibreN;
-    private String lineaConductor;
+    private String  lineaCalibreA;
+    private String  lineaCalibreB;
+    private String  lineaCalibreC;
+    private String  lineaCalibreAP;
+    private String  lineaCalibreN;
+    private String  lineaConductor;
 
-    private Luminarias  luminaria;
-    private ArrayList<Luminarias> listaLuminarias = new ArrayList<>();
+    private Luminaria luminaria;
+    private ArrayList<Luminaria> listaLuminarias;
 
-
+    public Poste(){
+        this.listaLuminarias = new ArrayList<>();
+    }
 
     public String getNodoPoste() {
         return nodoPoste;
@@ -50,12 +52,12 @@ public class Poste {
         this.itemPoste = itemPoste;
     }
 
-    public double getLatitudGPoste() {
-        return latitudGPoste;
+    public double getLatitudPoste() {
+        return latitudPoste;
     }
 
-    public void setLatitudGPoste(double latitudGPoste) {
-        this.latitudGPoste = latitudGPoste;
+    public void setLatitudPoste(double latitudGPoste) {
+        this.latitudPoste = latitudGPoste;
     }
 
     public double getLongitudPoste() {
@@ -192,5 +194,25 @@ public class Poste {
 
     public void setLineaConductor(String lineaConductor) {
         this.lineaConductor = lineaConductor;
+    }
+
+    public ArrayList<Luminaria> getAllLuminarias(){
+        return this.listaLuminarias;
+    }
+
+    public Luminaria getLuminaria(int _posicion){
+        return this.listaLuminarias.get(_posicion);
+    }
+
+    public void addLuminaria(Luminaria _luminaria){
+        this.listaLuminarias.add(_luminaria);
+    }
+
+    public void removeLuminaria(int _posicion){
+        this.listaLuminarias.remove(_posicion);
+    }
+
+    public int getCountLuminarias(){
+        return this.listaLuminarias.size();
     }
 }

@@ -110,32 +110,28 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
             case R.id.SpinnerRedesEquipos:
-                if(tiposEquipos.getSelectedItem().toString().equals("Otro")){
+                nombreEquipo.setEnabled(false);
+                arrayUnidad.clear();
+                if(this.tiposEquipos.getSelectedItem().toString().equals("Amplificadores")){
+                    arrayUnidad.add("KW");
+                    arrayUnidad.add("W");
+                }else if(this.tiposEquipos.getSelectedItem().toString().equals("Condensadores")){
+                    arrayUnidad.add("VAR");
+                }else if(this.tiposEquipos.getSelectedItem().toString().equals("Switches")){
+                    arrayUnidad.add("KW");
+                    arrayUnidad.add("W");
+                }else if(tiposEquipos.getSelectedItem().toString().equals("Otro")){
                     nombreEquipo.setEnabled(true);
-                }else{
-                    nombreEquipo.setEnabled(false);
+                    arrayUnidad.add("KW");
+                    arrayUnidad.add("W");
+                    arrayUnidad.add("VAR");
                 }
-                break;
-            case R.id.SpCapacidadEquipos:
-                if(unidadesCapacidad.getSelectedItem().toString().equals("Condensadores")){
-                    arrayEquipos.clear();
-                    arrayEquipos.add("VAR");
-                    this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
-                    this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
-                    this.adapterCapacidadEquipos.notifyDataSetChanged();
-                }else{
-                    arrayEquipos.clear();
-                    arrayEquipos.add("KW");
-                    arrayEquipos.add("W");
-                    this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
-                    this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
-                    this.adapterCapacidadEquipos.notifyDataSetChanged();
-                }
+                this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
+                this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
+                this.adapterCapacidadEquipos.notifyDataSetChanged();
                 break;
         }
-
     }
 
     @Override
@@ -144,9 +140,14 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
             case R.id.BtoAcepRedesEquipos:
                 ContentValues tempRegistroEquipos = new ContentValues();
                 tempRegistroEquipos.clear();
-                tempRegistroEquipos.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
-                tempRegistroEquipos.put("capacidaEquipo", this.capacidadEquipo.getText().toString());
-                tempRegistroEquipos.put("nombreEquipo", this.nombreEquipo.getText().toString());
+
+                if(this.tiposEquipos.getSelectedItem().toString().equals("Otro")){
+                    tempRegistroEquipos.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString()+":"+this.nombreEquipo.getText().toString());
+                }else{
+                    tempRegistroEquipos.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
+                }
+                tempRegistroEquipos.put("capacidadEquipo", this.capacidadEquipo.getText().toString());
+                tempRegistroEquipos.put("unidadesEquipo", this.unidadesCapacidad.getSelectedItem().toString());
                 registrosEquipos.add(tempRegistroEquipos);
                 finish(true);
                 break;

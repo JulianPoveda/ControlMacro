@@ -87,7 +87,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.adapterConductor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.conductor.setAdapter(this.adapterConductor);
 
-        this.btonCancelar.setOnClickListener(this);
+        this.btonAceptar.setOnClickListener(this);
         this.btonCancelar.setOnClickListener(this);
     }
 

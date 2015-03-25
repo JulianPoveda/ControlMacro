@@ -3,13 +3,17 @@ package Object;
 /**
  * Created by JULIANEDUARDO on 24/03/2015.
  */
-public class Luminarias {
+public class Luminaria {
     private String  codigoLuminaria;
-    private int     capacidadLuminaria;
+    private String  capacidadLuminaria;
     private String  tipoLuminaria;
     private String  estadoLuminaria;
-    private String  tipoApLuminaria;
-    private String  puestaTierraLuminaria;
+    private String  propietarioLuminaria;
+    private String  tierraLuminaria;
+
+    public Luminaria(){
+
+    }
 
     public String getCodigoLuminaria() {
         return codigoLuminaria;
@@ -19,11 +23,11 @@ public class Luminarias {
         this.codigoLuminaria = codigoLuminaria;
     }
 
-    public int getCapacidadLuminaria() {
+    public String getCapacidadLuminaria() {
         return capacidadLuminaria;
     }
 
-    public void setCapacidadLuminaria(int capacidadLuminaria) {
+    public void setCapacidadLuminaria(String capacidadLuminaria) {
         this.capacidadLuminaria = capacidadLuminaria;
     }
 
@@ -43,19 +47,19 @@ public class Luminarias {
         this.estadoLuminaria = estadoLuminaria;
     }
 
-    public String getTipoApLuminaria() {
-        return tipoApLuminaria;
+    public String getPropietarioLuminaria() {
+        return propietarioLuminaria;
     }
 
-    public void setTipoApLuminaria(String tipoApLuminaria) {
-        this.tipoApLuminaria = tipoApLuminaria;
+    public void setPropietarioLuminaria(String propietarioLuminaria) {
+        this.propietarioLuminaria = propietarioLuminaria;
     }
 
-    public String getPuestaTierraLuminaria() {
-        return puestaTierraLuminaria;
+    public String getTierraLuminaria() {
+        return tierraLuminaria;
     }
 
-    public void setPuestaTierraLuminaria(String puestaTierraLuminaria) {
-        this.puestaTierraLuminaria = puestaTierraLuminaria;
+    public void setTierraLuminaria(String tierraLuminaria) {
+        this.tierraLuminaria = tierraLuminaria;
     }
 }

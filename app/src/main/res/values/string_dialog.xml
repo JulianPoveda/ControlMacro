@@ -17,4 +17,12 @@
     <string name="lbl_dialog_delete_user_poste">Poste o Caja N°</string>
     <string name="lbl_dialog_delete_user_lectura">Lectura</string>
     <string name="lbl_dialog_delete_user_observacion">Observacion</string>
+    <string name="btn_aceptar_dialog_luminarias">Aceptar</string>
+    <string name="btn_finalizar_dialog_luminarias">Finalizar</string>
+    <string name="lbl_codigo_dialog_luminarias">Codigo</string>
+    <string name="lbl_capacidad_dialog_luminarias">Cap</string>
+    <string name="lbl_tipo_dialog_luminarias">Tipo</string>
+    <string name="lbl_estado_dialog_luminarias">Estado</string>
+    <string name="lbl_propietario_dialog_luminarias">Propietario</string>
+    <string name="lbl_tierra_dialog_luminarias">Tierra</string>
 </resources>

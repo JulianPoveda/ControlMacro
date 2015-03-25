@@ -34,8 +34,6 @@ public class FormInformacionRutas extends Activity{
     private AdaptadorFourItems listadoRutasAdapter;
     private ArrayList<DetalleFourItems> arrayListadoRutas;
 
-
-
     private ArrayList<ContentValues> _tempTabla = new ArrayList<ContentValues>();
     private ContentValues _tempRegistro 		= new ContentValues();
 
