@@ -124,6 +124,7 @@ public class SQLite {
                                                     "unidades   VARCHAR(20) NOT NULL," +
                                                     "PRIMARY KEY(nodo, item));");
 
+
             db.execSQL("CREATE TABLE postes_lineas(  nodo       VARCHAR(20) NOT NULL," +
                                                     "item       INTEGER NOT NULL," +
                                                     "faseA      VARCHAR(10) NOT NULL," +
@@ -134,7 +135,7 @@ public class SQLite {
                                                     "conductor  VARCHAR(10) NOT NULL," +
                                                     "PRIMARY KEY(nodo, item));");
 
-            db.execSQL("CREATE TABLE postes_luminarias(  id             INTEGER PRIMARY KEY AUTOINCREMENT," +
+            db.execSQL("CREATE TABLE postes_luminarias(  id             INTEGER NOT NULL," +
                                                         "nodo           VARCHAR(20) NOT NULL," +
                                                         "item           INTEGER NOT NULL," +
                                                         "codigo         VARCHAR(20) NOT NULL," +
@@ -142,23 +143,8 @@ public class SQLite {
                                                         "tipo           VARCHAR(20) NOT NULL," +
                                                         "estado         VARCHAR(20) NOT NULL," +
                                                         "propietario    VARCHAR(20) NOT NULL," +
-                                                        "tierra         VARCHAR(20) NOT NULL);");
-
-            /*db.execSQL(	"CREATE TRIGGER tg_fecha_cargue AFTER INSERT ON maestro_rutas FOR EACH ROW BEGIN " +
-                        "	UPDATE maestro_rutas SET fecha_cargue = datetime('now','localtime') " +
-                        "   WHERE id_inspector = NEW.id_inspector AND ruta = NEW.ruta;" +
-                        "END;");
-
-            db.execSQL(	"CREATE TRIGGER tg_fecha_toma AFTER INSERT ON toma_lectura FOR EACH ROW BEGIN " +
-                        "	UPDATE toma_lectura SET fecha_toma = datetime('now','localtime') " +
-                        "   WHERE id = NEW.id;" +
-                        "END;");
-
-            db.execSQL(	"CREATE TRIGGER tg_estado_lectura AFTER DELETE ON toma_lectura FOR EACH ROW BEGIN" +
-                        "   UPDATE maestro_clientes SET estado = 'E' " +
-                        "   WHERE id_serial_1 = OLD.id_serial1;" +
-                        "END;");*/
-
+                                                        "tierra         VARCHAR(20) NOT NULL," +
+                                                        "PRIMARY KEY(nodo,item,id));");
         }
 
         @Override

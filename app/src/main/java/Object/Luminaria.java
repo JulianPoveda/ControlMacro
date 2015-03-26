@@ -4,6 +4,7 @@ package Object;
  * Created by JULIANEDUARDO on 24/03/2015.
  */
 public class Luminaria {
+    private int     id;
     private String  codigoLuminaria;
     private String  capacidadLuminaria;
     private String  tipoLuminaria;
@@ -13,6 +14,14 @@ public class Luminaria {
 
     public Luminaria(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCodigoLuminaria() {

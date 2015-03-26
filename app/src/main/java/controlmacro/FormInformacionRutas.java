@@ -88,17 +88,21 @@ public class FormInformacionRutas extends Activity{
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.RutasMenuIniciar:
+            case R.id.NodosMenuFormatoClientes:
                 this.new_form = new Intent(this, FormTomarLectura.class);
                 this.new_form.putExtra("Nodo",this.nodo_seleccionado);
                 startActivity(this.new_form);
                 return true;
 
-            case R.id.RutasMenuSincronizar:
+            case R.id.NodoMenuFormatorRedes:
                 this.new_form = new Intent(this, FormRedesPoste.class);
                 this.new_form.putExtra("Nodo",this.nodo_seleccionado);
                 startActivity(this.new_form);
                 return true;
+
+            case R.id.NodoMenuTerminar:
+                return true;
+
 
             default:
                 return super.onContextItemSelected(item);

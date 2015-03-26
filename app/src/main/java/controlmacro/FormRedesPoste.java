@@ -158,10 +158,6 @@ public class FormRedesPoste extends ActionBarActivity {
                         Toast.makeText(this, "Lineas registradas correctamente", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }else if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LUMINARIAS){
-                if(data.getExtras().getBoolean("response")){
-                    this._tempTabla = data.getParcelableArrayListExtra("datosLuminarias");
-                }
             }else if(resultCode == RESULT_OK && requestCode == ACT_EDITAR_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
                     this.new_form = new Intent(this, DialogRedesPoste.class);

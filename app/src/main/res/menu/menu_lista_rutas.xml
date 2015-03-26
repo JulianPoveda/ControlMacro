@@ -2,13 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="lecturas.sypelc.mobilelecturas.lista_rutas">
-    <item   android:id="@+id/RutasMenuIniciar"
-            android:title="Iniciar Toma Lectura"
+    <item   android:id="@+id/NodosMenuFormatoClientes"
+            android:title="Formato Clientes"
             android:orderInCategory="100"
             app:showAsAction="never" />
 
-    <item   android:id="@+id/RutasMenuSincronizar"
-            android:title="Sincronizar"
+    <item   android:id="@+id/NodoMenuFormatorRedes"
+            android:title="Formato Redes"
             android:orderInCategory="100"
             app:showAsAction="never" />
+
+    <item   android:id="@+id/NodoMenuTerminar"
+        android:title="Terminar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

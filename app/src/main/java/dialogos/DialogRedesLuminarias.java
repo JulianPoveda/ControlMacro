@@ -5,9 +5,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +19,9 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import Adapter.AdaptadorSevenItems;
 import Adapter.AdaptadorSixItems;
+import Adapter.DetalleSevenItems;
 import Adapter.DetalleSixItems;
 import clases.ClassRedesPoste;
 import controlmacro.FormInicioSession;
@@ -52,14 +57,15 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
     private ArrayList<ContentValues> registroLuminarias = new ArrayList<ContentValues>();
 
-    private AdaptadorSixItems           listadoLuminariasAdapter;
-    private ArrayList<DetalleSixItems>  arrayListadoLuminarias;
+    private AdaptadorSevenItems           listadoLuminariasAdapter;
+    private ArrayList<DetalleSevenItems>  arrayListadoLuminarias;
 
     private ArrayList<ContentValues> _tempTabla = new ArrayList<ContentValues>();
     private ContentValues _tempRegistro 		= new ContentValues();
 
     private String  nodo;
     private int     item;
+    private int     id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +74,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
         Bundle bundle = getIntent().getExtras();
         this.nodo = bundle.getString("Nodo");
-        this.item = bundle.getInt("Item");
+        this.item = Integer.parseInt(bundle.getString("Item"));
 
         this.FcnRedesPoste  = new ClassRedesPoste(this, this.nodo);
 
@@ -149,26 +155,61 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
         this.btnAgregar.setOnClickListener(this);
         this.btnFinalizar.setOnClickListener(this);
-
         this.mostrarLuminariasRegistradas();
+
+        registerForContextMenu(this.listaLuminarias);
     }
+
+
+    /**Funciones para el control del menu contextual del listview que muestra las ordenes de trabajo**/
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+        this.id = Integer.parseInt(this.arrayListadoLuminarias.get(info.position).getItem1());
+
+        switch(v.getId()){
+            case R.id.LuminariaListView:
+                menu.setHeaderTitle("Nodo "+this.nodo+", item "+this.item+", id "+this.id);
+                super.onCreateContextMenu(menu, v, menuInfo);
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.menu_context_luminarias, menu);
+                break;
+        }
+    }
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.LuminariasMenuContextEliminar:
+                if(this.FcnRedesPoste.eliminarLuminaria(this.item, this.id)){
+                    this.mostrarLuminariasRegistradas();
+                }
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+
 
     private void mostrarLuminariasRegistradas(){
         this.arrayListadoLuminarias.clear();
         this._tempTabla = this.FcnRedesPoste.getListaLuminarias(this.item);
         for(int i=0;i<this._tempTabla.size();i++){
             this._tempRegistro = this._tempTabla.get(i);
-            this.arrayListadoLuminarias.add(new DetalleSixItems( this._tempRegistro.getAsString("codigo"),
+            this.arrayListadoLuminarias.add(new DetalleSevenItems( this._tempRegistro.getAsString("id"),
+                    this._tempRegistro.getAsString("codigo"),
                     this._tempRegistro.getAsString("capacidad"),
                     this._tempRegistro.getAsString("tipo"),
                     this._tempRegistro.getAsString("estado"),
                     this._tempRegistro.getAsString("propietario"),
                     this._tempRegistro.getAsString("tierra")));
         }
-        this.listadoLuminariasAdapter = new AdaptadorSixItems(this, this.arrayListadoLuminarias);
+        this.listadoLuminariasAdapter = new AdaptadorSevenItems(this, this.arrayListadoLuminarias);
         this.listaLuminarias.setAdapter(this.listadoLuminariasAdapter);
         this.listadoLuminariasAdapter.notifyDataSetChanged();
-        //registerForContextMenu(this.listaLuminarias);
     }
 
 
@@ -182,28 +223,6 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         super.finish();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dialog_redes_luminarias, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onClick(View v) {

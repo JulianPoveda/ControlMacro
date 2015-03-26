@@ -43,6 +43,7 @@ public class ClassRedesPoste {
                 "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
     }
 
+
     public ArrayList<ContentValues> listaPostes(){
         this._tempTabla = this.FcnSQL.SelectData("nodo_postes",
                 "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
@@ -50,10 +51,11 @@ public class ClassRedesPoste {
         return this._tempTabla;
     }
 
+
     public ArrayList<ContentValues> getListaLuminarias(int _item){
         this.myPoste.setItemPoste(_item);
         this._tempTabla = this.FcnSQL.SelectData("postes_luminarias",
-                "codigo,capacidad,tipo,estado,propietario,tierra",
+                "id,codigo,capacidad,tipo,estado,propietario,tierra",
                 "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
         return this._tempTabla;
     }
@@ -74,6 +76,7 @@ public class ClassRedesPoste {
         return this.registrarPoste();
     }
 
+
     public boolean editarPoste(String _item, double _latitud, double _longitud, String _tipo, String _compartido,
                                    String _estado, String _material, int _altura, String _estructura, String _observacion){
         this.myPoste.setLatitudPoste(_latitud);
@@ -88,9 +91,11 @@ public class ClassRedesPoste {
         return this.actualizarPoste(_item);
     }
 
+
     public boolean eliminarPoste(int _item){
         return this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this.nodo+"' AND item="+_item);
     }
+
 
     public boolean crearEquipo(String _item, String _nombre, int _capacidad, String _unidades){
         this.myPoste.setItemPoste(Integer.parseInt(_item));
@@ -99,6 +104,7 @@ public class ClassRedesPoste {
         this.myPoste.setEquipoUnidades(_unidades);
         return this.registrarEquipo();
     }
+
 
     public boolean crearLineas(String _item, String _faseA, String _faseB, String _faseC, String _faseAP, String _faseN, String _conductor){
         this.myPoste.setItemPoste(Integer.parseInt(_item));
@@ -114,6 +120,7 @@ public class ClassRedesPoste {
 
     public boolean crearLuminaria(int _item, String _codigo, String _capacidad, String _tipo, String _estado, String _propietario, String _tierra){
         this.myPoste.setItemPoste(_item);
+        this.myLuminaria.setId(this.FcnSQL.CountRegistrosWhere("postes_luminarias", "nodo='"+this.myPoste.getNodoPoste()+"' AND item="+this.myPoste.getItemPoste())+1);
         this.myLuminaria.setCodigoLuminaria(_codigo);
         this.myLuminaria.setCapacidadLuminaria(_capacidad);
         this.myLuminaria.setTipoLuminaria(_tipo);
@@ -122,6 +129,11 @@ public class ClassRedesPoste {
         this.myLuminaria.setTierraLuminaria(_tierra);
         this.myPoste.addLuminaria(this.myLuminaria);
         return this.registrarLuminaria();
+    }
+
+
+    public boolean eliminarLuminaria(int _item, int _id){
+        return this.FcnSQL.DeleteRegistro("postes_luminarias","nodo='"+this.myPoste.getNodoPoste()+"' AND item="+_item+" AND id="+_id);
     }
 
     /*******Inicio de los meotodos privados *******/
@@ -187,6 +199,7 @@ public class ClassRedesPoste {
         this._tempRegistro.clear();
         this._tempRegistro.put("nodo", this.myPoste.getNodoPoste());
         this._tempRegistro.put("item", this.myPoste.getItemPoste());
+        this._tempRegistro.put("id", this.myLuminaria.getId());
         this._tempRegistro.put("codigo", this.myLuminaria.getCodigoLuminaria());
         this._tempRegistro.put("capacidad", this.myLuminaria.getCapacidadLuminaria());
         this._tempRegistro.put("tipo", this.myLuminaria.getTipoLuminaria());
