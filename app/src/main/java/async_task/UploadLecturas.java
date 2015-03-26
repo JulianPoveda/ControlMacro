@@ -42,6 +42,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
     private ArrayList<ContentValues>	_tempTabla	    	= new ArrayList<ContentValues>();
     private ArrayList<ContentValues>	_tempTabla1		    = new ArrayList<ContentValues>();
     private String                      InformacionCarga;
+    private String                      InformacionCargaPoste;
 
     private static final String METHOD_NAME	= "UploadTrabajo";
     private static final String SOAP_ACTION	= "UploadTrabajo";
@@ -69,29 +70,101 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
         //this.InformacionCarga.clear();
 
         this.InformacionCarga = "";
-        this._tempTabla	= this.FcnSQL.SelectData("maestro_clientes", "id_serial_1, id_serial_2, id_serial_3","estado='T' AND ruta='"+params[0]+"'");
+        this._tempTabla	= this.FcnSQL.SelectData("maestro_nodos", "fecha_asignacion,nodo","estado='T'");
         for(int i=0; i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
             this._tempTabla1	= this.FcnSQL.SelectData(   "toma_lectura",
-                                                            "id, id_serial1, lectura1, critica1, id_serial2, lectura2, critica2, id_serial3, lectura3, critica3, anomalia, mensaje, tipo_uso,fecha_toma",
-                                                            "id_serial1="+this._tempRegistro.getAsString("id_serial_1")+" AND id_serial2="+this._tempRegistro.getAsString("id_serial_2")+" and id_serial3="+this._tempRegistro.getAsString("id_serial_3")+"");
+                                                            "fecha_programacion,nodo,new_nodo,cuenta,medidor,serie,poste,lectura,observacion,fecha_registro",
+                                                            "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
 
             for(int j=0; j<this._tempTabla1.size();j++){
                 this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCarga += this._tempRegistro1.getAsString("id")+","+this._tempRegistro1.getAsString("id_serial1") + "," + this._tempRegistro1.getAsString("lectura1") + "," + this._tempRegistro1.getAsString("critica1") + "," +
-                        "" + this._tempRegistro1.getAsString("id_serial2") + "," + this._tempRegistro1.getAsString("lectura2") + "," + this._tempRegistro1.getAsString("critica2") + "," +
-                        "" + this._tempRegistro1.getAsString("id_serial3") + "," + this._tempRegistro1.getAsString("lectura3") + "," + this._tempRegistro1.getAsString("critica3") + "," +
-                        "" + this._tempRegistro1.getAsString("anomalia") + "," + this._tempRegistro1.getAsString("mensaje") + "," + this._tempRegistro1.getAsString("tipo_uso") + "," +
-                        "" + this._tempRegistro1.getAsString("fecha_toma") + "\r\n";
+                this.InformacionCarga += this._tempRegistro1.getAsString("fecha_programacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("new_nodo") + "," + this._tempRegistro1.getAsString("cuenta") + "," +
+                        "" + this._tempRegistro1.getAsString("medidor") + "," + this._tempRegistro1.getAsString("serie") + "," + this._tempRegistro1.getAsString("poste") + "," +
+                        "" + this._tempRegistro1.getAsString("lectura") + "," + this._tempRegistro1.getAsString("observacion") + "," + this._tempRegistro1.getAsString("fecha_registro") + "\r\n";
             }
         }
 
-        this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+params[0]+".txt",this.InformacionCarga);
+        this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"lectura_nodo"+".txt",this.InformacionCarga);
+
+        this._tempRegistro1.clear();
+        this._tempTabla1.clear();
+        this.InformacionCargaPoste = "POSTE" + ",";
+
+        for(int i=0; i<this._tempTabla.size();i++){
+            this._tempRegistro  = this._tempTabla.get(i);
+            this._tempTabla1	= this.FcnSQL.SelectData(   "nodo_postes",
+                    "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
+                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+
+            for(int j=0; j<this._tempTabla1.size();j++){
+                this._tempRegistro1 = this._tempTabla1.get(j);
+                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud") + "," +
+                        "" + this._tempRegistro1.getAsString("latitud") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("compartido") + "," +
+                        "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion") + "\r\n";
+            }
+        }
+
+        this._tempRegistro1.clear();
+        this._tempTabla1.clear();
+        this.InformacionCargaPoste = "EQUIPOS"+",";
+
+        for(int i=0; i<this._tempTabla.size();i++){
+            this._tempRegistro  = this._tempTabla.get(i);
+            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_equipos",
+                    "nodo,item,nombre,capacidad,unidades",
+                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+
+            for(int j=0; j<this._tempTabla1.size();j++){
+                this._tempRegistro1 = this._tempTabla1.get(j);
+                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
+                        "" + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("unidades")  + "\r\n";
+            }
+        }
+
+        this._tempRegistro1.clear();
+        this._tempTabla1.clear();
+        this.InformacionCargaPoste = "LINEAS"+",";
+
+        for(int i=0; i<this._tempTabla.size();i++){
+            this._tempRegistro  = this._tempTabla.get(i);
+            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_lineas",
+                    "nodo,item,faseA,faseB,faseC,faseAP,faseN,conductor",
+                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+
+            for(int j=0; j<this._tempTabla1.size();j++){
+                this._tempRegistro1 = this._tempTabla1.get(j);
+                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("faseA") + "," +
+                        "" + this._tempRegistro1.getAsString("faseB") + "," + this._tempRegistro1.getAsString("faseC") + "," + this._tempRegistro1.getAsString("faseAP") + "," +
+                        "" + this._tempRegistro1.getAsString("faseN") + ","+this._tempRegistro1.getAsString("conductor") + "\r\n";
+            }
+        }
+
+        this._tempRegistro1.clear();
+        this._tempTabla1.clear();
+        this.InformacionCargaPoste = "LUMINARIAS"+",";
+
+        for(int i=0; i<this._tempTabla.size();i++){
+            this._tempRegistro  = this._tempTabla.get(i);
+            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_luminarias",
+                    "id,nodo,item,codigo,capacidad,tipo,estado,propietario,tierra",
+                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+
+            for(int j=0; j<this._tempTabla1.size();j++){
+                this._tempRegistro1 = this._tempTabla1.get(j);
+                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("id") +"," +this._tempRegistro1.getAsString("nodo") +"," + this._tempRegistro1.getAsString("item") + ","
+                        + this._tempRegistro1.getAsString("codigo") + "," + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("estado") + "," +
+                       "" + this._tempRegistro1.getAsString("propietario") + ","+this._tempRegistro1.getAsString("tierra") + "\r\n";
+            }
+        }
+
+        this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"formato_redes"+".txt",this.InformacionCargaPoste);
 
         try{
             SoapObject so=new SoapObject(NAMESPACE, this.METHOD_NAME);
             so.addProperty("usuario", this.Usuario.getCodigo());
-            so.addProperty("informacion",this.FcnArch.FileToArrayBytes("Descarga", this.Usuario.getCodigo()+"_"+params[0]+".txt",true));
+            so.addProperty("informacionlectura",this.FcnArch.FileToArrayBytes("Descarga", this.Usuario.getCodigo()+"_"+"lectura_nodo"+".txt",true));
+            so.addProperty("informacionredes",this.FcnArch.FileToArrayBytes("Descarga", this.Usuario.getCodigo()+"_"+"formato_redes"+".txt",true));
 
             SoapSerializationEnvelope sse=new SoapSerializationEnvelope(SoapEnvelope.VER11);
             new MarshalBase64().register(sse);
