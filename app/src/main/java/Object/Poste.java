@@ -32,7 +32,8 @@ public class Poste {
     private Luminaria luminaria;
     private ArrayList<Luminaria> listaLuminarias;
 
-    public Poste(){
+    public Poste(String _nodo){
+        this.nodoPoste = _nodo;
         this.listaLuminarias = new ArrayList<>();
     }
 

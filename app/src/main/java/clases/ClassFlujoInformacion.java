@@ -53,11 +53,11 @@ public class ClassFlujoInformacion {
             this._tempRegistro.put("nombre",this._campos[2]);
             this._tempRegistro.put("perfil",1);
             this.FcnSQL.InsertRegistro("param_usuarios",this._tempRegistro);
-        }else if(this._campos[0].equals("Municipio")){
+        }/*else if(this._campos[0].equals("Municipio")){
             this._tempRegistro.put("id_municipio",this._campos[1]);
             this._tempRegistro.put("municipio",this._campos[2]);
             this.FcnSQL.InsertRegistro("param_municipios",this._tempRegistro);
-        }/*else if(this._campos[0].equals("Anomalia")){
+        }else if(this._campos[0].equals("Anomalia")){
             this._tempRegistro.put("id_anomalia",this._campos[1]);
             this._tempRegistro.put("descripcion",this._campos[2]);
             this._tempRegistro.put("aplica_residencial",this._campos[3]);

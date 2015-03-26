@@ -154,6 +154,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     }
 
     private void mostrarLuminariasRegistradas(){
+        this.arrayListadoLuminarias.clear();
         this._tempTabla = this.FcnRedesPoste.getListaLuminarias(this.item);
         for(int i=0;i<this._tempTabla.size();i++){
             this._tempRegistro = this._tempTabla.get(i);
@@ -208,16 +209,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BtoFinalizarRedesLuminarias:
-                /*ContentValues tempRegistroLuminarias = new ContentValues();
-                tempRegistroLuminarias.clear();
-                tempRegistroLuminarias.put("codigoLuminaria",this.codigoLuminaria.getText().toString());
-                tempRegistroLuminarias.put("potenciaLuminaria", this.potenciaLuminaria.getSelectedItem().toString());
-                tempRegistroLuminarias.put("tipoLuminaria",this.tipoLuminaria.getSelectedItem().toString());
-                tempRegistroLuminarias.put("estadoLuminaria",this.estadoLuminaria.getSelectedItem().toString());
-                tempRegistroLuminarias.put("apLuminaria",this.apLuminaria.getSelectedItem().toString());
-                tempRegistroLuminarias.put("tpLuminaria",this.ptLuminaria.getSelectedItem().toString());
-                registroLuminarias.add(tempRegistroLuminarias);
-                finish(true);*/
+                finish(true);
                 break;
 
             case R.id.BtoAgregarLuminarias:
@@ -229,19 +221,8 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                         this.apLuminaria.getSelectedItem().toString(),
                         this.ptLuminaria.getSelectedItem().toString())){
                     this.mostrarLuminariasRegistradas();
+                    this.codigoLuminaria.setText("");
                 }
-
-                /*this.arrayLuminarias.add(this.codigoLuminaria.getText().toString());
-                this.arrayLuminarias.add(this.potenciaLuminaria.getSelectedItem().toString());
-                this.arrayLuminarias.add(this.tipoLuminaria.getSelectedItem().toString());
-                this.arrayLuminarias.add(this.estadoLuminaria.getSelectedItem().toString());
-                this.arrayLuminarias.add(this.apLuminaria.getSelectedItem().toString());
-                this.arrayLuminarias.add(this.ptLuminaria.getSelectedItem().toString());*/
-
-                /*this.adapterLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayLuminarias);
-                this.adapterLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                this.listaLuminarias.setAdapter(adapterLuminarias);
-                this.adapterLuminarias.notifyDataSetChanged();*/
                 break;
         }
     }

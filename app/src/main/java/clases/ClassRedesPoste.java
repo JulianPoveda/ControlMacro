@@ -31,7 +31,7 @@ public class ClassRedesPoste {
         this.ctx        = _ctx;
         this.nodo       = _nodo;
         this.FcnSQL     = new SQLite(this.ctx, FormInicioSession.path_files_app);
-        this.myPoste    = new Poste();
+        this.myPoste    = new Poste(this.nodo);
         this.myLuminaria= new Luminaria();
     }
 
