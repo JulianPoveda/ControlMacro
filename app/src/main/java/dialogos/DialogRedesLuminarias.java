@@ -221,13 +221,15 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 break;
 
             case R.id.BtoAgregarLuminarias:
-                this.FcnRedesPoste.crearLuminaria(this.item,
+                if(this.FcnRedesPoste.crearLuminaria(this.item,
                         this.codigoLuminaria.getText().toString(),
                         this.potenciaLuminaria.getSelectedItem().toString(),
                         this.tipoLuminaria.getSelectedItem().toString(),
                         this.estadoLuminaria.getSelectedItem().toString(),
                         this.apLuminaria.getSelectedItem().toString(),
-                        this.ptLuminaria.getSelectedItem().toString());
+                        this.ptLuminaria.getSelectedItem().toString())){
+                    this.mostrarLuminariasRegistradas();
+                }
 
                 /*this.arrayLuminarias.add(this.codigoLuminaria.getText().toString());
                 this.arrayLuminarias.add(this.potenciaLuminaria.getSelectedItem().toString());

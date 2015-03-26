@@ -142,6 +142,22 @@ public class ClassRedesPoste {
         return this.FcnSQL.InsertRegistro("nodo_postes", this._tempRegistro);
     }
 
+
+    private boolean actualizarPoste(String _item){
+        this._tempRegistro.clear();
+        this._tempRegistro.put("latitud", this.myPoste.getLatitudPoste());
+        this._tempRegistro.put("longitud", this.myPoste.getLongitudPoste());
+        this._tempRegistro.put("tipo", this.myPoste.getTipoPoste());
+        this._tempRegistro.put("compartido", this.myPoste.getCompartidoPoste());
+        this._tempRegistro.put("estado", this.myPoste.getEstadoPoste());
+        this._tempRegistro.put("material", this.myPoste.getMaterialPoste());
+        this._tempRegistro.put("altura", this.myPoste.getAlturaPoste());
+        this._tempRegistro.put("estructura", this.myPoste.getEstructuraPoste());
+        this._tempRegistro.put("observacion", this.myPoste.getObservacionPoste());
+        return this.FcnSQL.UpdateRegistro("nodo_postes", this._tempRegistro,"nodo='"+this.nodo+"' AND item="+_item);
+    }
+
+
     private boolean registrarEquipo(){
         this._tempRegistro.clear();
         this._tempRegistro.put("nodo", this.nodo);
@@ -151,6 +167,7 @@ public class ClassRedesPoste {
         this._tempRegistro.put("unidades", this.myPoste.getEquipoUnidades());
         return this.FcnSQL.InsertOrUpdateRegistro("postes_equipos", this._tempRegistro, "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
     }
+
 
     private boolean registrarLineas(){
         this._tempRegistro.clear();
@@ -169,22 +186,13 @@ public class ClassRedesPoste {
     private boolean registrarLuminaria(){
         this._tempRegistro.clear();
         this._tempRegistro.put("nodo", this.myPoste.getNodoPoste());
-        this._tempRegistro.put();
-        return true;
-    }
-
-
-    private boolean actualizarPoste(String _item){
-        this._tempRegistro.clear();
-        this._tempRegistro.put("latitud", this.myPoste.getLatitudPoste());
-        this._tempRegistro.put("longitud", this.myPoste.getLongitudPoste());
-        this._tempRegistro.put("tipo", this.myPoste.getTipoPoste());
-        this._tempRegistro.put("compartido", this.myPoste.getCompartidoPoste());
-        this._tempRegistro.put("estado", this.myPoste.getEstadoPoste());
-        this._tempRegistro.put("material", this.myPoste.getMaterialPoste());
-        this._tempRegistro.put("altura", this.myPoste.getAlturaPoste());
-        this._tempRegistro.put("estructura", this.myPoste.getEstructuraPoste());
-        this._tempRegistro.put("observacion", this.myPoste.getObservacionPoste());
-        return this.FcnSQL.UpdateRegistro("nodo_postes", this._tempRegistro,"nodo='"+this.nodo+"' AND item="+_item);
+        this._tempRegistro.put("item", this.myPoste.getItemPoste());
+        this._tempRegistro.put("codigo", this.myLuminaria.getCodigoLuminaria());
+        this._tempRegistro.put("capacidad", this.myLuminaria.getCapacidadLuminaria());
+        this._tempRegistro.put("tipo", this.myLuminaria.getTipoLuminaria());
+        this._tempRegistro.put("estado", this.myLuminaria.getEstadoLuminaria());
+        this._tempRegistro.put("propietario", this.myLuminaria.getPropietarioLuminaria());
+        this._tempRegistro.put("tierra", this.myLuminaria.getTierraLuminaria());
+        return this.FcnSQL.InsertRegistro("postes_luminarias", this._tempRegistro);
     }
 }
