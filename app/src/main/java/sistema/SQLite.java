@@ -72,7 +72,7 @@ public class SQLite {
             db.execSQL("CREATE TABLE    maestro_nodos  ( id_serial              INTEGER NOT NULL," +
                                                         "nodo                   VARCHAR(20) NOT NULL," +
                                                         "id_tecnico             INTEGER NOT NULL," +
-                                                        "estado                 VARCHAR(10) NOT NULL" +
+                                                        "estado                 VARCHAR(1) NOT NULL DEFAULT 'P'," +
                                                         "fecha_asignacion       DATE NOT NULL," +
                                                         "PRIMARY KEY(nodo, fecha_asignacion))");
 
@@ -116,7 +116,7 @@ public class SQLite {
                                                 "altura         INTEGER NOT NULL," +
                                                 "estructura     VARCHAR(50) NOT NULL," +
                                                 "observacion    VARCHAR(255)," +
-                                                "fecha_asignacion   DATE NOT NULL,"+
+                                                "fecha_asignacion   TIMESTAMP NOT NULL DEFAULT current_timestamp,"+
                                                 "PRIMARY KEY(nodo, item));");
 
             db.execSQL("CREATE TABLE postes_equipos( nodo       VARCHAR(20) NOT NULL," +
@@ -124,7 +124,7 @@ public class SQLite {
                                                     "nombre     VARCHAR(50) NOT NULL," +
                                                     "capacidad  INTEGER NOT NULL," +
                                                     "unidades   VARCHAR(20) NOT NULL," +
-                                                    "fecha_asignacion DATE NOT NULL," +
+                                                    "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp," +
                                                     "PRIMARY KEY(nodo, item));");
 
 
@@ -136,7 +136,7 @@ public class SQLite {
                                                     "faseAP     VARCHAR(10) NOT NULL," +
                                                     "faseN      VARCHAR(10) NOT NULL," +
                                                     "conductor  VARCHAR(10) NOT NULL," +
-                                                    "fecha_asignacion DATE NOT NULL,"  +
+                                                    "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp,"  +
                                                     "PRIMARY KEY(nodo, item));");
 
             db.execSQL("CREATE TABLE postes_luminarias(  id             INTEGER NOT NULL," +
@@ -148,7 +148,7 @@ public class SQLite {
                                                         "estado         VARCHAR(20) NOT NULL," +
                                                         "propietario    VARCHAR(20) NOT NULL," +
                                                         "tierra         VARCHAR(20) NOT NULL," +
-                                                        "fecha_asignacion DATE NOT NULL," +
+                                                        "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp," +
                                                         "PRIMARY KEY(nodo,item,id));");
         }
 

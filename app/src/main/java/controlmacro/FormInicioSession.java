@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.io.File;
 
 import async_task.DownLoad;
+import async_task.UploadLecturas;
 import clases.ClassConfiguracion;
 import clases.ClassSession;
 
@@ -103,6 +104,7 @@ public class FormInicioSession extends ActionBarActivity implements OnClickListe
                 break;
 
             case R.id.InicioCrearBackup:
+                new UploadLecturas(this).execute(this.FcnSession.getCodigo()+"");
                 break;
 
             case R.id.InicioMenuSalir:

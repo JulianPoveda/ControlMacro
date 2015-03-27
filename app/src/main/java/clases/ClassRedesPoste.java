@@ -208,4 +208,10 @@ public class ClassRedesPoste {
         this._tempRegistro.put("tierra", this.myLuminaria.getTierraLuminaria());
         return this.FcnSQL.InsertRegistro("postes_luminarias", this._tempRegistro);
     }
+
+    public void terminarNodo(String _nodo){
+        this._tempRegistro.clear();
+        this._tempRegistro.put("estado", "T");
+        this.FcnSQL.UpdateRegistro("maestro_nodos",this._tempRegistro,"nodo='"+_nodo+"'");
+    }
 }

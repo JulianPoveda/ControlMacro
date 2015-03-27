@@ -89,7 +89,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
         this._tempRegistro1.clear();
         this._tempTabla1.clear();
-        this.InformacionCargaPoste = "POSTE" + ",";
+        this.InformacionCargaPoste="";
 
         for(int i=0; i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
@@ -99,7 +99,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
             for(int j=0; j<this._tempTabla1.size();j++){
                 this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud") + "," +
+                this.InformacionCargaPoste += "POSTE,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud") + "," +
                         "" + this._tempRegistro1.getAsString("latitud") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("compartido") + "," +
                         "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion") + "\r\n";
             }
@@ -107,7 +107,6 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
         this._tempRegistro1.clear();
         this._tempTabla1.clear();
-        this.InformacionCargaPoste = "EQUIPOS"+",";
 
         for(int i=0; i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
@@ -117,14 +116,13 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
             for(int j=0; j<this._tempTabla1.size();j++){
                 this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
+                this.InformacionCargaPoste +="EQUIPOS,"+ this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
                         "" + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("unidades")  + "\r\n";
             }
         }
 
         this._tempRegistro1.clear();
         this._tempTabla1.clear();
-        this.InformacionCargaPoste = "LINEAS"+",";
 
         for(int i=0; i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
@@ -134,7 +132,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
             for(int j=0; j<this._tempTabla1.size();j++){
                 this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("faseA") + "," +
+                this.InformacionCargaPoste += "LINEAS,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("faseA") + "," +
                         "" + this._tempRegistro1.getAsString("faseB") + "," + this._tempRegistro1.getAsString("faseC") + "," + this._tempRegistro1.getAsString("faseAP") + "," +
                         "" + this._tempRegistro1.getAsString("faseN") + ","+this._tempRegistro1.getAsString("conductor") + "\r\n";
             }
@@ -142,7 +140,6 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
         this._tempRegistro1.clear();
         this._tempTabla1.clear();
-        this.InformacionCargaPoste = "LUMINARIAS"+",";
 
         for(int i=0; i<this._tempTabla.size();i++){
             this._tempRegistro  = this._tempTabla.get(i);
@@ -152,7 +149,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
             for(int j=0; j<this._tempTabla1.size();j++){
                 this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("id") +"," +this._tempRegistro1.getAsString("nodo") +"," + this._tempRegistro1.getAsString("item") + ","
+                this.InformacionCargaPoste += "LUMINARIAS,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("id") +"," +this._tempRegistro1.getAsString("nodo") +"," + this._tempRegistro1.getAsString("item") + ","
                         + this._tempRegistro1.getAsString("codigo") + "," + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("estado") + "," +
                        "" + this._tempRegistro1.getAsString("propietario") + ","+this._tempRegistro1.getAsString("tierra") + "\r\n";
             }

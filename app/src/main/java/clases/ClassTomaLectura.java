@@ -83,6 +83,7 @@ public class ClassTomaLectura {
 
     private void setInfUsuario(){
         this.ObjUsuario.setNodo(this._tempRegistro.getAsString("nodo"));
+        this.ObjUsuario.setNew_nodo(this._tempRegistro.getAsString("nodo"));
         this.ObjUsuario.setFecha_programacion(this._tempRegistro.getAsString("fecha_programacion"));
         this.ObjUsuario.setId(this._tempRegistro.getAsInteger("id"));
         this.ObjUsuario.setCuenta(this._tempRegistro.getAsInteger("cuenta"));

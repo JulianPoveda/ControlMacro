@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import Adapter.AdaptadorFourItems;
 import Adapter.DetalleFourItems;
 import async_task.UploadLecturas;
+import clases.ClassRedesPoste;
 import clases.ClassSession;
 import sistema.SQLite;
 
@@ -30,6 +31,7 @@ public class FormInformacionRutas extends Activity{
     private ListView        listadoRutas;
     private SQLite          sqlConsulta;
     private ClassSession    FcnSession;
+    private ClassRedesPoste nodo;//para terminar
 
     private AdaptadorFourItems listadoRutasAdapter;
     private ArrayList<DetalleFourItems> arrayListadoRutas;
@@ -49,6 +51,7 @@ public class FormInformacionRutas extends Activity{
 
         this.FcnSession     = ClassSession.getInstance(this);
         this.sqlConsulta    = new SQLite(this, FormInicioSession.path_files_app);
+        this.nodo           = new ClassRedesPoste(this, this.nodo_seleccionado);//para terminar
 
         this.arrayListadoRutas  = new ArrayList<>();
         this.arrayListadoRutas.clear();
@@ -101,6 +104,7 @@ public class FormInformacionRutas extends Activity{
                 return true;
 
             case R.id.NodoMenuTerminar:
+                 this.nodo.terminarNodo(this.nodo_seleccionado);
                 return true;
 
 

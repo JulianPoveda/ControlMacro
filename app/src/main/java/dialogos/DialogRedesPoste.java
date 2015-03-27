@@ -93,9 +93,38 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
         arrayEstructuraPoste = new ArrayList<String>();
         arrayEstructuraPoste.add("N/A");// las demas opciones la envia daniel
-        arrayEstructuraPoste.add("Concreto");
-        arrayEstructuraPoste.add("Madera");
-        arrayEstructuraPoste.add("Metal");
+        arrayEstructuraPoste.add("LA 319");
+        arrayEstructuraPoste.add("LA 320");
+        arrayEstructuraPoste.add("LA 320-1");
+        arrayEstructuraPoste.add("LA 321");
+        arrayEstructuraPoste.add("LA 322");
+        arrayEstructuraPoste.add("LA 323");
+        arrayEstructuraPoste.add("LA 324");
+        arrayEstructuraPoste.add("LA 325");
+        arrayEstructuraPoste.add("LA 326");
+        arrayEstructuraPoste.add("LA 327");
+        arrayEstructuraPoste.add("LA 328");
+        arrayEstructuraPoste.add("LA 329");
+        arrayEstructuraPoste.add("LA 330");
+        arrayEstructuraPoste.add("LA 334");
+        arrayEstructuraPoste.add("LA 335");
+        arrayEstructuraPoste.add("LA 336");
+        arrayEstructuraPoste.add("LA 339");
+        arrayEstructuraPoste.add("LA 340");
+        arrayEstructuraPoste.add("LA 341");
+        arrayEstructuraPoste.add("LA 342");
+        arrayEstructuraPoste.add("LA 343");
+        arrayEstructuraPoste.add("LA 344");
+        arrayEstructuraPoste.add("LA 345");
+        arrayEstructuraPoste.add("LA 346");
+        arrayEstructuraPoste.add("LA 347");
+        arrayEstructuraPoste.add("LA 348");
+        arrayEstructuraPoste.add("LA 349");
+        arrayEstructuraPoste.add("LA 350");
+        arrayEstructuraPoste.add("LA 503");
+        arrayEstructuraPoste.add("LA 504");
+        arrayEstructuraPoste.add("LA 505");
+        arrayEstructuraPoste.add("LA 506");
 
         this.adapterAltura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayAlturaPoste);
         this.adapterAltura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
