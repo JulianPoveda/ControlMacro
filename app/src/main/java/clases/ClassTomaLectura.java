@@ -71,7 +71,7 @@ public class ClassTomaLectura {
     public boolean getSearchDatosUsuario(String _cuenta, String _medidor){
         boolean _retorno    = false;
         this._tempRegistro  = this.FcnSQL.SelectDataRegistro(   "maestro_clientes",
-                                                                "id, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
+                                                                "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
                                                                 "cuenta="+_cuenta+" AND serie ='"+_medidor+"' ORDER BY id ASC");
 
         if(this._tempRegistro.size()>0){
@@ -118,7 +118,7 @@ public class ClassTomaLectura {
         this.ObjUsuario.setFotos(this.FcnArchivos.numArchivosInFolderBeginByName(   FormInicioSession.sub_path_pictures,
                                                                                     this.ObjUsuario.getCuenta()+"",
                                                                                     true));
-    };
+    }
 
     private void setEstado(String _estado){
         this._tempRegistro.clear();

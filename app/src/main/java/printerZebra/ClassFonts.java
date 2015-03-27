@@ -12,7 +12,7 @@ public class ClassFonts {
 
     public ClassFonts(){
         //empty contructor;
-    };
+    }
 
     public String getDescription_font() {
         return description_font;

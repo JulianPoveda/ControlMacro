@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="12"
-    android:background="#141010">
+    android:weightSum="12">
 
     <TextView
         android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                     android:text="@string/LecturaBtnAnterior"
                     android:textStyle="bold"
                     android:textSize="40dp"
-                    android:textColor="#FF5CBD79"/>
+                    android:textColor="@color/LabelBtnTomaLectura"/>
             </LinearLayout>
 
             <LinearLayout
@@ -61,7 +60,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="#ffff5e2c"/>
+                    android:textColor="@color/LabelTomaLectura"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,7 +71,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="#ffff5e2c"/>
+                    android:textColor="@color/LabelTomaLectura"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -83,7 +82,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:textSize="15dp"
                     android:textStyle="bold"
-                    android:textColor="#ffff5e2c"/>
+                    android:textColor="@color/LabelTomaLectura"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +92,7 @@
                     android:id="@+id/LecturaLblDireccion"
                     android:gravity="center_vertical|center_horizontal"
                     android:textSize="15dp"
-                    android:textColor="#ffff5e2c"
+                    android:textColor="@color/LabelTomaLectura"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -110,8 +109,7 @@
                     android:text="@string/LecturaBtnSiguiente"
                     android:textStyle="bold"
                     android:textSize="40dp"
-                    android:textColor="#FF5CBD79"/>
-
+                    android:textColor="@color/LabelBtnTomaLectura"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -129,9 +127,9 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:text="@string/LecturaLblPoste"
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|right"
             android:textSize="20dp"
-            android:textColor="#ffff5e2c"/>
+            android:textColor="@color/LabelTomaLectura"/>
 
 
         <EditText
@@ -142,7 +140,7 @@
             android:gravity="bottom|center"
             android:textSize="20dp"
             android:inputType="number"
-            android:textColor="#FF5CBD79"/>
+            android:textColor="@color/LabelTomaLectura"/>
 
         <TextView
             android:id="@+id/LecturaLblLectura1"
@@ -152,7 +150,7 @@
             android:text="@string/LecturaLblLectura"
             android:gravity="center_vertical|right"
             android:textSize="20dp"
-            android:textColor="#ffff5e2c"/>
+            android:textColor="@color/LabelTomaLectura"/>
 
         <EditText
             android:id="@+id/LecturaTxtLectura1"
@@ -162,7 +160,7 @@
             android:gravity="bottom|center"
             android:textSize="20dp"
             android:inputType="numberPassword"
-            android:textColor="#FF5CBD79"/>
+            android:textColor="@color/LabelTomaLectura"/>
     </LinearLayout>
 
     <LinearLayout
@@ -179,7 +177,7 @@
             android:text="@string/LecturaLblObservacion"
             android:gravity="center_horizontal|bottom"
             android:textSize="20dp"
-            android:textColor="#ffff5e2c"/>
+            android:textColor="@color/LabelTomaLectura"/>
 
         <EditText
             android:id="@+id/LecturaTxtObservacion"
@@ -188,7 +186,7 @@
             android:inputType="textMultiLine"
             android:layout_weight="3"
             android:gravity="top"
-            android:textColor="#FF5CBD79" />
+            android:textColor="@color/LabelTomaLectura" />
     </LinearLayout>
 
     <LinearLayout
@@ -204,7 +202,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4 "
             android:text="@string/LecturaBtnGuardar"
-            android:textColor="#ffff5e2c"
+            android:textColor="@color/LabelBtnTomaLectura"
             android:id="@+id/LecturasBtnGuardar"
             android:gravity="center_horizontal|center_vertical" />
     </LinearLayout>a
