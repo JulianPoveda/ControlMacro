@@ -8,4 +8,6 @@
     <string name="TxtFCRedesLineas">Fase C</string>
     <string name="TxtFAPRedesLineas">Fase AP</string>
     <string name="TxtFNRedesLineas">Fase N</string>
+    <string name="RedesLineasBtnFinalizar">Finalizar</string>
+    <string name="RedesLineasBtnAceptar">Aceptar</string>
 </resources>

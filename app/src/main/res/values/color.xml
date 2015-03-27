@@ -3,4 +3,6 @@
     <color name="LabelListView">#0B6138</color>
     <color name="LabelTomaLectura">#000000</color>
     <color name="LabelBtnTomaLectura">#ffff5e2c</color>
+    <color name="BackgroundModal">#EFFBFB</color>
+    <color name="TextColorModal">#000000</color>
 </resources>
