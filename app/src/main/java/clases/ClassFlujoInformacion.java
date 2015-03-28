@@ -53,11 +53,14 @@ public class ClassFlujoInformacion {
             this._tempRegistro.put("nombre",this._campos[2]);
             this._tempRegistro.put("perfil",1);
             this.FcnSQL.InsertRegistro("param_usuarios",this._tempRegistro);
-        }/*else if(this._campos[0].equals("Municipio")){
-            this._tempRegistro.put("id_municipio",this._campos[1]);
-            this._tempRegistro.put("municipio",this._campos[2]);
-            this.FcnSQL.InsertRegistro("param_municipios",this._tempRegistro);
-        }else if(this._campos[0].equals("Anomalia")){
+        }else if(this._campos[0].equals("Spinners")){
+            this._tempRegistro.put("id",this._campos[1]);
+            this._tempRegistro.put("activity",this._campos[2]);
+            this._tempRegistro.put("nombre_spinner",this._campos[3]);
+            this._tempRegistro.put("tipologia",this._campos[4]);
+            this._tempRegistro.put("subtipologia",this._campos[5]);
+            this.FcnSQL.InsertRegistro("valores_spinner",this._tempRegistro);
+        }/*else if(this._campos[0].equals("Anomalia")){
             this._tempRegistro.put("id_anomalia",this._campos[1]);
             this._tempRegistro.put("descripcion",this._campos[2]);
             this._tempRegistro.put("aplica_residencial",this._campos[3]);
@@ -101,5 +104,24 @@ public class ClassFlujoInformacion {
             this._tempRegistro.put("estado",this._campos[9]);
             this.FcnSQL.InsertRegistro("maestro_clientes",this._tempRegistro);
         }
+    }
+
+    public void FinalizarUpload(String _informacion, String _delimitador){
+        this._campos = _informacion.split(_delimitador);
+        this._tempRegistro.clear();
+        if(this._campos[0].equals("LECTURAS")){
+            this.FcnSQL.DeleteRegistro("toma_lectura","fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
+            this._tempRegistro.put("estado", "E");
+            this.FcnSQL.UpdateRegistro("maestro_clientes",this._tempRegistro,"fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
+        }else if(this._campos[0].equals("EQUIPOS")){
+            this.FcnSQL.DeleteRegistro("postes_equipos","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+" ");
+        }else if(this._campos[0].equals("LINEAS")){
+            this.FcnSQL.DeleteRegistro("postes_lineas","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+" ");
+        }else if(this._campos[0].equals("POSTES")){
+            this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+"");
+        }else if(this._campos[0].equals("LUMINARIAS")){
+            this.FcnSQL.DeleteRegistro("postes_luminarias","id='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
+        }
+
     }
 }

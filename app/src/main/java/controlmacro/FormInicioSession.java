@@ -104,7 +104,6 @@ public class FormInicioSession extends ActionBarActivity implements OnClickListe
                 break;
 
             case R.id.InicioCrearBackup:
-                new UploadLecturas(this).execute(this.FcnSession.getCodigo()+"");
                 break;
 
             case R.id.InicioMenuSalir:

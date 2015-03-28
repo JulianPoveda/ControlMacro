@@ -100,10 +100,12 @@ public class SQLite {
                                                         "observacion            VARCHAR(255)," +
                                                         "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp)");
 
-            db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                                        "activity               VARCHAR (250) NOT NULL," +
-                                                        "nombre_sppiner         VARCHAR (250) NOT NULL," +
-                                                        "valor_spinner          VARCHAR (250) NOT NULL)");
+            db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER  NOT NULL," +
+                                                        "activity               VARCHAR (450) NOT NULL," +
+                                                        "nombre_spinner         VARCHAR (450) NOT NULL," +
+                                                        "tipologia              VARCHAR (450) NOT NULL,"+
+                                                        "subtipologia           VARCHAR (450) NOT NULL,"+
+                                                        "PRIMARY KEY(activity,nombre_spinner,tipologia,subtipologia))");
 
             db.execSQL("CREATE TABLE nodo_postes(nodo           VARCHAR(20) NOT NULL," +
                                                 "item           INTEGER NOT NULL," +

@@ -107,6 +107,9 @@ public class FormInformacionRutas extends Activity{
                  this.nodo.terminarNodo(this.nodo_seleccionado);
                 return true;
 
+            case R.id.NodoMenuDescargar:
+                new UploadLecturas(this).execute(this.nodo_seleccionado);
+                return true;
 
             default:
                 return super.onContextItemSelected(item);

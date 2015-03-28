@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import clases.ClassConfiguracion;
+import clases.ClassFlujoInformacion;
 import clases.ClassSession;
 import controlmacro.FormInicioSession;
 import sistema.Archivos;
@@ -30,6 +31,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
     private Archivos            FcnArch;
     private SQLite              FcnSQL;
     private ClassSession        Usuario;
+    private ClassFlujoInformacion FcnInformacion;
 
     private Context Context;
 
@@ -57,6 +59,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
         this.FcnSQL     = new SQLite(this.Context, FormInicioSession.path_files_app);
         this.FcnArch	= new Archivos(this.Context, FormInicioSession.path_files_app, 10);
         this.Usuario    = ClassSession.getInstance(this.Context);
+        this.FcnInformacion             = new ClassFlujoInformacion(this.Context);
     }
 
     protected void onPreExecute() {
@@ -69,93 +72,78 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
         int _retorno    = 0;
         //this.InformacionCarga.clear();
 
-        this.InformacionCarga = "";
-        this._tempTabla	= this.FcnSQL.SelectData("maestro_nodos", "fecha_asignacion,nodo","estado='T'");
-        for(int i=0; i<this._tempTabla.size();i++){
-            this._tempRegistro  = this._tempTabla.get(i);
-            this._tempTabla1	= this.FcnSQL.SelectData(   "toma_lectura",
-                                                            "fecha_programacion,nodo,new_nodo,cuenta,medidor,serie,poste,lectura,observacion,fecha_registro",
-                                                            "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
+        String nodo = params[0];
+        if(this.FcnSQL.StrSelectShieldWhere("maestro_nodos","estado","nodo='"+nodo+"'").equals("T")){
 
-            for(int j=0; j<this._tempTabla1.size();j++){
-                this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCarga += this._tempRegistro1.getAsString("fecha_programacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("new_nodo") + "," + this._tempRegistro1.getAsString("cuenta") + "," +
-                        "" + this._tempRegistro1.getAsString("medidor") + "," + this._tempRegistro1.getAsString("serie") + "," + this._tempRegistro1.getAsString("poste") + "," +
-                        "" + this._tempRegistro1.getAsString("lectura") + "," + this._tempRegistro1.getAsString("observacion") + "," + this._tempRegistro1.getAsString("fecha_registro") + "\r\n";
-            }
+                this.InformacionCarga = "";
+                this._tempTabla	= this.FcnSQL.SelectData(   "toma_lectura",
+                            "fecha_programacion,nodo,new_nodo,cuenta,medidor,serie,poste,lectura,observacion,fecha_registro",
+                            "nodo='"+nodo+"'");
+
+                for(int j=0; j<this._tempTabla.size();j++){
+                        this._tempRegistro = this._tempTabla.get(j);
+                        this.InformacionCarga += this._tempRegistro.getAsString("fecha_programacion")+","+this._tempRegistro.getAsString("nodo") + "," + this._tempRegistro.getAsString("new_nodo") + "," + this._tempRegistro.getAsString("cuenta") + "," +
+                                "" + this._tempRegistro.getAsString("medidor") + "," + this._tempRegistro.getAsString("serie") + "," + this._tempRegistro.getAsString("poste") + "," +
+                                "" + this._tempRegistro.getAsString("lectura") + "," + this._tempRegistro.getAsString("observacion") + "," + this._tempRegistro.getAsString("fecha_registro") + "\r\n";
+                }
+
+                this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"lectura_nodo"+".txt",this.InformacionCarga);
+
+                this._tempRegistro1.clear();
+                this._tempTabla1.clear();
+                this.InformacionCargaPoste="";
+                String fecha_asignacion = this.FcnSQL.StrSelectShieldWhere("maestro_nodos","fecha_asignacion","nodo='"+nodo+"'");
+
+                this._tempTabla1	= this.FcnSQL.SelectData(   "nodo_postes",
+                                                            "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
+                                                            "nodo='"+nodo+"'");
+                for(int j=0; j<this._tempTabla1.size();j++){
+                    this._tempRegistro1 = this._tempTabla1.get(j);
+                    this.InformacionCargaPoste += "POSTE,"+fecha_asignacion+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud") + "," +
+                                "" + this._tempRegistro1.getAsString("latitud") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("compartido") + "," +
+                                "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion") + "\r\n";
+                }
+
+                this._tempRegistro1.clear();
+                this._tempTabla1.clear();
+
+                this._tempTabla1	= this.FcnSQL.SelectData(   "postes_equipos",
+                                                            "nodo,item,nombre,capacidad,unidades",
+                                                            "nodo='"+nodo+"'");
+                for(int j=0; j<this._tempTabla1.size();j++){
+                    this._tempRegistro1 = this._tempTabla1.get(j);
+                    this.InformacionCargaPoste +="EQUIPOS,"+ fecha_asignacion+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
+                                "" + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("unidades")  + "\r\n";
+                }
+
+                this._tempRegistro1.clear();
+                this._tempTabla1.clear();
+
+                this._tempTabla1	= this.FcnSQL.SelectData(   "postes_lineas",
+                                                            "nodo,item,faseA,faseB,faseC,faseAP,faseN,conductor",
+                                                            "nodo='"+nodo+"'");
+                for(int j=0; j<this._tempTabla1.size();j++){
+                    this._tempRegistro1 = this._tempTabla1.get(j);
+                    this.InformacionCargaPoste += "LINEAS,"+fecha_asignacion+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("faseA") + "," +
+                                "" + this._tempRegistro1.getAsString("faseB") + "," + this._tempRegistro1.getAsString("faseC") + "," + this._tempRegistro1.getAsString("faseAP") + "," +
+                                "" + this._tempRegistro1.getAsString("faseN") + ","+this._tempRegistro1.getAsString("conductor") + "\r\n";
+                }
+
+                this._tempRegistro1.clear();
+                this._tempTabla1.clear();
+
+                this._tempTabla1	= this.FcnSQL.SelectData(   "postes_luminarias",
+                                                            "id,nodo,item,codigo,capacidad,tipo,estado,propietario,tierra",
+                                                            "nodo='"+nodo+"'");
+                for(int j=0; j<this._tempTabla1.size();j++){
+                        this._tempRegistro1 = this._tempTabla1.get(j);
+                        this.InformacionCargaPoste += "LUMINARIAS,"+fecha_asignacion+","+this._tempRegistro1.getAsString("id") +"," +this._tempRegistro1.getAsString("nodo") +"," + this._tempRegistro1.getAsString("item") + ","
+                                + this._tempRegistro1.getAsString("codigo") + "," + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("estado") + "," +
+                                "" + this._tempRegistro1.getAsString("propietario") + ","+this._tempRegistro1.getAsString("tierra") + "\r\n";
+                }
+
+                this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"formato_redes"+".txt",this.InformacionCargaPoste);
         }
-
-        this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"lectura_nodo"+".txt",this.InformacionCarga);
-
-        this._tempRegistro1.clear();
-        this._tempTabla1.clear();
-        this.InformacionCargaPoste="";
-
-        for(int i=0; i<this._tempTabla.size();i++){
-            this._tempRegistro  = this._tempTabla.get(i);
-            this._tempTabla1	= this.FcnSQL.SelectData(   "nodo_postes",
-                    "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
-                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
-
-            for(int j=0; j<this._tempTabla1.size();j++){
-                this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += "POSTE,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud") + "," +
-                        "" + this._tempRegistro1.getAsString("latitud") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("compartido") + "," +
-                        "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion") + "\r\n";
-            }
-        }
-
-        this._tempRegistro1.clear();
-        this._tempTabla1.clear();
-
-        for(int i=0; i<this._tempTabla.size();i++){
-            this._tempRegistro  = this._tempTabla.get(i);
-            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_equipos",
-                    "nodo,item,nombre,capacidad,unidades",
-                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
-
-            for(int j=0; j<this._tempTabla1.size();j++){
-                this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste +="EQUIPOS,"+ this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
-                        "" + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("unidades")  + "\r\n";
-            }
-        }
-
-        this._tempRegistro1.clear();
-        this._tempTabla1.clear();
-
-        for(int i=0; i<this._tempTabla.size();i++){
-            this._tempRegistro  = this._tempTabla.get(i);
-            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_lineas",
-                    "nodo,item,faseA,faseB,faseC,faseAP,faseN,conductor",
-                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
-
-            for(int j=0; j<this._tempTabla1.size();j++){
-                this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += "LINEAS,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("faseA") + "," +
-                        "" + this._tempRegistro1.getAsString("faseB") + "," + this._tempRegistro1.getAsString("faseC") + "," + this._tempRegistro1.getAsString("faseAP") + "," +
-                        "" + this._tempRegistro1.getAsString("faseN") + ","+this._tempRegistro1.getAsString("conductor") + "\r\n";
-            }
-        }
-
-        this._tempRegistro1.clear();
-        this._tempTabla1.clear();
-
-        for(int i=0; i<this._tempTabla.size();i++){
-            this._tempRegistro  = this._tempTabla.get(i);
-            this._tempTabla1	= this.FcnSQL.SelectData(   "postes_luminarias",
-                    "id,nodo,item,codigo,capacidad,tipo,estado,propietario,tierra",
-                    "nodo='"+this._tempRegistro.getAsString("nodo")+"'");
-
-            for(int j=0; j<this._tempTabla1.size();j++){
-                this._tempRegistro1 = this._tempTabla1.get(j);
-                this.InformacionCargaPoste += "LUMINARIAS,"+this._tempRegistro.getAsString("fecha_asignacion")+","+this._tempRegistro1.getAsString("id") +"," +this._tempRegistro1.getAsString("nodo") +"," + this._tempRegistro1.getAsString("item") + ","
-                        + this._tempRegistro1.getAsString("codigo") + "," + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("estado") + "," +
-                       "" + this._tempRegistro1.getAsString("propietario") + ","+this._tempRegistro1.getAsString("tierra") + "\r\n";
-            }
-        }
-
-        this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"formato_redes"+".txt",this.InformacionCargaPoste);
 
         try{
             SoapObject so=new SoapObject(NAMESPACE, this.METHOD_NAME);
@@ -177,13 +165,14 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
                 this.Respuesta = "-2";
             }else {
                 try {
-                    String informacion[] = new String(response.toString()).trim().split("\\|");
-                    if(informacion.length>0){
-                        this._tempRegistro.clear();
-                        for(int i=0;i<informacion.length;i++){
-                            this.FcnSQL.DeleteRegistro("toma_lectura","id="+informacion[i]+"");
-                        }
+                    String informacion[] = new String(response.toString()).trim().split("\\,");
+                    for(int i=0;i<informacion.length;i++){
+                        this.FcnInformacion.FinalizarUpload(informacion[i],"\\|");
+                        //this.onProgressUpdate(i*100/informacion.length);
                     }
+                    this._tempRegistro.clear();
+                    this._tempRegistro.put("estado", "E");
+                    this.FcnSQL.UpdateRegistro("maestro_nodos",this._tempRegistro,"nodo='"+params[0]+"'");
                     _retorno = 1;
                 } catch (Exception e) {
                     e.printStackTrace();
