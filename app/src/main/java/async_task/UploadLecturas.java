@@ -108,12 +108,12 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
                 this._tempTabla1.clear();
 
                 this._tempTabla1	= this.FcnSQL.SelectData(   "postes_equipos",
-                                                            "nodo,item,nombre,capacidad,unidades",
+                                                            "id,nodo,item,nombre,capacidad,unidades",
                                                             "nodo='"+nodo+"'");
                 for(int j=0; j<this._tempTabla1.size();j++){
                     this._tempRegistro1 = this._tempTabla1.get(j);
-                    this.InformacionCargaPoste +="EQUIPOS,"+ fecha_asignacion+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("nombre") + "," +
-                                "" + this._tempRegistro1.getAsString("capacidad") + "," + this._tempRegistro1.getAsString("unidades")  + "\r\n";
+                    this.InformacionCargaPoste +="EQUIPOS,"+ fecha_asignacion+","+this._tempRegistro1.getAsString("id")+","+this._tempRegistro1.getAsString("nodo")+"," +this._tempRegistro1.getAsString("item")+","+this._tempRegistro1.getAsString("nombre")+","+
+                                ""+this._tempRegistro1.getAsString("capacidad")+","+ this._tempRegistro1.getAsString("unidades")+"\r\n";
                 }
 
                 this._tempRegistro1.clear();
