@@ -61,6 +61,15 @@ public class ClassRedesPoste {
     }
 
 
+    public ArrayList<ContentValues> getListaEquipos(int _item){
+        this.myPoste.setItemPoste(_item);
+        this._tempTabla = this.FcnSQL.SelectData("postes_equipos",
+                "id,nombre,capacidad,unidades",
+                "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
+        return this._tempTabla;
+    }
+
+
     public boolean crearPoste(double _latitud, double _longitud, String _tipo, String _compartido, String _estado,
                               String _material, int _altura, String _estructura, String _observacion){
         this.myPoste.setNodoPoste(this.nodo);
@@ -97,8 +106,9 @@ public class ClassRedesPoste {
     }
 
 
-    public boolean crearEquipo(String _item, String _nombre, int _capacidad, String _unidades){
-        this.myPoste.setItemPoste(Integer.parseInt(_item));
+    public boolean crearEquipo(String _nodo, int _item, String _nombre, int _capacidad, String _unidades){
+        this.myPoste.setNodoPoste(_nodo);
+        this.myPoste.setItemPoste(_item);
         this.myPoste.setEquipoNombre(_nombre);
         this.myPoste.setEquipoCapacidad(_capacidad);
         this.myPoste.setEquipoUnidades(_unidades);
@@ -136,12 +146,21 @@ public class ClassRedesPoste {
         return this.FcnSQL.DeleteRegistro("postes_luminarias","nodo='"+this.myPoste.getNodoPoste()+"' AND item="+_item+" AND id="+_id);
     }
 
+    public boolean eliminarEquipo(int _item, int _id){
+        return this.FcnSQL.DeleteRegistro("postes_equipos","nodo='"+this.myPoste.getNodoPoste()+"' AND item="+_item+" AND id="+_id);
+    }
+
     /*******Inicio de los meotodos privados *******/
 
     private boolean registrarPoste(){
+        String _item = this.FcnSQL.StrSelectShieldWhere("nodo_postes","max(item)","nodo='"+this.nodo+"'");
         this._tempRegistro.clear();
         this._tempRegistro.put("nodo", this.myPoste.getNodoPoste());
-        this._tempRegistro.put("item", this.FcnSQL.CountRegistrosWhere("nodo_postes","nodo='"+this.nodo+"'")+1);
+        if (_item == null){
+            this._tempRegistro.put("item",1);
+        }else{
+            this._tempRegistro.put("item",Integer.parseInt(_item)+1);
+        }
         this._tempRegistro.put("latitud", this.myPoste.getLatitudPoste());
         this._tempRegistro.put("longitud", this.myPoste.getLongitudPoste());
         this._tempRegistro.put("tipo", this.myPoste.getTipoPoste());
@@ -170,14 +189,23 @@ public class ClassRedesPoste {
     }
 
 
-    private boolean registrarEquipo(){
+    private boolean registrarEquipo() {
+        String _id;
         this._tempRegistro.clear();
+        _id = this.FcnSQL.StrSelectShieldWhere("postes_equipos", "max(id)", "nodo='" + this.nodo + "' AND item=" + this.myPoste.getItemPoste());
+
+        this._tempRegistro.put("nodo", this.myPoste.getNodoPoste());
+        if (_id == null){
+            this._tempRegistro.put("id",1);
+        }else{
+            this._tempRegistro.put("id",Integer.parseInt(_id)+1);
+        }
         this._tempRegistro.put("nodo", this.nodo);
         this._tempRegistro.put("item", this.myPoste.getItemPoste());
         this._tempRegistro.put("nombre", this.myPoste.getEquipoNombre());
         this._tempRegistro.put("capacidad", this.myPoste.getEquipoCapacidad());
         this._tempRegistro.put("unidades", this.myPoste.getEquipoUnidades());
-        return this.FcnSQL.InsertOrUpdateRegistro("postes_equipos", this._tempRegistro, "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
+        return this.FcnSQL.InsertRegistro("postes_equipos", this._tempRegistro);
     }
 
 

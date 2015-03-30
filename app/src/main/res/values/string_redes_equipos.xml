@@ -6,6 +6,8 @@
     <string name="TxtNombreRedesEquipos">Nombre</string>
     <string name="RedesEquiposBtnFinalizar">Finalizar</string>
     <string name="RedesEquiposBtnAceptar">Aceptar</string>
+    <string name="RedesEquiposBtnAgregar">Agregar</string>
+    <string name="LabelRedesEquiposId">Id</string>
     <string name="LabelRedesEquiposNombre">Equipos</string>
     <string name="LabelRedesEquiposCapacidad">Cap.</string>
     <string name="LabelRedesEquiposUnidades">Unid.</string>

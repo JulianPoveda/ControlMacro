@@ -20,4 +20,6 @@
     <string name="mnu_context_redes_eliminar">Eliminar</string>
 
     <string name="mnu_context_luminarias_eliminar">Eliminar</string>
+
+    <string name="mnu_context_equipos_eliminar">Eliminar</string>
 </resources>

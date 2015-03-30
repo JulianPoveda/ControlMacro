@@ -107,15 +107,15 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/RedesEquiposBtnAceptar"
-                android:id="@+id/BtoAcepRedesEquipos"
+                android:text="@string/RedesEquiposBtnAgregar"
+                android:id="@+id/RedesEquiposBtnAgregar"
                 android:layout_weight="2" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/RedesEquiposBtnFinalizar"
-                android:id="@+id/BtoCancelarRedesEquipos"
+                android:id="@+id/RedesEquiposBtnFinalizar"
                 android:layout_weight="2" />
         </LinearLayout>
     </LinearLayout>
@@ -137,7 +137,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="2"
+                android:text="@string/LabelRedesEquiposId"
+                android:gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:text="@string/LabelRedesEquiposNombre"
                 android:gravity="center_horizontal|center_vertical"/>
 
@@ -163,6 +170,7 @@
             android:orientation="horizontal"
             android:layout_weight="10">
             <ListView
+                android:id="@+id/RedesEquiposLstEquipos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
