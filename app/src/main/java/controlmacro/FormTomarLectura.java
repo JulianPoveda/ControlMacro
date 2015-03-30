@@ -184,6 +184,15 @@ public class FormTomarLectura extends ActionBarActivity implements OnClickListen
             if(this.FcnLectura.getDatosUsuario(true)){
                 this.MostrarInformacionBasica();
                 this._btnGuardar.setEnabled(!this.FcnLectura.getInfUsuario().isLeido());
+            }else if(this.FcnLectura.getDatosUsuario(false)){
+                this.MostrarInformacionBasica();
+                this._btnGuardar.setEnabled(!this.FcnLectura.getInfUsuario().isLeido());
+            }else{
+                this.argumentos.clear();
+                this.argumentos.putString("Titulo", "ADVERTENCIA.");
+                this.argumentos.putString("Mensaje", "No hay clientes asociados al nodo para leer.");
+                this.dialogo.setArguments(argumentos);
+                this.dialogo.show(getFragmentManager(), "SaveDialog");
             }
         }else{
             this.argumentos.clear();

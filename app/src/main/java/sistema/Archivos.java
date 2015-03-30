@@ -43,13 +43,13 @@ public class Archivos {
         this.OnlyFolders	= 	new FileFilter(){
             public boolean accept(File dir){
                 return (dir.isDirectory());
-            };
+            }
         };
 
         this.OnlyPictures	= 	new FilenameFilter(){
             public boolean accept(File dir, String name){
                 return (name.endsWith(".jpg")||name.endsWith(".jpeg"));
-            };
+            }
         };
 
 

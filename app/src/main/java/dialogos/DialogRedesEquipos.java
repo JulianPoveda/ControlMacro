@@ -51,8 +51,9 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.arrayUnidad = new ArrayList<String>();
 
         this.arrayEquipos.clear();
-        this.arrayEquipos.add("Amplificadores");//Se debe actualizar con los parametros de la BD
+        this.arrayEquipos.add("Amplificadores");                            //Se debe actualizar con los parametros de la BD
         this.arrayEquipos.add("Condensadores");
+        this.arrayEquipos.add("Servicio Directo");
         this.arrayEquipos.add("Switches");
         this.arrayEquipos.add("Otro");
 

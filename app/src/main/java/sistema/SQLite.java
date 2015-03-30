@@ -215,7 +215,7 @@ public class SQLite {
         abrir();
         try{
             nBD.execSQL(_sql);
-            _retorno = true;;
+            _retorno = true;
         }catch(Exception e){
         }
         cerrar();

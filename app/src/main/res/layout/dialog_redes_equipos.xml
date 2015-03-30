@@ -1,126 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="420dp"
+    android:layout_width="820dp"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="9">
+    android:orientation="horizontal"
+    android:weightSum="2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:weightSum="16">
-
-        <TextView
-            android:id="@+id/TxtFaseARedesLineas"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:text="@string/TxtRedesEquipos"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/SpinnerRedesEquipos"
-            android:layout_weight="9" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:weightSum="16">
-
-        <TextView
-            android:id="@+id/TxtSwRedesEquipos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtNombreRedesEquipos"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/EditNombreRedesEquipos"
-            android:layout_weight="9" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:weightSum="16">
-
-        <TextView
-            android:id="@+id/TxtCondRedesEquipos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="@string/TxtCapRedesEquipos"
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/EditCondRedesEquipos"
-            android:layout_weight="6" />
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/SpCapacidadEquipos"
-            android:layout_weight="5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:weightSum="6">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="9"
+        android:layout_weight="1">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="16">
+
+            <TextView
+                android:id="@+id/TxtFaseARedesLineas"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TxtRedesEquipos"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/SpinnerRedesEquipos"
+                android:layout_weight="12" />
         </LinearLayout>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/BtoARedesEquipos"
-            android:id="@+id/BtoAcepRedesEquipos"
-            android:layout_weight="2" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/BtoCRedesEquipos"
-            android:id="@+id/BtoCancelarRedesEquipos"
-            android:layout_weight="2" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="16">
+
+            <TextView
+                android:id="@+id/TxtSwRedesEquipos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TxtNombreRedesEquipos"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/EditNombreRedesEquipos"
+                android:layout_weight="12" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="16">
+
+            <TextView
+                android:id="@+id/TxtCondRedesEquipos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/TxtCapRedesEquipos"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/EditCondRedesEquipos"
+                android:layout_weight="6" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/SpCapacidadEquipos"
+                android:layout_weight="5" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:gravity="center_horizontal|center_vertical">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/RedesEquiposBtnAceptar"
+                android:id="@+id/BtoAcepRedesEquipos"
+                android:layout_weight="2" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/RedesEquiposBtnFinalizar"
+                android:id="@+id/BtoCancelarRedesEquipos"
+                android:layout_weight="2" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="11"
+        android:layout_weight="1">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/LabelRedesEquiposNombre"
+                android:gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="@string/LabelRedesEquiposCapacidad"
+                android:gravity="center_horizontal|center_vertical"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="@string/LabelRedesEquiposUnidades"
+                android:gravity="center_horizontal|center_vertical"/>
+        </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="10">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

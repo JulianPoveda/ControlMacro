@@ -161,14 +161,14 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/BtoARedesEquipos"
+            android:text="@string/RedesLineasBtnAceptar"
             android:id="@+id/BtoAcepRedesLineas"
             android:layout_weight="2" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/BtoCRedesEquipos"
+            android:text="@string/RedesLineasBtnFinalizar"
             android:id="@+id/BtoCancelarRedesLineas"
             android:layout_weight="2" />
     </LinearLayout>

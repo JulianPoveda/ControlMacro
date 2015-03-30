@@ -3,6 +3,7 @@
     android:layout_width="820dp"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@color/BackgroundModal"
     android:weightSum="3">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,6 +28,7 @@
                 android:text="@string/TxtCodigoLuminaria"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <EditText
@@ -52,6 +54,7 @@
                 android:text="@string/TxtCapaciadLuminarias"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -76,6 +79,7 @@
                 android:text="@string/TxtTipoLuminaria"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -100,6 +104,7 @@
                 android:text="@string/TxtEstadoLuminaria"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -124,6 +129,7 @@
                 android:text="@string/TxtTipoApluminaria"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <Spinner
@@ -148,6 +154,7 @@
                 android:text="@string/TxtPTLuminaria"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/size_text_lbl_luminarias"
+                android:textColor="@color/TextColorModal"
                 android:textStyle="bold"/>
 
             <Spinner
