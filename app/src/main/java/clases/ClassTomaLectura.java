@@ -183,7 +183,7 @@ public class ClassTomaLectura {
         this._tempRegistro.put("nodo",              this.ObjUsuario.getNodo());
 
         if(_cuenta.isEmpty()){
-            this._tempRegistro.put("cuenta",-1);
+            this._tempRegistro.put("cuenta",-1*(this.FcnSQL.CountRegistrosWhere("maestro_clientes","cuenta<0")+1));
         }else{
             this._tempRegistro.put("cuenta",Integer.parseInt(_cuenta));
         }

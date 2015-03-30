@@ -94,8 +94,8 @@ public class FormRedesPoste extends ActionBarActivity {
         switch (item.getItemId()){
             case R.id.RedesMenuContextEquipos:
                 this.new_form = new Intent(this, DialogRedesEquipos.class);
+                this.new_form.putExtra("Nodo",this.nodo);
                 this.new_form.putExtra("Item",this.itemPoste);
-                this.new_form.putExtra("Tipo",this.tipoPoste);
                 startActivityForResult(this.new_form, ACT_REGISTRO_EQUIPOS);
                 return true;
 
@@ -137,13 +137,6 @@ public class FormRedesPoste extends ActionBarActivity {
         try{
             if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_EQUIPOS){
                 if(data.getExtras().getBoolean("response")){
-                    this._tempTabla = data.getParcelableArrayListExtra("datosEquipos");
-                    if(this.FcnRedesPoste.crearEquipo(this.itemPoste,
-                            this._tempTabla.get(0).getAsString("tipoEquipo"),
-                            this._tempTabla.get(0).getAsInteger("capacidadEquipo"),
-                            this._tempTabla.get(0).getAsString("unidadesEquipo"))){
-                        Toast.makeText(this, "Equipo registrado correctamente", Toast.LENGTH_SHORT).show();
-                    }
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_REGISTRO_LINEAS){
                 if(data.getExtras().getBoolean("response")){

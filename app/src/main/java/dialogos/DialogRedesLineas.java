@@ -129,7 +129,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
                 finish(true);
                 break;
 
-            case R.id.BtoCancelarRedesEquipos:
+            case R.id.BtoCancelarRedesLineas:
                 finish(false);
                 break;
         }

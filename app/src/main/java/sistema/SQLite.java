@@ -121,13 +121,14 @@ public class SQLite {
                                                 "fecha_asignacion   TIMESTAMP NOT NULL DEFAULT current_timestamp,"+
                                                 "PRIMARY KEY(nodo, item));");
 
-            db.execSQL("CREATE TABLE postes_equipos( nodo       VARCHAR(20) NOT NULL," +
+            db.execSQL("CREATE TABLE postes_equipos( id         INTEGER NOT NULL," +
+                                                    "nodo       VARCHAR(20) NOT NULL," +
                                                     "item       INTEGER NOT NULL," +
                                                     "nombre     VARCHAR(50) NOT NULL," +
                                                     "capacidad  INTEGER NOT NULL," +
                                                     "unidades   VARCHAR(20) NOT NULL," +
                                                     "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp," +
-                                                    "PRIMARY KEY(nodo, item));");
+                                                    "PRIMARY KEY(id, nodo, item));");
 
 
             db.execSQL("CREATE TABLE postes_lineas(  nodo       VARCHAR(20) NOT NULL," +
@@ -151,7 +152,7 @@ public class SQLite {
                                                         "propietario    VARCHAR(20) NOT NULL," +
                                                         "tierra         VARCHAR(20) NOT NULL," +
                                                         "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp," +
-                                                        "PRIMARY KEY(nodo,item,id));");
+                                                        "PRIMARY KEY(id, nodo, item));");
         }
 
         @Override
