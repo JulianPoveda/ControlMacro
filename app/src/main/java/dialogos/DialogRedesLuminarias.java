@@ -23,6 +23,7 @@ import Adapter.AdaptadorSevenItems;
 import Adapter.AdaptadorSixItems;
 import Adapter.DetalleSevenItems;
 import Adapter.DetalleSixItems;
+import clases.ClassDataSpinner;
 import clases.ClassRedesPoste;
 import controlmacro.FormInicioSession;
 import controlmacro.R;
@@ -31,6 +32,7 @@ import sistema.SQLite;
 public class DialogRedesLuminarias extends Activity implements View.OnClickListener{
 
     private ClassRedesPoste FcnRedesPoste;
+    private ClassDataSpinner FcnDataS;
 
     private Button      btnAgregar;
     private Button      btnFinalizar;
@@ -77,6 +79,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.item = Integer.parseInt(bundle.getString("Item"));
 
         this.FcnRedesPoste  = new ClassRedesPoste(this, this.nodo);
+        this.FcnDataS   = ClassDataSpinner.getInstance(this);
 
         this.arrayListadoLuminarias  = new ArrayList<>();
         this.arrayListadoLuminarias.clear();
@@ -91,42 +94,31 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.ptLuminaria        = (Spinner)findViewById(R.id.SpinnerPTLuminaria);
         this.listaLuminarias    = (ListView)findViewById(R.id.LuminariaListView);
 
-        this.arraytipoLuminarias   = new ArrayList<String>();
-        this.arrayestadoLuminarias = new ArrayList<String>();
-        this.arrayapLuminarias     = new ArrayList<String>();
-        this.arrayptLuminarias     = new ArrayList<String>();
-        this.arrayPotencias        = new ArrayList<String>();
         this.arrayLuminarias       = new ArrayList<String>();
-
         this.registroLuminarias.clear();
         this.arrayLuminarias.clear();
         Bundle extras = this.getIntent().getExtras();
 
-        //Se deben ingresar de la base de datos.
+
+        this.arraytipoLuminarias   = new ArrayList<String>();
         this.arraytipoLuminarias.clear();
-        this.arraytipoLuminarias.add("Na");
-        this.arraytipoLuminarias.add("Hg");
-        this.arraytipoLuminarias.add("MH");
-        this.arraytipoLuminarias.add("I");
+        this.arraytipoLuminarias = this.FcnDataS.getDataSpinnerTipologia("SpinnerTipoLuminaria");
 
+        this.arrayestadoLuminarias = new ArrayList<String>();
         this.arrayestadoLuminarias.clear();
-        this.arrayestadoLuminarias.add("B");
-        this.arrayestadoLuminarias.add("M");
+        this.arrayestadoLuminarias = this.FcnDataS.getDataSpinnerTipologia("SpinnerEstadoLuminaria");
 
+        this.arrayapLuminarias = new ArrayList<String>();
         this.arrayapLuminarias.clear();
-        this.arrayapLuminarias.add("Privado");
-        this.arrayapLuminarias.add("Publico");
+        this.arrayapLuminarias = this.FcnDataS.getDataSpinnerTipologia("SpinnerApLuminaria");
 
+        this.arrayptLuminarias = new ArrayList<String>();
         this.arrayptLuminarias.clear();
-        this.arrayptLuminarias.add("S");
-        this.arrayptLuminarias.add("N");
+        this.arrayptLuminarias = this.FcnDataS.getDataSpinnerTipologia("SpinnerPTLuminaria");
 
+        this.arrayPotencias        = new ArrayList<String>();
         this.arrayPotencias.clear();
-        this.arrayPotencias.add("70W");
-        this.arrayPotencias.add("125W");
-        this.arrayPotencias.add("150W");
-        this.arrayPotencias.add("250W");
-
+        this.arrayPotencias = this.FcnDataS.getDataSpinnerTipologia("SpinnerPotenciaLuminaria");
 
         this.adapterEsLuminarias = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayestadoLuminarias);
         this.adapterEsLuminarias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

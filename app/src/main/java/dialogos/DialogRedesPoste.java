@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import clases.ClassDataSpinner;
 import controlmacro.R;
 
 
@@ -34,7 +35,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     Spinner     alturaPoste;
     Spinner     estructuraPoste;
 
-
+    private ClassDataSpinner FcnDataS;
 
     private ArrayList<String> arrayAlturaPoste;
     private ArrayList<String> arrayTiposPoste;
@@ -70,66 +71,25 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.registroPoste.clear();
         Bundle extras = this.getIntent().getExtras();
 
-        arrayAlturaPoste = new ArrayList<String>();
-        arrayAlturaPoste.add("0");
-        arrayAlturaPoste.add("6");
-        arrayAlturaPoste.add("8");
-        arrayAlturaPoste.add("10");
-        arrayAlturaPoste.add("12");
+        this.FcnDataS = ClassDataSpinner.getInstance(this);
 
-        arrayTiposPoste = new ArrayList<String>();
-        arrayTiposPoste.add("Caja");
-        arrayTiposPoste.add("Poste");
-        arrayTiposPoste.add("Cruce Aereo");
+        this.arrayAlturaPoste = new ArrayList<String>();
+        this.arrayAlturaPoste.clear();
 
-        arrayEstadoPoste = new ArrayList<String>();
-        arrayEstadoPoste.add("Bueno");
-        arrayEstadoPoste.add("Malo");
+        this.arrayTiposPoste = new ArrayList<String>();
+        this.arrayTiposPoste.clear();
+        this.arrayTiposPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerTipoRedesPoste");
 
-        arrayMaterialPoste = new ArrayList<String>();
-        arrayMaterialPoste.add("Concreto");
-        arrayMaterialPoste.add("Madera");
-        arrayMaterialPoste.add("Metal");
+        this.arrayEstadoPoste = new ArrayList<String>();
+        this.arrayEstadoPoste.clear();
+        this.arrayEstadoPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerEstadoRedesPoste");
 
-        arrayEstructuraPoste = new ArrayList<String>();
-        arrayEstructuraPoste.add("N/A");// las demas opciones la envia daniel
-        arrayEstructuraPoste.add("LA 319");
-        arrayEstructuraPoste.add("LA 320");
-        arrayEstructuraPoste.add("LA 320-1");
-        arrayEstructuraPoste.add("LA 321");
-        arrayEstructuraPoste.add("LA 322");
-        arrayEstructuraPoste.add("LA 323");
-        arrayEstructuraPoste.add("LA 324");
-        arrayEstructuraPoste.add("LA 325");
-        arrayEstructuraPoste.add("LA 326");
-        arrayEstructuraPoste.add("LA 327");
-        arrayEstructuraPoste.add("LA 328");
-        arrayEstructuraPoste.add("LA 329");
-        arrayEstructuraPoste.add("LA 330");
-        arrayEstructuraPoste.add("LA 334");
-        arrayEstructuraPoste.add("LA 335");
-        arrayEstructuraPoste.add("LA 336");
-        arrayEstructuraPoste.add("LA 339");
-        arrayEstructuraPoste.add("LA 340");
-        arrayEstructuraPoste.add("LA 341");
-        arrayEstructuraPoste.add("LA 342");
-        arrayEstructuraPoste.add("LA 343");
-        arrayEstructuraPoste.add("LA 344");
-        arrayEstructuraPoste.add("LA 345");
-        arrayEstructuraPoste.add("LA 346");
-        arrayEstructuraPoste.add("LA 347");
-        arrayEstructuraPoste.add("LA 348");
-        arrayEstructuraPoste.add("LA 349");
-        arrayEstructuraPoste.add("LA 350");
-        arrayEstructuraPoste.add("LA 503");
-        arrayEstructuraPoste.add("LA 504");
-        arrayEstructuraPoste.add("LA 505");
-        arrayEstructuraPoste.add("LA 506");
+        this.arrayMaterialPoste = new ArrayList<String>();
+        this.arrayMaterialPoste.clear();
+        this.arrayMaterialPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerMaterialRedesPoste");
 
-        this.adapterAltura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayAlturaPoste);
-        this.adapterAltura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.alturaPoste.setAdapter(adapterAltura);
-        this.adapterAltura.notifyDataSetChanged();
+        this.arrayEstructuraPoste = new ArrayList<String>();
+        this.arrayEstructuraPoste.clear();
 
         this.adapterTipo  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayTiposPoste);
         this.adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,11 +105,6 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.adapterMaterial.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.materialPoste.setAdapter(adapterMaterial);
         this.adapterMaterial.notifyDataSetChanged();
-
-        this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
-        this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.estructuraPoste.setAdapter(adapterEstructura);
-        this.adapterEstructura.notifyDataSetChanged();
 
         if(getIntent().getExtras() != null){
             Bundle bundle = getIntent().getExtras();
@@ -168,6 +123,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         _btonAceptar.setOnClickListener(this);
         _btonCancelar.setOnClickListener(this);
         tipoPoste.setOnItemSelectedListener(this);
+        alturaPoste.setOnItemSelectedListener(this);
+        estructuraPoste.setOnItemSelectedListener(this);
     }
 
     public void finish(boolean _caso) {
@@ -206,20 +163,17 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
             case R.id.SpinnerTipoRedesPoste:
-                if(tipoPoste.getSelectedItem().toString().equals("Caja")){
-                   alturaPoste.setEnabled(false);
-                    //asignarle cero
-                }else if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")){
-                        this.alturaPoste.setEnabled(false);
-                        this.estadoPoste.setEnabled(false);
-                        this.materialPoste.setEnabled(false);
-                        this.estructuraPoste.setEnabled(false);
-                      }else{
-                            this.alturaPoste.setEnabled(true);
-                            this.estadoPoste.setEnabled(true);
-                            this.materialPoste.setEnabled(true);
-                            this.estructuraPoste.setEnabled(true);
-                        }
+                this.arrayAlturaPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerAlturaRedesPoste",tipoPoste.getSelectedItem().toString());
+                this.adapterAltura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayAlturaPoste);
+                this.adapterAltura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this.alturaPoste.setAdapter(adapterAltura);
+                this.adapterAltura.notifyDataSetChanged();
+
+                this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
+                this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
+                this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this.estructuraPoste.setAdapter(adapterEstructura);
+                this.adapterEstructura.notifyDataSetChanged();
                 break;
         }
 

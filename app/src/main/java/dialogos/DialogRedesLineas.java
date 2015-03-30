@@ -15,6 +15,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import clases.ClassDataSpinner;
 import controlmacro.R;
 
 public class DialogRedesLineas extends Activity implements View.OnClickListener {
@@ -27,6 +28,8 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
     private Spinner faseAP;
     private Spinner faseN;
     private Spinner conductor;
+
+    private ClassDataSpinner FcnDataS;
 
     private ArrayList<String> arrayFases;
     private ArrayList<String> arrayConductor;
@@ -49,28 +52,15 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         this.faseN        = (Spinner)findViewById(R.id.SpinnerFNRedesLineas);
         this.conductor    = (Spinner)findViewById(R.id.SpinnerCondRedesLineas);
 
+        this.FcnDataS   = ClassDataSpinner.getInstance(this);
+
         this.arrayFases     =   new ArrayList<String>();
-        this.arrayConductor =   new ArrayList<String>();
-
         this.arrayFases.clear();
-        this.arrayFases.add("...");
-        this.arrayFases.add("8");
-        this.arrayFases.add("6");
-        this.arrayFases.add("4");
-        this.arrayFases.add("2");
-        this.arrayFases.add("1/0");
-        this.arrayFases.add("2/0");
-        this.arrayFases.add("3/0");
-        this.arrayFases.add("4/0");
-        this.arrayFases.add("250MCM");
-        this.arrayFases.add("350MCM");
-        this.arrayFases.add("450MCM");
-        this.arrayFases.add("550KCMIL");
+        this.arrayFases = this.FcnDataS.getDataSpinnerTipologia("SpinnerFARedesLineas");
 
+        this.arrayConductor =   new ArrayList<String>();
         this.arrayConductor.clear();
-        this.arrayConductor.add("A");
-        this.arrayConductor.add("D");
-        this.arrayConductor.add("T");
+        this.arrayConductor = this.FcnDataS.getDataSpinnerTipologia("SpinnerCondRedesLineas");
 
         this.registrosLineas.clear();
         Bundle extras = this.getIntent().getExtras();

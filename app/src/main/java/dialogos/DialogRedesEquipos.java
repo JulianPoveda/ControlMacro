@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import clases.ClassDataSpinner;
 import controlmacro.R;
 
 
@@ -27,6 +28,8 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
     private EditText capacidadEquipo;
     private Spinner  unidadesCapacidad;
     private Spinner  tiposEquipos;
+
+    private ClassDataSpinner FcnDataS;
 
     private ArrayList<String>    arrayEquipos;
     private ArrayList<String>    arrayUnidad;
@@ -47,15 +50,14 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.tiposEquipos      = (Spinner)findViewById(R.id.SpinnerRedesEquipos);
         this.unidadesCapacidad = (Spinner)findViewById(R.id.SpCapacidadEquipos);
 
-        this.arrayEquipos     = new ArrayList<String>();
-        this.arrayUnidad = new ArrayList<String>();
+        this.FcnDataS   = ClassDataSpinner.getInstance(this);
 
+        this.arrayEquipos     = new ArrayList<String>();
         this.arrayEquipos.clear();
-        this.arrayEquipos.add("Amplificadores");                            //Se debe actualizar con los parametros de la BD
-        this.arrayEquipos.add("Condensadores");
-        this.arrayEquipos.add("Servicio Directo");
-        this.arrayEquipos.add("Switches");
-        this.arrayEquipos.add("Otro");
+        this.arrayEquipos = this.FcnDataS.getDataSpinnerTipologia("SpinnerRedesEquipos");
+
+        this.arrayUnidad = new ArrayList<String>();
+        this.arrayUnidad.clear();
 
         this.registrosEquipos.clear();
         Bundle extras = this.getIntent().getExtras();
@@ -63,11 +65,6 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         this.adapterEquipos =   new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEquipos);
         this.adapterEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.tiposEquipos.setAdapter(this.adapterEquipos);
-
-        this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
-        this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
-        this.adapterCapacidadEquipos.notifyDataSetChanged();
 
         btoAceptar.setOnClickListener(this);
         btoCancelar.setOnClickListener(this);
@@ -111,22 +108,7 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
             case R.id.SpinnerRedesEquipos:
-                nombreEquipo.setEnabled(false);
-                arrayUnidad.clear();
-                if(this.tiposEquipos.getSelectedItem().toString().equals("Amplificadores")){
-                    arrayUnidad.add("KW");
-                    arrayUnidad.add("W");
-                }else if(this.tiposEquipos.getSelectedItem().toString().equals("Condensadores")){
-                    arrayUnidad.add("VAR");
-                }else if(this.tiposEquipos.getSelectedItem().toString().equals("Switches")){
-                    arrayUnidad.add("KW");
-                    arrayUnidad.add("W");
-                }else if(tiposEquipos.getSelectedItem().toString().equals("Otro")){
-                    nombreEquipo.setEnabled(true);
-                    arrayUnidad.add("KW");
-                    arrayUnidad.add("W");
-                    arrayUnidad.add("VAR");
-                }
+                this.arrayUnidad = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerRedesEquipos",this.tiposEquipos.getSelectedItem().toString());
                 this.adapterCapacidadEquipos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayUnidad);
                 this.adapterCapacidadEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 this.unidadesCapacidad.setAdapter(adapterCapacidadEquipos);
