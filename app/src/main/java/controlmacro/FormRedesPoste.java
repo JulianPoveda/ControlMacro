@@ -175,8 +175,8 @@ public class FormRedesPoste extends ActionBarActivity {
             }else if(resultCode == RESULT_OK && requestCode == ACT_NEW_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
                     this._tempTabla = data.getParcelableArrayListExtra("datosPoste");
-                    if(this.FcnRedesPoste.crearPoste(this._tempTabla.get(0).getAsDouble("gpsLat"),
-                            this._tempTabla.get(0).getAsDouble("gpsLong"),
+                    if(this.FcnRedesPoste.crearPoste(this._tempTabla.get(0).getAsString("gpsLat"),
+                            this._tempTabla.get(0).getAsString("gpsLong"),
                             this._tempTabla.get(0).getAsString("tipoPoste"),
                             this._tempTabla.get(0).getAsString("compartidoPoste"),
                             this._tempTabla.get(0).getAsString("estadoPoste"),
@@ -191,8 +191,8 @@ public class FormRedesPoste extends ActionBarActivity {
                 if(data.getExtras().getBoolean("response")){
                     this._tempTabla = data.getParcelableArrayListExtra("datosPoste");
                     if(this.FcnRedesPoste.editarPoste(this.itemPoste,
-                            this._tempTabla.get(0).getAsDouble("gpsLat"),
-                            this._tempTabla.get(0).getAsDouble("gpsLong"),
+                            this._tempTabla.get(0).getAsString("gpsLat"),
+                            this._tempTabla.get(0).getAsString("gpsLong"),
                             this._tempTabla.get(0).getAsString("tipoPoste"),
                             this._tempTabla.get(0).getAsString("compartidoPoste"),
                             this._tempTabla.get(0).getAsString("estadoPoste"),

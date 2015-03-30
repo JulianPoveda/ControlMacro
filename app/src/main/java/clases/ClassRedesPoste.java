@@ -70,7 +70,7 @@ public class ClassRedesPoste {
     }
 
 
-    public boolean crearPoste(double _latitud, double _longitud, String _tipo, String _compartido, String _estado,
+    public boolean crearPoste(String _latitud, String _longitud, String _tipo, String _compartido, String _estado,
                               String _material, int _altura, String _estructura, String _observacion){
         this.myPoste.setNodoPoste(this.nodo);
         this.myPoste.setLatitudPoste(_latitud);
@@ -86,7 +86,7 @@ public class ClassRedesPoste {
     }
 
 
-    public boolean editarPoste(String _item, double _latitud, double _longitud, String _tipo, String _compartido,
+    public boolean editarPoste(String _item, String _latitud, String _longitud, String _tipo, String _compartido,
                                    String _estado, String _material, int _altura, String _estructura, String _observacion){
         this.myPoste.setLatitudPoste(_latitud);
         this.myPoste.setLongitudPoste(_longitud);

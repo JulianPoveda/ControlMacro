@@ -109,8 +109,8 @@ public class SQLite {
 
             db.execSQL("CREATE TABLE nodo_postes(nodo           VARCHAR(20) NOT NULL," +
                                                 "item           INTEGER NOT NULL," +
-                                                "longitud       NUMERIC(30,20) NOT NULL," +
-                                                "latitud        NUMERIC(30,20) NOT NULL," +
+                                                "longitud       VARCHAR(255) NOT NULL," +
+                                                "latitud        VARCHAR(255) NOT NULL," +
                                                 "tipo           VARCHAR(20) NOT NULL," +
                                                 "compartido     VARCHAR(255)," +
                                                 "estado         VARCHAR(20) NOT NULL," +

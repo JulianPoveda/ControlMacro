@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import clases.ClassConfiguracion;
 import clases.ClassFlujoInformacion;
@@ -65,6 +66,15 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
     protected void onPreExecute() {
         this.URL        = this.FcnCfg.getIp_server() + ":" + this.FcnCfg.getPort() + "/" + this.FcnCfg.getModule_web_service() + "/" + this.FcnCfg.getWeb_service();
         this.NAMESPACE  = this.FcnCfg.getIp_server() + ":" + this.FcnCfg.getPort() + "/" + this.FcnCfg.getModule_web_service();
+
+        Toast.makeText(this.Context, "Iniciando conexion con el servidor, por favor espere...", Toast.LENGTH_SHORT).show();
+        _pDialog = new ProgressDialog(this.Context);
+        _pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        _pDialog.setMessage("Ejecutando operaciones...");
+        _pDialog.setCancelable(false);
+        _pDialog.setProgress(0);
+        _pDialog.setMax(100);
+        _pDialog.show();
     }
 
     @Override
@@ -168,7 +178,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
                     String informacion[] = new String(response.toString()).trim().split("\\,");
                     for(int i=0;i<informacion.length;i++){
                         this.FcnInformacion.FinalizarUpload(informacion[i],"\\|");
-                        //this.onProgressUpdate(i*100/informacion.length);
+                        this.onProgressUpdate(i*100/informacion.length);
                     }
                     this._tempRegistro.clear();
                     this._tempRegistro.put("estado", "E");
@@ -188,7 +198,21 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer rta) {
+        if(rta==1){
+            Toast.makeText(this.Context,"Carga Finalizada.", Toast.LENGTH_LONG).show();
+        }else if(rta==-1){
+            Toast.makeText(this.Context,"Intento fallido, el servidor no ha respondido.", Toast.LENGTH_SHORT).show();
+        }else if(rta==-2){
+            Toast.makeText(this.Context,"No hay nodos pendientes para cargar.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this.Context,"Error desconocido.", Toast.LENGTH_SHORT).show();
+        }
+        _pDialog.dismiss();
+    }
 
+    protected void onProgressUpdate(Integer... values) {
+        int progreso = values[0].intValue();
+        _pDialog.setProgress(progreso);
     }
 }
 

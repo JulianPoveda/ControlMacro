@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Poste {
     private String  nodoPoste;
     private int     itemPoste;
-    private double  longitudPoste;
-    private double  latitudPoste;
+    private String  longitudPoste;
+    private String  latitudPoste;
     private String  tipoPoste;
     private String  compartidoPoste;
     private String  estadoPoste;
@@ -53,19 +53,19 @@ public class Poste {
         this.itemPoste = itemPoste;
     }
 
-    public double getLatitudPoste() {
+    public String getLatitudPoste() {
         return latitudPoste;
     }
 
-    public void setLatitudPoste(double latitudGPoste) {
+    public void setLatitudPoste(String latitudGPoste) {
         this.latitudPoste = latitudGPoste;
     }
 
-    public double getLongitudPoste() {
+    public String getLongitudPoste() {
         return longitudPoste;
     }
 
-    public void setLongitudPoste(double longitudPoste) {
+    public void setLongitudPoste(String longitudPoste) {
         this.longitudPoste = longitudPoste;
     }
 

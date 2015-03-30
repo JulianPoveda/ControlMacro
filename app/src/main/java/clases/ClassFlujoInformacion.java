@@ -114,10 +114,10 @@ public class ClassFlujoInformacion {
             this._tempRegistro.put("estado", "E");
             this.FcnSQL.UpdateRegistro("maestro_clientes",this._tempRegistro,"fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
         }else if(this._campos[0].equals("EQUIPOS")){
-            this.FcnSQL.DeleteRegistro("postes_equipos","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+" ");
+            this.FcnSQL.DeleteRegistro("postes_equipos","id="+this._campos[1]+" AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
         }else if(this._campos[0].equals("LINEAS")){
             this.FcnSQL.DeleteRegistro("postes_lineas","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+" ");
-        }else if(this._campos[0].equals("POSTES")){
+        }else if(this._campos[0].equals("POSTE")){
             this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+"");
         }else if(this._campos[0].equals("LUMINARIAS")){
             this.FcnSQL.DeleteRegistro("postes_luminarias","id='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
