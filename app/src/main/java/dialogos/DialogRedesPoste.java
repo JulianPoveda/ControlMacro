@@ -25,15 +25,21 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
     Button      _btonAceptar;
     Button      _btonCancelar;
+    Button      _btonMas;
+    Button      _btoMenos;
     EditText    gpsLat;
     EditText    gpsLong;
     EditText    compartidoPoste;
     EditText    observacionPoste;
+    EditText    cntEstGuardar;
     Spinner     tipoPoste;
     Spinner     estadoPoste;
     Spinner     materialPoste;
     Spinner     alturaPoste;
     Spinner     estructuraPoste;
+    Spinner     cntEstructura;
+
+    String      estructuras;
 
     private ClassDataSpinner FcnDataS;
 
@@ -42,12 +48,14 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     private ArrayList<String> arrayEstadoPoste;
     private ArrayList<String> arrayMaterialPoste;
     private ArrayList<String> arrayEstructuraPoste;
+    private ArrayList<String> arrayCantEstructura;
 
     private ArrayAdapter<String> adapterAltura;
     private ArrayAdapter<String> adapterTipo;
     private ArrayAdapter<String> adapterEstado;
     private ArrayAdapter<String> adapterMaterial;
     private ArrayAdapter<String> adapterEstructura;
+    private ArrayAdapter<String> adapterCantidad;
 
     ArrayList<ContentValues> registroPoste  = new ArrayList<ContentValues>();
 
@@ -58,6 +66,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
         this._btonAceptar     = (Button)findViewById(R.id.PosteBtonAceptar);
         this._btonCancelar    = (Button)findViewById(R.id.PosteBtonCancelar);
+        this._btonMas         = (Button)findViewById(R.id.PosteBtonMas);
+        this._btoMenos        = (Button)findViewById(R.id.PosteBtoMenos);
         this.gpsLat           = (EditText)findViewById(R.id.EditLatRedesPoste);
         this.gpsLong          = (EditText)findViewById(R.id.EditLongRedesPoste);
         this.compartidoPoste  = (EditText) findViewById(R.id.EditCompartidoRedesPoste);
@@ -67,6 +77,10 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.materialPoste    = (Spinner)findViewById(R.id.SpinnerMaterialRedesPoste);
         this.alturaPoste      = (Spinner)findViewById(R.id.SpinnerAlturaRedesPoste);
         this.estructuraPoste  = (Spinner)findViewById(R.id.SpinnerEstructuraRedesPoste);
+        this.cntEstructura    = (Spinner)findViewById(R.id.SpinnerCantEsPoste);
+        this.cntEstGuardar    = (EditText)findViewById(R.id.EditEstructuraPoste);
+        this.cntEstGuardar.setEnabled(false);
+        this.estructuras ="";
 
         this.registroPoste.clear();
         Bundle extras = this.getIntent().getExtras();
@@ -88,6 +102,13 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.arrayMaterialPoste.clear();
         this.arrayMaterialPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerMaterialRedesPoste");
 
+        this.arrayCantEstructura = new ArrayList<String>();
+        this.arrayCantEstructura.clear();
+        this.arrayCantEstructura.add("1");
+        this.arrayCantEstructura.add("2");
+        this.arrayCantEstructura.add("3");
+        this.arrayCantEstructura.add("4");
+
         this.arrayEstructuraPoste = new ArrayList<String>();
         this.arrayEstructuraPoste.clear();
 
@@ -106,6 +127,11 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.materialPoste.setAdapter(adapterMaterial);
         this.adapterMaterial.notifyDataSetChanged();
 
+        this.adapterCantidad = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayCantEstructura);
+        this.adapterCantidad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.cntEstructura.setAdapter(adapterCantidad);
+        this.adapterCantidad.notifyDataSetChanged();
+
         if(getIntent().getExtras() != null){
             Bundle bundle = getIntent().getExtras();
             this.gpsLat.setText(bundle.getString("latitud"));
@@ -122,6 +148,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
         _btonAceptar.setOnClickListener(this);
         _btonCancelar.setOnClickListener(this);
+        _btoMenos.setOnClickListener(this);
+        _btonMas.setOnClickListener(this);
         tipoPoste.setOnItemSelectedListener(this);
         alturaPoste.setOnItemSelectedListener(this);
         estructuraPoste.setOnItemSelectedListener(this);
@@ -200,6 +228,19 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
             case R.id.PosteBtonCancelar:
                 finish(false);
+                break;
+
+            case R.id.PosteBtonMas:
+                this.estructuraPoste.getSelectedItem().toString();
+                this.cntEstructura.getSelectedItem().toString();
+                this.estructuras = this.estructuras + this.estructuraPoste.getSelectedItem().toString() +"("+ this.cntEstructura.getSelectedItem().toString()+")"+"-";
+                this.cntEstGuardar.setText(this.estructuras);
+                break;
+
+            case R.id.PosteBtoMenos:
+                String cadena=this.estructuras.replace(this.estructuraPoste.getSelectedItem().toString() +"("+ this.cntEstructura.getSelectedItem().toString()+")"+"-","");
+                this.cntEstGuardar.setText(cadena);
+                this.estructuras = cadena;
                 break;
         }
     }
