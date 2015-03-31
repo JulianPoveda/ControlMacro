@@ -132,12 +132,25 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.cntEstructura.setAdapter(adapterCantidad);
         this.adapterCantidad.notifyDataSetChanged();
 
+        //this.arrayAlturaPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerAlturaRedesPoste",tipoPoste.getSelectedItem().toString());
+        this.adapterAltura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.FcnDataS.getDataSpinnerTipologia("SpinnerAlturaRedesPoste"));
+        this.adapterAltura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.alturaPoste.setAdapter(adapterAltura);
+        this.adapterAltura.notifyDataSetChanged();
+
+        //this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
+        this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.FcnDataS.getDataSpinnerTipologia("SpinnerEstructuraRedesPoste"));
+        this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.estructuraPoste.setAdapter(adapterEstructura);
+        this.adapterEstructura.notifyDataSetChanged();
+
         if(getIntent().getExtras() != null){
             Bundle bundle = getIntent().getExtras();
             this.gpsLat.setText(bundle.getString("latitud"));
             this.gpsLong.setText(bundle.getString("longitud"));
             this.compartidoPoste.setText(bundle.getString("compartido"));
             this.observacionPoste.setText(bundle.getString("observacion"));
+            this.cntEstGuardar.setText(bundle.getString("estructura"));
 
             this.tipoPoste.setSelection(this.adapterTipo.getPosition(bundle.getString("tipo")));
             this.estadoPoste.setSelection(this.adapterEstado.getPosition(bundle.getString("estado")));
@@ -197,11 +210,30 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 this.alturaPoste.setAdapter(adapterAltura);
                 this.adapterAltura.notifyDataSetChanged();
 
-                this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
-                this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
-                this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                this.estructuraPoste.setAdapter(adapterEstructura);
-                this.adapterEstructura.notifyDataSetChanged();
+                if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")){
+                    this._btoMenos.setEnabled(false);
+                    this._btonMas.setEnabled(false);
+                    this.cntEstructura.setEnabled(false);
+                    this.estructuraPoste.setEnabled(false);
+                    this.cntEstGuardar.setText("0");
+                    /*this.arrayEstructuraPoste.clear();
+                    this.arrayEstructuraPoste.add("0");
+                    this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
+                    this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.estructuraPoste.setAdapter(adapterEstructura);
+                    this.adapterEstructura.notifyDataSetChanged();*/
+                }else{
+                    this._btoMenos.setEnabled(true);
+                    this._btonMas.setEnabled(true);
+                    this.cntEstructura.setEnabled(true);
+                    this.estructuraPoste.setEnabled(true);
+
+                    this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
+                    this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
+                    this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.estructuraPoste.setAdapter(adapterEstructura);
+                    this.adapterEstructura.notifyDataSetChanged();
+                }
                 break;
         }
 
@@ -217,7 +249,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 tempRegistroPoste.put("estadoPoste", this.estadoPoste.getSelectedItem().toString());
                 tempRegistroPoste.put("materialPoste", this.materialPoste.getSelectedItem().toString());
                 tempRegistroPoste.put("alturaPoste", this.alturaPoste.getSelectedItem().toString());
-                tempRegistroPoste.put("estructuraPoste", this.estructuraPoste.getSelectedItem().toString());
+                tempRegistroPoste.put("estructuraPoste", this.cntEstGuardar.getText().toString());
                 tempRegistroPoste.put("gpsLat", this.gpsLat.getText().toString());
                 tempRegistroPoste.put("gpsLong", this.gpsLong.getText().toString());
                 tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
