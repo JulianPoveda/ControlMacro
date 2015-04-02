@@ -12,10 +12,10 @@
             android:orderInCategory="100"
             app:showAsAction="never" />
 
-    <item   android:id="@+id/NodoMenuTerminar"
+    <!--<item   android:id="@+id/NodoMenuTerminar"
         android:title="Terminar"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
 
     <item   android:id="@+id/NodoMenuDescargar"
         android:title="Descargar"

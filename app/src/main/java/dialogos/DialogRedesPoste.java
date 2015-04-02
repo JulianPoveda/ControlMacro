@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -104,10 +105,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
         this.arrayCantEstructura = new ArrayList<String>();
         this.arrayCantEstructura.clear();
-        this.arrayCantEstructura.add("1");
-        this.arrayCantEstructura.add("2");
-        this.arrayCantEstructura.add("3");
-        this.arrayCantEstructura.add("4");
+        this.arrayCantEstructura = this.FcnDataS.getDataSpinnerTipologia("SpinnerCantEsPoste");
 
         this.arrayEstructuraPoste = new ArrayList<String>();
         this.arrayEstructuraPoste.clear();
@@ -243,19 +241,24 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.PosteBtonAceptar:
-                ContentValues tempRegistroPoste = new ContentValues();
-                tempRegistroPoste.clear();
-                tempRegistroPoste.put("tipoPoste", this.tipoPoste.getSelectedItem().toString());
-                tempRegistroPoste.put("estadoPoste", this.estadoPoste.getSelectedItem().toString());
-                tempRegistroPoste.put("materialPoste", this.materialPoste.getSelectedItem().toString());
-                tempRegistroPoste.put("alturaPoste", this.alturaPoste.getSelectedItem().toString());
-                tempRegistroPoste.put("estructuraPoste", this.cntEstGuardar.getText().toString());
-                tempRegistroPoste.put("gpsLat", this.gpsLat.getText().toString());
-                tempRegistroPoste.put("gpsLong", this.gpsLong.getText().toString());
-                tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
-                tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
-                registroPoste.add(tempRegistroPoste);
-                finish(true);
+                if(!this.gpsLat.getText().toString().isEmpty()&&!this.gpsLong.getText().toString().isEmpty()){
+                    ContentValues tempRegistroPoste = new ContentValues();
+                    tempRegistroPoste.clear();
+                    tempRegistroPoste.put("tipoPoste", this.tipoPoste.getSelectedItem().toString());
+                    tempRegistroPoste.put("estadoPoste", this.estadoPoste.getSelectedItem().toString());
+                    tempRegistroPoste.put("materialPoste", this.materialPoste.getSelectedItem().toString());
+                    tempRegistroPoste.put("alturaPoste", this.alturaPoste.getSelectedItem().toString());
+                    tempRegistroPoste.put("estructuraPoste", this.cntEstGuardar.getText().toString());
+                    tempRegistroPoste.put("gpsLat", this.gpsLat.getText().toString());
+                    tempRegistroPoste.put("gpsLong", this.gpsLong.getText().toString());
+                    tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
+                    tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
+                    registroPoste.add(tempRegistroPoste);
+                    finish(true);
+                }
+                else {
+                    Toast.makeText(this, "Debe Registrar Pocision GPS", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.PosteBtonCancelar:

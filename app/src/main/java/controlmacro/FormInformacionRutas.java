@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -103,12 +104,18 @@ public class FormInformacionRutas extends Activity{
                 startActivity(this.new_form);
                 return true;
 
-            case R.id.NodoMenuTerminar:
+            /*case R.id.NodoMenuTerminar:
                  this.nodo.terminarNodo(this.nodo_seleccionado);
-                return true;
+                Toast.makeText(this, "Nodo Terminado.", Toast.LENGTH_LONG).show();
+                return true;*/
 
             case R.id.NodoMenuDescargar:
-                new UploadLecturas(this).execute(this.nodo_seleccionado);
+                if(this.sqlConsulta.CountRegistrosWhere("maestro_clientes","nodo='"+this.nodo_seleccionado+"' AND estado='P'")==0){
+                    new UploadLecturas(this).execute(this.nodo_seleccionado);
+                }
+                else{
+                    Toast.makeText(this, "No Es posible Descargar Nodo sin Terminar.", Toast.LENGTH_LONG).show();
+                }
                 return true;
 
             default:

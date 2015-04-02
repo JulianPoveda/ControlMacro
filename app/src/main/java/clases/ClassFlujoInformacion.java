@@ -111,8 +111,7 @@ public class ClassFlujoInformacion {
         this._tempRegistro.clear();
         if(this._campos[0].equals("LECTURAS")){
             this.FcnSQL.DeleteRegistro("toma_lectura","fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
-            this._tempRegistro.put("estado", "E");
-            this.FcnSQL.UpdateRegistro("maestro_clientes",this._tempRegistro,"fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
+            this.FcnSQL.DeleteRegistro("maestro_clientes","fecha_programacion='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND cuenta='"+this._campos[3]+"'AND serie='"+this._campos[4]+"'");
         }else if(this._campos[0].equals("EQUIPOS")){
             this.FcnSQL.DeleteRegistro("postes_equipos","id="+this._campos[1]+" AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
         }else if(this._campos[0].equals("LINEAS")){
@@ -122,6 +121,19 @@ public class ClassFlujoInformacion {
         }else if(this._campos[0].equals("LUMINARIAS")){
             this.FcnSQL.DeleteRegistro("postes_luminarias","id='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
         }
+    }
 
+    public void FinalizarNodo(String _nodo){
+        if(this.FcnSQL.CountRegistrosWhere("postes_equipos","nodo='"+_nodo+"'")==0){
+            if(this.FcnSQL.CountRegistrosWhere("postes_lineas","nodo='"+_nodo+"'")==0){
+                if(this.FcnSQL.CountRegistrosWhere("postes_luminarias","nodo='"+_nodo+"'")==0){
+                    if(this.FcnSQL.CountRegistrosWhere("nodo_postes","nodo='"+_nodo+"'")==0){
+                        if(this.FcnSQL.CountRegistrosWhere("toma_lectura","nodo='"+_nodo+"'")==0){
+                            this.FcnSQL.DeleteRegistro("maestro_nodos","nodo='"+_nodo+"'");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

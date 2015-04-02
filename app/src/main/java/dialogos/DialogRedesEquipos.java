@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -179,26 +180,27 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.RedesEquiposBtnAgregar:
                 this._tempRegistro.clear();
-                if(this.tiposEquipos.getSelectedItem().toString().equals("Otro")){
-                    this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString() + ":" + this.nombreEquipo.getText().toString());
+                if(this.capacidadEquipo.getText().toString().equals("")) {
+                    Toast.makeText(this, "Debe Ingresar Capacidad para el Equipo", Toast.LENGTH_SHORT).show();
                 }else{
-                    this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
+                    if (this.tiposEquipos.getSelectedItem().toString().equals("Otro")) {
+                        this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString() + ":" + this.nombreEquipo.getText().toString());
+                    } else {
+                        this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
+                    }
+                    this._tempRegistro.put("capacidadEquipo", this.capacidadEquipo.getText().toString());
+                    this._tempRegistro.put("unidadesEquipo", this.unidadesCapacidad.getSelectedItem().toString());
+
+                    if (this.FcnRedesPoste.crearEquipo(this.nodo,
+                            this.item,
+                            this._tempRegistro.getAsString("tipoEquipo"),
+                            Integer.parseInt(this._tempRegistro.getAsString("capacidadEquipo")),
+                            this._tempRegistro.getAsString("unidadesEquipo"))) {
+                        this.mostrarEquiposRegistrados();
+                    }
+                    //registrosEquipos.add(tempRegistroEquipos);
+                    //finish(true);
                 }
-                this._tempRegistro.put("capacidadEquipo", this.capacidadEquipo.getText().toString());
-                this._tempRegistro.put("unidadesEquipo", this.unidadesCapacidad.getSelectedItem().toString());
-
-                if(this.FcnRedesPoste.crearEquipo(this.nodo,
-                        this.item,
-                        this._tempRegistro.getAsString("tipoEquipo"),
-                        Integer.parseInt(this._tempRegistro.getAsString("capacidadEquipo")),
-                        this._tempRegistro.getAsString("unidadesEquipo"))){
-                    this.mostrarEquiposRegistrados();
-                }
-
-
-
-                //registrosEquipos.add(tempRegistroEquipos);
-                //finish(true);
                 break;
 
             case R.id.RedesEquiposBtnFinalizar:
