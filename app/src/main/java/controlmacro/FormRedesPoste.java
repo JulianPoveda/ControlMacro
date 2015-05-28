@@ -168,7 +168,7 @@ public class FormRedesPoste extends ActionBarActivity {
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_ELIMINAR_REDES_POSTE){
                 if(data.getExtras().getBoolean("response")){
-                    if(this.FcnRedesPoste.eliminarPoste(this.itemSeleccionado)){
+                    if(this.FcnRedesPoste.eliminarPoste(/*this.itemSeleccionado*/Integer.parseInt(this.itemPoste))){
                         this.mostrarInformacionPostes();
                     }
                 }

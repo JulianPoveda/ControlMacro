@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="450dp"
+    android:layout_width="520dp"
     android:padding="13dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,35 +11,125 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:weightSum="11">
+        android:weightSum="13">
 
         <TextView
             android:id="@+id/PosteTxtGPSLat"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="GPS Lat"
-            android:gravity="center_vertical|right"/>
+            android:layout_weight="0.6"
+            android:text="Lat"
+            android:gravity="center_vertical|left"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/EditLatRedesPoste"
-            android:layout_weight="3.5"/>
+            android:id="@+id/EditLatGrado"
+            android:numeric="integer"
+            android:layout_weight="1.6"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLatGrado"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:text="°"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="top|left"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/EditLatMinutos"
+            android:numeric="integer"
+            android:layout_weight="1.7"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLatMin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:text="'"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="top|left"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/EditLatSegundos"
+            android:numeric="integer"
+            android:layout_weight="1.7"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLatSeg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:text="@string/TxtSegundosLat"
+            android:gravity="left"/>
 
         <TextView
             android:id="@+id/PosteTxtGPSLong"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="GPS Long"
+            android:layout_weight="1"
+            android:text="Long"
             android:gravity="center_vertical|right"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/EditLongRedesPoste"
-            android:layout_weight="3.5"/>
+            android:id="@+id/EditLongGrado"
+            android:numeric="integer"
+            android:layout_weight="1.6"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLongGrado"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:text="°"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="top|left"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/EditLongMinuto"
+            android:numeric="integer"
+            android:layout_weight="1.7"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLongMin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:text="'"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="top|left"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/EditLongSegundos"
+            android:numeric="integer"
+            android:layout_weight="1.7"/>
+
+        <TextView
+            android:id="@+id/PosteTxtLongSeg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:text="@string/TxtSegundosLat"
+            android:gravity="left"/>
     </LinearLayout>
 
     <LinearLayout

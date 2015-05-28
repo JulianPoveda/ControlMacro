@@ -10,4 +10,5 @@
     <string name="TxtAlturaPoste">Altura</string>
     <string name="TxtEstructuraPoste">Estructura</string>
     <string name="TxtObservacionesPoste">Observaciones</string>
+    <string name="TxtSegundosLat">\"</string>
 </resources>

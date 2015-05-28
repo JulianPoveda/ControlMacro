@@ -28,8 +28,12 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     Button      _btonCancelar;
     Button      _btonMas;
     Button      _btoMenos;
-    EditText    gpsLat;
-    EditText    gpsLong;
+    EditText    gpsLatGrado;
+    EditText    gpsLatMinutos;
+    EditText    gpsLatSegundos;
+    EditText    gpsLongGrado;
+    EditText    gpsLongMinutos;
+    EditText    gpsLongSegundos;
     EditText    compartidoPoste;
     EditText    observacionPoste;
     EditText    cntEstGuardar;
@@ -69,8 +73,12 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this._btonCancelar    = (Button)findViewById(R.id.PosteBtonCancelar);
         this._btonMas         = (Button)findViewById(R.id.PosteBtonMas);
         this._btoMenos        = (Button)findViewById(R.id.PosteBtoMenos);
-        this.gpsLat           = (EditText)findViewById(R.id.EditLatRedesPoste);
-        this.gpsLong          = (EditText)findViewById(R.id.EditLongRedesPoste);
+        this.gpsLatGrado      = (EditText)findViewById(R.id.EditLatGrado);
+        this.gpsLatMinutos    = (EditText)findViewById(R.id.EditLatMinutos);
+        this.gpsLatSegundos   = (EditText)findViewById(R.id.EditLatSegundos);
+        this.gpsLongGrado     = (EditText)findViewById(R.id.EditLongGrado);
+        this.gpsLongMinutos   = (EditText)findViewById(R.id.EditLongMinuto);
+        this.gpsLongSegundos  = (EditText)findViewById(R.id.EditLongSegundos);
         this.compartidoPoste  = (EditText) findViewById(R.id.EditCompartidoRedesPoste);
         this.observacionPoste = (EditText)findViewById(R.id.EditObsRedesPoste);
         this.tipoPoste        = (Spinner)findViewById(R.id.SpinnerTipoRedesPoste);
@@ -144,8 +152,15 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
 
         if(getIntent().getExtras() != null){
             Bundle bundle = getIntent().getExtras();
-            this.gpsLat.setText(bundle.getString("latitud"));
-            this.gpsLong.setText(bundle.getString("longitud"));
+            String delimitadores= "[ °\'\"\\[\\]]+";
+            String[] latitudSeparadas = bundle.getString("latitud").split(delimitadores);
+            String[] longitudSeparadas = bundle.getString("longitud").split(delimitadores);
+            this.gpsLatGrado.setText(latitudSeparadas[0]);
+            this.gpsLatMinutos.setText(latitudSeparadas[1]);
+            this.gpsLatSegundos.setText(latitudSeparadas[2]);
+            this.gpsLongGrado.setText(longitudSeparadas[0]);
+            this.gpsLongMinutos.setText(longitudSeparadas[1]);
+            this.gpsLongSegundos.setText(longitudSeparadas[2]);
             this.compartidoPoste.setText(bundle.getString("compartido"));
             this.observacionPoste.setText(bundle.getString("observacion"));
             this.cntEstGuardar.setText(bundle.getString("estructura"));
@@ -208,29 +223,64 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 this.alturaPoste.setAdapter(adapterAltura);
                 this.adapterAltura.notifyDataSetChanged();
 
+
                 if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")){
                     this._btoMenos.setEnabled(false);
                     this._btonMas.setEnabled(false);
                     this.cntEstructura.setEnabled(false);
                     this.estructuraPoste.setEnabled(false);
+                    this.alturaPoste.setEnabled(false);
+                    this.materialPoste.setEnabled(false);
+                    this.estadoPoste.setEnabled(false);
+                    this.compartidoPoste.setEnabled(false);
                     this.cntEstGuardar.setText("0");
-                    /*this.arrayEstructuraPoste.clear();
-                    this.arrayEstructuraPoste.add("0");
-                    this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
-                    this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    this.estructuraPoste.setAdapter(adapterEstructura);
-                    this.adapterEstructura.notifyDataSetChanged();*/
+
+                    /*Cambiar el valor del estado para cruce aereo*/
+                    this.arrayEstadoPoste.clear();
+                    this.arrayEstadoPoste.add("0");
+                    this.adapterEstado  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstadoPoste);
+                    this.adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.estadoPoste.setAdapter(adapterEstado);
+                    this.adapterEstado.notifyDataSetChanged();
+
+                    this.arrayMaterialPoste.clear();
+                    this.arrayMaterialPoste.add("0");
+                    this.adapterMaterial  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayMaterialPoste);
+                    this.adapterMaterial.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.materialPoste.setAdapter(adapterMaterial);
+                    this.adapterMaterial.notifyDataSetChanged();
+
+
                 }else{
                     this._btoMenos.setEnabled(true);
                     this._btonMas.setEnabled(true);
                     this.cntEstructura.setEnabled(true);
                     this.estructuraPoste.setEnabled(true);
+                    this.alturaPoste.setEnabled(true);
+                    this.materialPoste.setEnabled(true);
+                    this.estadoPoste.setEnabled(true);
+                    this.compartidoPoste.setEnabled(true);
 
                     this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
                     this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);
                     this.adapterEstructura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     this.estructuraPoste.setAdapter(adapterEstructura);
                     this.adapterEstructura.notifyDataSetChanged();
+
+                    this.arrayEstadoPoste.clear();
+                    this.arrayEstadoPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerEstadoRedesPoste");
+                    this.adapterEstado  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstadoPoste);
+                    this.adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.estadoPoste.setAdapter(adapterEstado);
+                    this.adapterEstado.notifyDataSetChanged();
+
+                    this.arrayMaterialPoste.clear();
+                    this.arrayMaterialPoste = this.FcnDataS.getDataSpinnerTipologia("SpinnerMaterialRedesPoste");
+                    this.adapterMaterial  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayMaterialPoste);
+                    this.adapterMaterial.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    this.materialPoste.setAdapter(adapterMaterial);
+                    this.adapterMaterial.notifyDataSetChanged();
+
                 }
                 break;
         }
@@ -241,22 +291,25 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.PosteBtonAceptar:
-                if(!this.gpsLat.getText().toString().isEmpty()&&!this.gpsLong.getText().toString().isEmpty()){
-                    ContentValues tempRegistroPoste = new ContentValues();
-                    tempRegistroPoste.clear();
-                    tempRegistroPoste.put("tipoPoste", this.tipoPoste.getSelectedItem().toString());
-                    tempRegistroPoste.put("estadoPoste", this.estadoPoste.getSelectedItem().toString());
-                    tempRegistroPoste.put("materialPoste", this.materialPoste.getSelectedItem().toString());
-                    tempRegistroPoste.put("alturaPoste", this.alturaPoste.getSelectedItem().toString());
-                    tempRegistroPoste.put("estructuraPoste", this.cntEstGuardar.getText().toString());
-                    tempRegistroPoste.put("gpsLat", this.gpsLat.getText().toString());
-                    tempRegistroPoste.put("gpsLong", this.gpsLong.getText().toString());
-                    tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
-                    tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
-                    registroPoste.add(tempRegistroPoste);
-                    finish(true);
-                }
-                else {
+                if(!this.gpsLatGrado.getText().toString().isEmpty()&&!this.gpsLongGrado.getText().toString().isEmpty()&&!this.gpsLatMinutos.getText().toString().isEmpty()&&!this.gpsLatSegundos.getText().toString().isEmpty()&&!this.gpsLongMinutos.getText().toString().isEmpty()&&!this.gpsLongSegundos.getText().toString().isEmpty()){
+                    if(!this.cntEstGuardar.getText().toString().isEmpty()){
+                        ContentValues tempRegistroPoste = new ContentValues();
+                        tempRegistroPoste.clear();
+                        tempRegistroPoste.put("tipoPoste", this.tipoPoste.getSelectedItem().toString());
+                        tempRegistroPoste.put("estadoPoste", this.estadoPoste.getSelectedItem().toString());
+                        tempRegistroPoste.put("materialPoste", this.materialPoste.getSelectedItem().toString());
+                        tempRegistroPoste.put("alturaPoste", this.alturaPoste.getSelectedItem().toString());
+                        tempRegistroPoste.put("estructuraPoste", this.cntEstGuardar.getText().toString());
+                        tempRegistroPoste.put("gpsLat", this.gpsLatGrado.getText().toString()+"°"+this.gpsLatMinutos.getText().toString()+"'"+this.gpsLatSegundos.getText().toString()+"\"");
+                        tempRegistroPoste.put("gpsLong", this.gpsLongGrado.getText().toString()+"°"+this.gpsLongMinutos.getText().toString()+"'"+this.gpsLongSegundos.getText().toString()+"\"");
+                        tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
+                        tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
+                        registroPoste.add(tempRegistroPoste);
+                        finish(true);
+                    }else{
+                        Toast.makeText(this, "Debe Registrar Estructura", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
                     Toast.makeText(this, "Debe Registrar Pocision GPS", Toast.LENGTH_SHORT).show();
                 }
                 break;
