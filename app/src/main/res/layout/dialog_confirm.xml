@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="160dp"
+    android:layout_width="400dp"
+    android:layout_height="260dp"
     android:weightSum="4"
     android:orientation="vertical"
     android:padding="10dp">

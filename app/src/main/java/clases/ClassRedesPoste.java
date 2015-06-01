@@ -102,7 +102,15 @@ public class ClassRedesPoste {
 
 
     public boolean eliminarPoste(int _item){
-        return this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this.nodo+"' AND item="+_item);
+        boolean _retorno = false;
+        if(this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this.nodo+"' AND item="+_item)){
+            this.FcnSQL.DeleteRegistro("postes_equipos","nodo='"+this.nodo+"' AND item="+_item);
+            this.FcnSQL.DeleteRegistro("postes_lineas","nodo='"+this.nodo+"' AND item="+_item);
+            this.FcnSQL.DeleteRegistro("postes_luminarias","nodo='"+this.nodo+"' AND item="+_item);
+
+            _retorno = true;
+        }
+        return _retorno;
     }
 
 

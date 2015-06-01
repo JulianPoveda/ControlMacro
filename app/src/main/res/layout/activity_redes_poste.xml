@@ -109,8 +109,12 @@
             android:textColor="@color/LabelListView"/>
 
     </LinearLayout>
+
     <ListView
         android:id="@+id/RedesLstPostes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="415dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
 </LinearLayout>

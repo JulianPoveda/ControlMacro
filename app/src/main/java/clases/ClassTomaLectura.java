@@ -47,20 +47,25 @@ public class ClassTomaLectura {
 
     public boolean getDatosUsuario(boolean _next){
         boolean _retorno  = false;
-        if(this.ObjUsuario.getId() == -1){
+        if(this.FcnSQL.CountRegistrosWhere("maestro_clientes", "nodo='" + this.ObjUsuario.getNodo() + "' AND estado='P'")==1){
             this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
-                                                                "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
-                                                                "nodo='"+this.ObjUsuario.getNodo()+"' AND estado='P' ORDER BY id ASC");
-        }else if(_next){
-            this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
-                                                                "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
-                                                                "nodo='"+this.ObjUsuario.getNodo()+"' AND id>"+this.ObjUsuario.getId()+" AND estado='P' ORDER BY id ASC");
-        }else{
-            this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
-                                                                "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
-                                                                "nodo='"+this.ObjUsuario.getNodo()+"' AND id<"+this.ObjUsuario.getId()+" AND estado='P' ORDER BY id DESC");
+                    "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
+                    "nodo='"+this.ObjUsuario.getNodo()+"' AND estado='P' ORDER BY id ASC");
+        }else {
+            if (this.ObjUsuario.getId() == -1) {
+                this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
+                        "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
+                        "nodo='" + this.ObjUsuario.getNodo() + "' AND estado='P' ORDER BY id ASC");
+            } else if (_next) {
+                this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
+                        "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
+                        "nodo='" + this.ObjUsuario.getNodo() + "' AND id>" + this.ObjUsuario.getId() + " AND estado='P' ORDER BY id ASC");
+            } else {
+                this._tempRegistro = this.FcnSQL.SelectDataRegistro("maestro_clientes",
+                        "id, fecha_programacion, nodo, cuenta, medidor, serie, nombre, direccion, estado, vinculacion",
+                        "nodo='" + this.ObjUsuario.getNodo() + "' AND id<" + this.ObjUsuario.getId() + " AND estado='P' ORDER BY id DESC");
+            }
         }
-
         if(this._tempRegistro.size()>0){
             _retorno = true;
             this.setInfUsuario();

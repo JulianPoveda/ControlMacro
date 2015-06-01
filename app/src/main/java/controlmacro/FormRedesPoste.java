@@ -63,7 +63,6 @@ public class FormRedesPoste extends ActionBarActivity {
         this.nodo = bundle.getString("Nodo");
 
         this.FcnRedesPoste  = new ClassRedesPoste(this,this.nodo);
-
         this._lstListadoPostes  = (ListView) findViewById(R.id.RedesLstPostes);
 
         this.arrayListadoPoste = new ArrayList<DetalleRedesPoste>();
@@ -123,7 +122,7 @@ public class FormRedesPoste extends ActionBarActivity {
             case R.id.RedesMenuContextEliminar:
                 this.new_form = new Intent(this, DialogConfirm.class);
                 this.new_form.putExtra("titulo","CONFIRMACION");
-                this.new_form.putExtra("lbl1","Se eliminara el item "+this.itemPoste+", desea continuar?");
+                this.new_form.putExtra("lbl1","Tenga en cuenta que si ELIMINA el poste, se ELIMINARA EQUIPOS, LUMINARIAS y LINEAS amarradas al Poste  "+this.itemPoste+", desea continuar?");
                 startActivityForResult(this.new_form, ACT_ELIMINAR_REDES_POSTE);
                 return true;
 
