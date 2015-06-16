@@ -39,7 +39,7 @@ public class ClassRedesPoste {
     public ContentValues getDataPoste(int _item){
         this.myPoste.setItemPoste(_item);
         return this.FcnSQL.SelectDataRegistro("nodo_postes",
-                "longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
+                "longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion,new_nodo",
                 "nodo='"+this.nodo+"' AND item="+this.myPoste.getItemPoste());
     }
 
@@ -71,7 +71,7 @@ public class ClassRedesPoste {
 
 
     public boolean crearPoste(String _latitud, String _longitud, String _tipo, String _compartido, String _estado,
-                              String _material, int _altura, String _estructura, String _observacion){
+                              String _material, int _altura, String _estructura, String _observacion, String _newnodo){
         this.myPoste.setNodoPoste(this.nodo);
         this.myPoste.setLatitudPoste(_latitud);
         this.myPoste.setLongitudPoste(_longitud);
@@ -82,12 +82,13 @@ public class ClassRedesPoste {
         this.myPoste.setAlturaPoste(_altura);
         this.myPoste.setEstructuraPoste(_estructura);
         this.myPoste.setObservacionPoste(_observacion);
+        this.myPoste.setNewnodo(_newnodo);
         return this.registrarPoste();
     }
 
 
     public boolean editarPoste(String _item, String _latitud, String _longitud, String _tipo, String _compartido,
-                                   String _estado, String _material, int _altura, String _estructura, String _observacion){
+                                   String _estado, String _material, int _altura, String _estructura, String _observacion, String _new_nodo){
         this.myPoste.setLatitudPoste(_latitud);
         this.myPoste.setLongitudPoste(_longitud);
         this.myPoste.setTipoPoste(_tipo);
@@ -97,6 +98,7 @@ public class ClassRedesPoste {
         this.myPoste.setAlturaPoste(_altura);
         this.myPoste.setEstructuraPoste(_estructura);
         this.myPoste.setObservacionPoste(_observacion);
+        this.myPoste.setNewnodo(_new_nodo);
         return this.actualizarPoste(_item);
     }
 
@@ -178,6 +180,7 @@ public class ClassRedesPoste {
         this._tempRegistro.put("altura", this.myPoste.getAlturaPoste());
         this._tempRegistro.put("estructura", this.myPoste.getEstructuraPoste());
         this._tempRegistro.put("observacion", this.myPoste.getObservacionPoste());
+        this._tempRegistro.put("new_nodo",this.myPoste.getNewnodo());
         return this.FcnSQL.InsertRegistro("nodo_postes", this._tempRegistro);
     }
 
@@ -193,6 +196,7 @@ public class ClassRedesPoste {
         this._tempRegistro.put("altura", this.myPoste.getAlturaPoste());
         this._tempRegistro.put("estructura", this.myPoste.getEstructuraPoste());
         this._tempRegistro.put("observacion", this.myPoste.getObservacionPoste());
+        this._tempRegistro.put("new_nodo",this.myPoste.getNewnodo());
         return this.FcnSQL.UpdateRegistro("nodo_postes", this._tempRegistro,"nodo='"+this.nodo+"' AND item="+_item);
     }
 

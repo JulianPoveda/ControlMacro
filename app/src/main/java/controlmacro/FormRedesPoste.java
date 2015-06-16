@@ -163,6 +163,7 @@ public class FormRedesPoste extends ActionBarActivity {
                     this.new_form.putExtra("altura", this._tempRegistro.getAsString("altura"));
                     this.new_form.putExtra("estructura", this._tempRegistro.getAsString("estructura"));
                     this.new_form.putExtra("observacion", this._tempRegistro.getAsString("observacion"));
+                    this.new_form.putExtra("new_nodo", this._tempRegistro.getAsString("new_nodo"));
                     startActivityForResult(this.new_form, ACT_ACTUALIZAR_REDES_POSTE);
                 }
             }else if(resultCode == RESULT_OK && requestCode == ACT_ELIMINAR_REDES_POSTE){
@@ -182,7 +183,8 @@ public class FormRedesPoste extends ActionBarActivity {
                             this._tempTabla.get(0).getAsString("materialPoste"),
                             this._tempTabla.get(0).getAsInteger("alturaPoste"),
                             this._tempTabla.get(0).getAsString("estructuraPoste"),
-                            this._tempTabla.get(0).getAsString("observacionPoste"))){
+                            this._tempTabla.get(0).getAsString("observacionPoste"),
+                            this._tempTabla.get(0).getAsString("new_nodo"))){
                         this.mostrarInformacionPostes();
                     }
                 }
@@ -198,7 +200,8 @@ public class FormRedesPoste extends ActionBarActivity {
                             this._tempTabla.get(0).getAsString("materialPoste"),
                             this._tempTabla.get(0).getAsInteger("alturaPoste"),
                             this._tempTabla.get(0).getAsString("estructuraPoste"),
-                            this._tempTabla.get(0).getAsString("observacionPoste"))){
+                            this._tempTabla.get(0).getAsString("observacionPoste"),
+                            this._tempTabla.get(0).getAsString("new_nodo"))){
                         this.mostrarInformacionPostes();
                     }
                 }
@@ -223,7 +226,8 @@ public class FormRedesPoste extends ActionBarActivity {
                     this._tempRegistro.getAsString("material"),
                     this._tempRegistro.getAsString("altura"),
                     this._tempRegistro.getAsString("estructura"),
-                    this._tempRegistro.getAsString("observacion")));
+                    this._tempRegistro.getAsString("observacion"),
+                    this._tempRegistro.getAsString("new_nodo")));
         }
         this.listadoPostesAdapter = new AdaptadorRedesPoste.BuilderAdaptadorRedesPoste(this, this.arrayListadoPoste).build();
         this._lstListadoPostes.setAdapter(this.listadoPostesAdapter);

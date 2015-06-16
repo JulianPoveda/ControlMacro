@@ -119,6 +119,7 @@ public class SQLite {
                                                 "altura         INTEGER NOT NULL," +
                                                 "estructura     VARCHAR(50) NOT NULL," +
                                                 "observacion    VARCHAR(255)," +
+                                                "new_nodo       VARCHAR(20),"+
                                                 "fecha_asignacion   TIMESTAMP NOT NULL DEFAULT current_timestamp,"+
                                                 "PRIMARY KEY(nodo, item));");
 

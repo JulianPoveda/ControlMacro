@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,12 +38,14 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
     EditText    compartidoPoste;
     EditText    observacionPoste;
     EditText    cntEstGuardar;
+    EditText    newNodo;
     Spinner     tipoPoste;
     Spinner     estadoPoste;
     Spinner     materialPoste;
     Spinner     alturaPoste;
     Spinner     estructuraPoste;
     Spinner     cntEstructura;
+    RadioButton nuevoNodo;
 
     String      estructuras;
 
@@ -81,6 +84,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.gpsLongSegundos  = (EditText)findViewById(R.id.EditLongSegundos);
         this.compartidoPoste  = (EditText) findViewById(R.id.EditCompartidoRedesPoste);
         this.observacionPoste = (EditText)findViewById(R.id.EditObsRedesPoste);
+        this.newNodo          = (EditText)findViewById(R.id.EditNuevoNodo);
         this.tipoPoste        = (Spinner)findViewById(R.id.SpinnerTipoRedesPoste);
         this.estadoPoste      = (Spinner)findViewById(R.id.SpinnerEstadoRedesPoste);
         this.materialPoste    = (Spinner)findViewById(R.id.SpinnerMaterialRedesPoste);
@@ -88,7 +92,9 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
         this.estructuraPoste  = (Spinner)findViewById(R.id.SpinnerEstructuraRedesPoste);
         this.cntEstructura    = (Spinner)findViewById(R.id.SpinnerCantEsPoste);
         this.cntEstGuardar    = (EditText)findViewById(R.id.EditEstructuraPoste);
+        this.nuevoNodo        = (RadioButton)findViewById(R.id.BotonNodonuevo);
         this.cntEstGuardar.setEnabled(false);
+        this.newNodo.setEnabled(false);
         this.estructuras ="";
 
         this.registroPoste.clear();
@@ -164,6 +170,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
             this.compartidoPoste.setText(bundle.getString("compartido"));
             this.observacionPoste.setText(bundle.getString("observacion"));
             this.cntEstGuardar.setText(bundle.getString("estructura"));
+            this.newNodo.setText(bundle.getString("new_nodo"));
 
             this.tipoPoste.setSelection(this.adapterTipo.getPosition(bundle.getString("tipo")));
             this.estadoPoste.setSelection(this.adapterEstado.getPosition(bundle.getString("estado")));
@@ -304,6 +311,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                         tempRegistroPoste.put("gpsLong", this.gpsLongGrado.getText().toString()+"°"+this.gpsLongMinutos.getText().toString()+"'"+this.gpsLongSegundos.getText().toString()+"\"");
                         tempRegistroPoste.put("compartidoPoste", this.compartidoPoste.getText().toString());
                         tempRegistroPoste.put("observacionPoste", this.observacionPoste.getText().toString());
+                        tempRegistroPoste.put("new_nodo",this.newNodo.getText().toString());
                         registroPoste.add(tempRegistroPoste);
                         finish(true);
                     }else{
@@ -330,6 +338,19 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 this.cntEstGuardar.setText(cadena);
                 this.estructuras = cadena;
                 break;
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.BotonNodonuevo:
+                if (checked)
+                    this.newNodo.setEnabled(true);
+                    break;
         }
     }
 

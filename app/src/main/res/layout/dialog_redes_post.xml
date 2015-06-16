@@ -241,7 +241,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/SpinnerAlturaRedesPoste"
-            android:layout_weight="3" />
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Nodo"
+            android:id="@+id/BotonNodonuevo"
+            android:layout_weight="0.7"
+            android:onClick="onRadioButtonClicked"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/EditNuevoNodo"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <LinearLayout

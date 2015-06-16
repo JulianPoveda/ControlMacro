@@ -15,8 +15,9 @@ public class DetalleRedesPoste {
     protected String alturaPoste;
     protected String estructuraPoste;
     protected String observacionesPoste;
+    protected String new_nodo;
 
-    public DetalleRedesPoste(String _itemposte, String _gpsLat, String _gpsLong, String _tipoposte, String _compartido, String _estadoposte, String _materialposte, String _alturaposte, String _estructuraposte, String _observaciones){
+    public DetalleRedesPoste(String _itemposte, String _gpsLat, String _gpsLong, String _tipoposte, String _compartido, String _estadoposte, String _materialposte, String _alturaposte, String _estructuraposte, String _observaciones, String _new_nodo){
         super();
         this.itemPoste          =   _itemposte;
         this.gpsLat             =   _gpsLat;
@@ -28,6 +29,7 @@ public class DetalleRedesPoste {
         this.alturaPoste        =   _alturaposte;
         this.estructuraPoste    =   _estructuraposte;
         this.observacionesPoste =   _observaciones;
+        this.new_nodo           =   _new_nodo;
     }
 
     public String getItemPoste() {
@@ -108,5 +110,13 @@ public class DetalleRedesPoste {
 
     public void setObservacionesPoste(String observacionesPoste) {
         this.observacionesPoste = observacionesPoste;
+    }
+
+    public String getNew_nodo() {
+        return new_nodo;
+    }
+
+    public void setNew_nodo(String new_nodo) {
+        this.new_nodo = new_nodo;
     }
 }

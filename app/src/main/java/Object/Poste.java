@@ -17,6 +17,7 @@ public class Poste {
     private int     alturaPoste;
     private String  estructuraPoste;
     private String  observacionPoste;
+    private String  newnodo;
 
     private String  equipoNombre;
     private String  equipoUnidades;
@@ -123,6 +124,14 @@ public class Poste {
 
     public void setEstructuraPoste(String estructuraPoste) {
         this.estructuraPoste = estructuraPoste;
+    }
+
+    public String getNewnodo() {
+        return newnodo;
+    }
+
+    public void setNewnodo(String newnodo) {
+        this.newnodo = newnodo;
     }
 
     public String getEquipoNombre() {
