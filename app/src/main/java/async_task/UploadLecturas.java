@@ -105,13 +105,13 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
                 String fecha_asignacion = this.FcnSQL.StrSelectShieldWhere("maestro_nodos","fecha_asignacion","nodo='"+nodo+"'");
 
                 this._tempTabla1	= this.FcnSQL.SelectData(   "nodo_postes",
-                                                            "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion",
+                                                            "nodo,item,longitud,latitud,tipo,compartido,estado,material,altura,estructura,observacion,new_nodo",
                                                             "nodo='"+nodo+"'");
                 for(int j=0; j<this._tempTabla1.size();j++){
                     this._tempRegistro1 = this._tempTabla1.get(j);
                     this.InformacionCargaPoste += "POSTE,"+fecha_asignacion+","+this._tempRegistro1.getAsString("nodo") + "," + this._tempRegistro1.getAsString("item") + "," + this._tempRegistro1.getAsString("longitud").replace("°","-").replace("'","--").replace("\"","---") + "," +
                                 "" + this._tempRegistro1.getAsString("latitud").replace("°","-").replace("'","--").replace("\"","---")+ "," + this._tempRegistro1.getAsString("tipo") + "," + this._tempRegistro1.getAsString("compartido") + "," +
-                                "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion") + "\r\n";
+                                "" + this._tempRegistro1.getAsString("estado") + ","+this._tempRegistro1.getAsString("material")+","+this._tempRegistro1.getAsString("altura")+"," + this._tempRegistro1.getAsString("estructura") + "," + this._tempRegistro1.getAsString("observacion")+"," + this._tempRegistro1.getAsString("new_nodo") + "\r\n";
                 }
 
                 this._tempRegistro1.clear();
