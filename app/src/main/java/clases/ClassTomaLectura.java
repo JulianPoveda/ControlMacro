@@ -184,7 +184,7 @@ public class ClassTomaLectura {
     public boolean crearUsuario(String _marca, String _serie, String _cuenta, String _nombre, String _direccion){
         this._tempRegistro.clear();
         this._tempRegistro.put("id",this.FcnSQL.IntSelectShieldWhere("maestro_clientes","max(id)","nodo='"+this.ObjUsuario.getNodo()+"'")+1);
-        this._tempRegistro.put("fecha_programacion",this.FcnTime.GetFecha());
+        this._tempRegistro.put("fecha_programacion",this.FcnSQL.StrSelectShieldWhere("maestro_clientes","fecha_programacion","nodo='"+this.ObjUsuario.getNodo()+"' and vinculacion='E' LIMIT 1"));
         this._tempRegistro.put("nodo",              this.ObjUsuario.getNodo());
 
         if(_cuenta.isEmpty()){

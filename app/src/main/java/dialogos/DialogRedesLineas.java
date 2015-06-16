@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
     private Spinner faseN;
     private Spinner conductor;
 
+
     private ClassDataSpinner FcnDataS;
 
     private ArrayList<String> arrayFases;
@@ -43,14 +45,15 @@ public class DialogRedesLineas extends Activity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_redes_lineas);
 
-        this.btonAceptar  = (Button)findViewById(R.id.BtoAcepRedesLineas);
-        this.btonCancelar = (Button)findViewById(R.id.BtoCancelarRedesLineas);
-        this.faseA        = (Spinner)findViewById(R.id.SpinnerFARedesLineas);
-        this.faseB        = (Spinner)findViewById(R.id.SpinnerFBRedesLineas);
-        this.faseC        = (Spinner)findViewById(R.id.SpinnerFCRedesLineas);
-        this.faseAP       = (Spinner)findViewById(R.id.SpinnerFAPRedesLineas);
-        this.faseN        = (Spinner)findViewById(R.id.SpinnerFNRedesLineas);
-        this.conductor    = (Spinner)findViewById(R.id.SpinnerCondRedesLineas);
+        this.btonAceptar    = (Button)findViewById(R.id.BtoAcepRedesLineas);
+        this.btonCancelar   = (Button)findViewById(R.id.BtoCancelarRedesLineas);
+        this.faseA          = (Spinner)findViewById(R.id.SpinnerFARedesLineas);
+        this.faseB          = (Spinner)findViewById(R.id.SpinnerFBRedesLineas);
+        this.faseC          = (Spinner)findViewById(R.id.SpinnerFCRedesLineas);
+        this.faseAP         = (Spinner)findViewById(R.id.SpinnerFAPRedesLineas);
+        this.faseN          = (Spinner)findViewById(R.id.SpinnerFNRedesLineas);
+        this.conductor      = (Spinner)findViewById(R.id.SpinnerCondRedesLineas);
+
 
         this.FcnDataS   = ClassDataSpinner.getInstance(this);
 

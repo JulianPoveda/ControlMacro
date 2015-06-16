@@ -94,7 +94,7 @@ public class UploadLecturas extends AsyncTask<String, Void, Integer> {
                         String vinculacion = this.FcnSQL.StrSelectShieldWhere("maestro_clientes","vinculacion","nodo='"+nodo+"' AND fecha_programacion ='"+this._tempRegistro.getAsString("fecha_programacion")+"' AND cuenta='"+this._tempRegistro.getAsString("cuenta")+"' AND serie='"+this._tempRegistro.getAsString("serie")+"'");
                         this.InformacionCarga += this._tempRegistro.getAsString("fecha_programacion")+","+this._tempRegistro.getAsString("nodo") + "," + this._tempRegistro.getAsString("new_nodo") + "," + this._tempRegistro.getAsString("cuenta") + "," +
                                 "" + this._tempRegistro.getAsString("medidor") + "," + this._tempRegistro.getAsString("serie") + "," + this._tempRegistro.getAsString("poste") + "," +
-                                "" + this._tempRegistro.getAsString("lectura") + "," + this._tempRegistro.getAsString("observacion") + "," + this._tempRegistro.getAsString("fecha_registro") +","+vinculacion+"\r\n";
+                                "" + this._tempRegistro.getAsString("lectura") + "," + this._tempRegistro.getAsString("observacion") + "," + this._tempRegistro.getAsString("fecha_registro") +","+vinculacion.replace("\r\n","")+"\r\n";
                 }
 
                 this.FcnArch.DoFile("Descarga",this.Usuario.getCodigo()+"_"+"lectura_nodo"+".txt",this.InformacionCarga);

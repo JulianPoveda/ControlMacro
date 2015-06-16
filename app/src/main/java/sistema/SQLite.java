@@ -88,7 +88,7 @@ public class SQLite {
                                                         "vinculacion            VARCHAR(1) NOT NULL DEFAULT 'E'," +
                                                         "PRIMARY KEY(fecha_programacion, nodo, cuenta, medidor, serie))");
 
-            db.execSQL("CREATE TABLE    toma_lectura    (id                     INTEGER PRIMARY KEY AUTOINCREMENT," +
+            db.execSQL("CREATE TABLE    toma_lectura    (id                     INTEGER NOT NULL," +
                                                         "fecha_programacion     DATE NOT NULL," +
                                                         "nodo                   VARCHAR(20) NOT NULL," +
                                                         "new_nodo               VARCHAR(20) NOT NULL," +
@@ -98,7 +98,8 @@ public class SQLite {
                                                         "poste                  INTEGER NOT NULL," +
                                                         "lectura                INTEGER NOT NULL," +
                                                         "observacion            VARCHAR(255)," +
-                                                        "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp)");
+                                                        "fecha_registro         TIMESTAMP NOT NULL DEFAULT current_timestamp,"+
+                                                        "PRIMARY KEY(id,nodo))");
 
             db.execSQL("CREATE TABLE    valores_spinner (id                     INTEGER  NOT NULL," +
                                                         "activity               VARCHAR (450) NOT NULL," +
@@ -168,6 +169,7 @@ public class SQLite {
 															"nombre_archivo	VARCHAR(100)," +
 															"fecha_imp		TIMESTAMP NOT NULL DEFAULT current_timestamp," +
 															"PRIMARY KEY(solicitud, id_impresion));");*/
+
         }
     }
 

@@ -29,7 +29,7 @@ import controlmacro.FormInicioSession;
 import controlmacro.R;
 import sistema.SQLite;
 
-public class DialogRedesLuminarias extends Activity implements View.OnClickListener{
+public class DialogRedesLuminarias extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     private ClassRedesPoste FcnRedesPoste;
     private ClassDataSpinner FcnDataS;
@@ -37,6 +37,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     private Button      btnAgregar;
     private Button      btnFinalizar;
     private EditText    codigoLuminaria;
+    private EditText    capacidadOtro;
     private Spinner     potenciaLuminaria;
     private Spinner     tipoLuminaria;
     private Spinner     estadoLuminaria;
@@ -66,8 +67,10 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
     private ContentValues _tempRegistro 		= new ContentValues();
 
     private String  nodo;
+    private String  capacidadOtroL;
     private int     item;
     private int     id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         this.btnAgregar         = (Button) findViewById(R.id.BtoAgregarLuminarias);
         this.btnFinalizar       = (Button)findViewById(R.id.BtoFinalizarRedesLuminarias);
         this.codigoLuminaria    = (EditText)findViewById(R.id.EditCodigoLuminaria);
+        this.capacidadOtro      = (EditText)findViewById(R.id.EditCapacidadOtro);
         this.potenciaLuminaria  = (Spinner)findViewById(R.id.SpinnerPotenciaLuminaria);
         this.tipoLuminaria      = (Spinner)findViewById(R.id.SpinnerTipoLuminaria);
         this.estadoLuminaria    = (Spinner)findViewById(R.id.SpinnerEstadoLuminaria);
@@ -147,6 +151,7 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
 
         this.btnAgregar.setOnClickListener(this);
         this.btnFinalizar.setOnClickListener(this);
+        potenciaLuminaria.setOnItemSelectedListener(this);
         this.mostrarLuminariasRegistradas();
 
         registerForContextMenu(this.listaLuminarias);
@@ -215,6 +220,20 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
         super.finish();
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(parent.getId()){
+            case R.id.SpinnerPotenciaLuminaria:
+                if(potenciaLuminaria.getSelectedItem().toString().equals("Otros")){
+                    this.capacidadOtro.setEnabled(true);
+                }else{
+                    this.capacidadOtro.setEnabled(false);
+                }
+                break;
+        }
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -224,9 +243,14 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 break;
 
             case R.id.BtoAgregarLuminarias:
+                if(potenciaLuminaria.getSelectedItem().toString().equals("Otros")){
+                    this.capacidadOtroL = this.capacidadOtro.getText().toString();
+                }else{
+                    this.capacidadOtroL = this.potenciaLuminaria.getSelectedItem().toString();
+                }
                 if(this.FcnRedesPoste.crearLuminaria(this.item,
                         this.codigoLuminaria.getText().toString(),
-                        this.potenciaLuminaria.getSelectedItem().toString(),
+                        this.capacidadOtroL,
                         this.tipoLuminaria.getSelectedItem().toString(),
                         this.estadoLuminaria.getSelectedItem().toString(),
                         this.apLuminaria.getSelectedItem().toString(),
@@ -236,5 +260,10 @@ public class DialogRedesLuminarias extends Activity implements View.OnClickListe
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
     }
 }

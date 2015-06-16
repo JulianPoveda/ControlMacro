@@ -63,6 +63,28 @@
                 android:id="@+id/SpinnerPotenciaLuminaria"
                 android:layout_weight="6" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/Txt1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/EditCapacidadOtro"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:numeric="integer"
+                android:layout_weight="6" />
+
+         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
