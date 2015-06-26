@@ -119,8 +119,8 @@ public class DialogTopologico extends Activity implements View.OnClickListener {
         }
         switch (v.getId()) {
             case R.id.BtoAgregarConexionTopologico:
-             if(this.FcnRedesPoste.registrarTopologico(this.nodo,this.posteFinal.getSelectedItem().toString(),
-                                                        this.posteInicial.getSelectedItem().toString(),
+             if(this.FcnRedesPoste.registrarTopologico(this.nodo,this.posteInicial.getSelectedItem().toString(),
+                                                        this.posteFinal.getSelectedItem().toString(),
                                                         this.conexionPoste.getSelectedItem().toString(),
                                                         this.checTrafo)){
                  Toast.makeText(this, "Registro Ingresado Correctamente", Toast.LENGTH_SHORT).show();
