@@ -254,4 +254,14 @@ public class ClassRedesPoste {
         this._tempRegistro.put("estado", "T");
         this.FcnSQL.UpdateRegistro("maestro_nodos",this._tempRegistro,"nodo='"+_nodo+"'");
     }
+
+    public boolean registrarTopologico(String _nodo,String posteinicial,String postefinal, String conexiones,boolean trafo){
+        this._tempRegistro.clear();
+        this._tempRegistro.put("nodo",_nodo);
+        this._tempRegistro.put("item",posteinicial);
+        this._tempRegistro.put("poste_final",postefinal);
+        this._tempRegistro.put("conexiones",conexiones);
+        this._tempRegistro.put("trafo",trafo);
+        return this.FcnSQL.InsertRegistro("datos_topologico",this._tempRegistro);
+    }
 }

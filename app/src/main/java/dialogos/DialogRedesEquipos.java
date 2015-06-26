@@ -184,7 +184,7 @@ public class DialogRedesEquipos extends Activity implements View.OnClickListener
                     Toast.makeText(this, "Debe Ingresar Capacidad para el Equipo", Toast.LENGTH_SHORT).show();
                 }else{
                     if (this.tiposEquipos.getSelectedItem().toString().equals("Otro")) {
-                        this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString() + ":" + this.nombreEquipo.getText().toString());
+                        this._tempRegistro.put("tipoEquipo", this.nombreEquipo.getText().toString());
                     } else {
                         this._tempRegistro.put("tipoEquipo", this.tiposEquipos.getSelectedItem().toString());
                     }

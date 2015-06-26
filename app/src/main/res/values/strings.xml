@@ -31,4 +31,5 @@
     <string name="title_activity_dialog_redes_lineas">Formato Redes Lineas</string>
     <string name="title_activity_dialog_redes_luminarias">Formato Redes Luminarias</string>
     <string name="title_activity_dialog_redes_post">FORMATO REDES POSTE</string>
+    <string name="title_activity_info_topologico">Topologico</string>
 </resources>

@@ -19,12 +19,14 @@ import Adapter.DetalleFourItems;
 import async_task.UploadLecturas;
 import clases.ClassRedesPoste;
 import clases.ClassSession;
+import dialogos.DialogTopologico;
 import sistema.SQLite;
 
 /**
  * Created by SypelcDesarrollo on 04/02/2015.
  */
 public class FormInformacionRutas extends Activity{
+    private static int ACT_INFO_TOPOLOGICO         = 1;
     private String FolderAplicacion;
     private String nodo_seleccionado;
 
@@ -104,10 +106,11 @@ public class FormInformacionRutas extends Activity{
                 startActivity(this.new_form);
                 return true;
 
-            /*case R.id.NodoMenuTerminar:
-                 this.nodo.terminarNodo(this.nodo_seleccionado);
-                Toast.makeText(this, "Nodo Terminado.", Toast.LENGTH_LONG).show();
-                return true;*/
+            case R.id.NodoMenuInfoTopologico:
+                this.new_form = new Intent(this, DialogTopologico.class);
+                this.new_form.putExtra("Nodo",this.nodo_seleccionado);
+                startActivityForResult(this.new_form, ACT_INFO_TOPOLOGICO);
+                return true;
 
             case R.id.NodoMenuDescargar:
                 if(this.sqlConsulta.CountRegistrosWhere("maestro_clientes","nodo='"+this.nodo_seleccionado+"' AND estado='P'")==0){
@@ -120,6 +123,18 @@ public class FormInformacionRutas extends Activity{
 
             default:
                 return super.onContextItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try{
+            if(resultCode == RESULT_OK && requestCode == ACT_INFO_TOPOLOGICO){
+
+            }
+        }
+        catch (Exception e){
+            e.toString();
         }
     }
 }

@@ -1,0 +1,119 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="520dp"
+    android:padding="13dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="12">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/TxtItemRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="@string/PosteInicial"
+            android:gravity="center_vertical|center_horizontal|left"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+        <TextView
+            android:id="@+id/TxtLatRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/Conexion"
+            android:gravity="center_vertical|center_horizontal|right"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+        <TextView
+            android:id="@+id/TxtTipoRedesPoste"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="@string/PosteFinal"
+            android:gravity="center_vertical|center_horizontal|right"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+        <TextView
+            android:id="@+id/TxtCompartidoPosteRedes"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/Transformador"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:textSize="18dp"
+            android:textColor="@color/LabelListView"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:weightSum="10">
+
+        <Spinner
+            android:id="@+id/SpinnerPosteInicial"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:focusableInTouchMode="false" />
+
+        <Spinner
+            android:id="@+id/SpinnerPosteConexion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"/>
+
+        <Spinner
+            android:id="@+id/SpinnerPosteFinal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7">
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/CheckboxTrafo"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:checked="false"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:weightSum="10"
+        android:gravity="center_vertical|center_horizontal">
+
+       <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/btn_aceptar_dialog_luminarias"
+            android:id="@+id/BtoAgregarConexionTopologico"
+            android:layout_weight="3" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/btn_finalizar_dialog_luminarias"
+            android:id="@+id/BtoFinalizarTopologico"
+            android:layout_weight="3" />
+    </LinearLayout>
+
+ </LinearLayout>

@@ -155,6 +155,14 @@ public class SQLite {
                                                         "tierra         VARCHAR(20) NOT NULL," +
                                                         "fecha_asignacion TIMESTAMP NOT NULL DEFAULT current_timestamp," +
                                                         "PRIMARY KEY(id, nodo, item));");
+
+            db.execSQL("CREATE TABLE datos_topologico(  nodo               VARCHAR(20) NOT NULL," +
+                                                        "item               INTEGER NOT NULL," +
+                                                        "poste_final        VARCHAR(20) NOT NULL," +
+                                                        "conexiones         VARCHAR(20) NOT NULL," +
+                                                        "trafo              boolean NOT NULL," +
+                                                        "fecha_asignacion   TIMESTAMP NOT NULL DEFAULT current_timestamp," +
+                                                        "PRIMARY KEY(nodo, item,poste_final));");
         }
 
         @Override

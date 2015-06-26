@@ -4,4 +4,8 @@
     <string name="RutaLblTotal">Total Usuarios</string>
     <string name="RutaLblLeido">Usuarios Leidos</string>
     <string name="RutaLblPendiente">Usuarios Pendientes</string>
+    <string name ="PosteInicial">PosteInicial</string>
+    <string name ="PosteFinal">PosteFinal</string>
+    <string name ="Conexion">Conexion</string>
+    <string name ="Transformador">Trafo</string>
 </resources>

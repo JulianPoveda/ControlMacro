@@ -231,7 +231,7 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                 this.adapterAltura.notifyDataSetChanged();
 
 
-                if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")){
+                if(tipoPoste.getSelectedItem().toString().equals("Cruce Aereo")||tipoPoste.getSelectedItem().toString().equals("LuminariaPedestal")){
                     this._btoMenos.setEnabled(false);
                     this._btonMas.setEnabled(false);
                     this.cntEstructura.setEnabled(false);
@@ -240,6 +240,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                     this.materialPoste.setEnabled(false);
                     this.estadoPoste.setEnabled(false);
                     this.compartidoPoste.setEnabled(false);
+                    this.newNodo.setEnabled(false);
+                    this.nuevoNodo.setEnabled(false);
                     this.cntEstGuardar.setText("0");
 
                     /*Cambiar el valor del estado para cruce aereo*/
@@ -267,6 +269,8 @@ public class DialogRedesPoste extends Activity implements View.OnClickListener, 
                     this.materialPoste.setEnabled(true);
                     this.estadoPoste.setEnabled(true);
                     this.compartidoPoste.setEnabled(true);
+                    this.newNodo.setEnabled(true);
+                    this.nuevoNodo.setEnabled(true);
 
                     this.arrayEstructuraPoste = this.FcnDataS.getDataSpinnerSubTipologia("SpinnerEstructuraRedesPoste",tipoPoste.getSelectedItem().toString());
                     this.adapterEstructura  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.arrayEstructuraPoste);

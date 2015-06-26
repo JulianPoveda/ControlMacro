@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import controlmacro.R;
 
@@ -57,7 +58,19 @@ public class DialogDeleteUsuario extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.DialogDeleteUserBtnAceptar:
-                finish(true);
+                if(this._txtNewNodo.getText().toString().equals("")){
+                    Toast.makeText(this, "Debe Ingresar El nuevo Nodo", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(this._txtPoste.getText().toString().equals("")){
+                        Toast.makeText(this, "Debe Ingresar el Poste", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(this._txtLectura.getText().toString().equals("")){
+                            Toast.makeText(this, "Debe Ingresar la Lectura", Toast.LENGTH_SHORT).show();
+                        }else{
+                            finish(true);
+                        }
+                    }
+                }
                 break;
 
             case R.id.DialogDeleteUserBtnCancelar:

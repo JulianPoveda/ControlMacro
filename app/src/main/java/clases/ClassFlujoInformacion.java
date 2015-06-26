@@ -120,6 +120,8 @@ public class ClassFlujoInformacion {
             this.FcnSQL.DeleteRegistro("nodo_postes","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+"");
         }else if(this._campos[0].equals("LUMINARIAS")){
             this.FcnSQL.DeleteRegistro("postes_luminarias","id='"+this._campos[1]+"' AND nodo='"+this._campos[2]+"' AND item="+this._campos[3]+" ");
+        }else if(this._campos[0].equals("TOPOLOGICO")){
+            this.FcnSQL.DeleteRegistro("datos_topologico","nodo='"+this._campos[1]+"' AND item="+this._campos[2]+" AND poste_final='"+this._campos[3]+"'");
         }
     }
 

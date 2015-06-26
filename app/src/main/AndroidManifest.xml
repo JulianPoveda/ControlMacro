@@ -5,11 +5,9 @@
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="true" />
-
     <uses-feature
         android:name="android.hardware.wifi"
         android:required="true" />
-
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -99,6 +97,11 @@
         <activity
             android:name="dialogos.DialogRedesPoste"
             android:label="@string/title_activity_dialog_redes_post"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="dialogos.DialogTopologico"
+            android:label="@string/title_activity_info_topologico"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>

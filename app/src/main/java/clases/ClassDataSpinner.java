@@ -59,5 +59,18 @@ public class ClassDataSpinner {
         return subTipologia;
     }
 
+    public ArrayList<String> getDataSpinnerPostes(String _nodo){
+        _tempTabla.clear();
+        ContentValues _temRegistro = new ContentValues();
+        ArrayList<String> listadoPostes = new ArrayList<String>();
+
+        _tempTabla = FcnSQL.SelectData("nodo_postes","item","nodo='"+_nodo+"' AND tipo<>'LuminariaPedestal'");
+        for(int i=0;i<_tempTabla.size();i++){
+            _temRegistro = _tempTabla.get(i);
+            listadoPostes.add(_temRegistro.getAsString("item"));
+        }
+        return listadoPostes;
+    }
+
 
 }
